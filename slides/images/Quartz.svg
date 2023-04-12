@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="694px" preserveAspectRatio="none" style="width:2152px;height:694px;" version="1.1" viewBox="0 0 2152 694" width="2152px" zoomAndPan="magnify"><defs><filter height="300%" id="f1vdm2qtq4kqgp" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="4.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="8.0" dy="8.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[b8e0354e0f3f5cbf52553869b78c0afa]
+class Job--><rect fill="#DDEEE8" filter="url(#f1vdm2qtq4kqgp)" height="121.6094" id="Job" style="stroke: #225C4D; stroke-width: 3.0;" width="452" x="1363" y="297"/><ellipse cx="1561.5" cy="329" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M1553.3438,320.5313 L1553.3438,316.2188 L1568.125,316.2188 L1568.125,320.5313 L1563.1875,320.5313 L1563.1875,336.6875 L1568.125,336.6875 L1568.125,341 L1553.3438,341 L1553.3438,336.6875 L1558.2813,336.6875 L1558.2813,320.5313 L1553.3438,320.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="38" x="1602.5" y="337.3086">Job</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1365" x2="1813" y1="361" y2="361"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1365" x2="1813" y1="377" y2="377"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="428" x="1375" y="405.4209">execute(context: JobExecutionContext)</text><!--MD5=[05f7ea7ed69b097ccc2f25c11f2120de]
+class QuartzJobBean--><rect fill="#DDEEE8" filter="url(#f1vdm2qtq4kqgp)" height="96" id="QuartzJobBean" style="stroke: #225C4D; stroke-width: 3.0;" width="238" x="1470" y="42"/><ellipse cx="1500" cy="74" fill="#A9DCDF" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M1500.2188,64.6875 L1497.9063,74.8438 L1502.5625,74.8438 L1500.2188,64.6875 Z M1497.25,60.2188 L1503.2188,60.2188 L1509.9375,85 L1505.0313,85 L1503.5,78.875 L1496.9375,78.875 L1495.4375,85 L1490.5625,85 L1497.25,60.2188 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="174" x="1528" y="82.3086">QuartzJobBean</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1472" x2="1706" y1="106" y2="106"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1472" x2="1706" y1="122" y2="122"/><path d="M1778,50 L1778,82 L1708.44,90 L1778,98 L1778,130.5313 A0,0 0 0 0 1778,130.5313 L2128,130.5313 A0,0 0 0 0 2128,130.5313 L2128,70 L2108,50 L1778,50 A0,0 0 0 0 1778,50 " fill="#FBFB77" filter="url(#f1vdm2qtq4kqgp)" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M2108,50 L2108,70 L2128,70 L2108,50 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacingAndGlyphs" textLength="172" x="1790" y="84.1338">Wird bei jeder</text><text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacingAndGlyphs" textLength="308" x="1790" y="114.3994">Ausführung neu erzeugt</text><!--MD5=[50c9d69e4ec4a00f1b7ad404d99aaea4]
+class JobDetail--><rect fill="#DDEEE8" filter="url(#f1vdm2qtq4kqgp)" height="147.2188" id="JobDetail" style="stroke: #225C4D; stroke-width: 3.0;" width="436" x="963" y="16"/><ellipse cx="1119.5" cy="48" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M1111.3438,39.5313 L1111.3438,35.2188 L1126.125,35.2188 L1126.125,39.5313 L1121.1875,39.5313 L1121.1875,55.6875 L1126.125,55.6875 L1126.125,60 L1111.3438,60 L1111.3438,55.6875 L1116.2813,55.6875 L1116.2813,39.5313 L1111.3438,39.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="106" x="1160.5" y="56.3086">JobDetail</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="965" x2="1397" y1="80" y2="80"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="965" x2="1397" y1="96" y2="96"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="412" x="975" y="124.4209">getJobClass(): Class&lt;? extends Job&gt;</text><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="330" x="975" y="150.0303">getJobDataMap(): JobDataMap</text><!--MD5=[f8158362d3f9eaf6b261520465ba7069]
+class Trigger--><rect fill="#DDEEE8" filter="url(#f1vdm2qtq4kqgp)" height="121.6094" id="Trigger" style="stroke: #225C4D; stroke-width: 3.0;" width="290" x="1002" y="297"/><ellipse cx="1095.5" cy="329" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M1087.3438,320.5313 L1087.3438,316.2188 L1102.125,316.2188 L1102.125,320.5313 L1097.1875,320.5313 L1097.1875,336.6875 L1102.125,336.6875 L1102.125,341 L1087.3438,341 L1087.3438,336.6875 L1092.2813,336.6875 L1092.2813,320.5313 L1087.3438,320.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="86" x="1136.5" y="337.3086">Trigger</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1004" x2="1290" y1="361" y2="361"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1004" x2="1290" y1="377" y2="377"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="266" x="1014" y="405.4209">getNextFireTime(): Date</text><!--MD5=[8523c9eb2e1b5151dfc9c2a797373c5f]
+class Scheduler--><rect fill="#DDEEE8" filter="url(#f1vdm2qtq4kqgp)" height="147.2188" id="Scheduler" style="stroke: #225C4D; stroke-width: 3.0;" width="638" x="294" y="284"/><ellipse cx="544.5" cy="316" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M536.3438,307.5313 L536.3438,303.2188 L551.125,303.2188 L551.125,307.5313 L546.1875,307.5313 L546.1875,323.6875 L551.125,323.6875 L551.125,328 L536.3438,328 L536.3438,323.6875 L541.2813,323.6875 L541.2813,307.5313 L536.3438,307.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="120" x="585.5" y="324.3086">Scheduler</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="296" x2="930" y1="348" y2="348"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="296" x2="930" y1="364" y2="364"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="70" x="306" y="392.4209">start()</text><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="614" x="306" y="418.0303">scheduleJob(jobDetail: JobDetail, trigger: Trigger): Date</text><!--MD5=[852116ec2fea78ad75b83203b3950134]
+class CronTriggerFactoryBean--><rect fill="#DDEEE8" filter="url(#f1vdm2qtq4kqgp)" height="96" id="CronTriggerFactoryBean" style="stroke: #225C4D; stroke-width: 3.0;" width="366" x="964" y="565"/><ellipse cx="994" cy="597" fill="#ADD1B2" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M999.9375,608.2813 Q998.7813,608.875 997.5,609.1563 Q996.2188,609.4688 994.8125,609.4688 Q989.8125,609.4688 987.1563,606.1875 Q984.5313,602.875 984.5313,596.625 Q984.5313,590.375 987.1563,587.0625 Q989.8125,583.75 994.8125,583.75 Q996.2188,583.75 997.5,584.0625 Q998.8125,584.375 999.9375,584.9688 L999.9375,590.4063 Q998.6875,589.25 997.5,588.7188 Q996.3125,588.1563 995.0625,588.1563 Q992.375,588.1563 991,590.3125 Q989.625,592.4375 989.625,596.625 Q989.625,600.8125 991,602.9688 Q992.375,605.0938 995.0625,605.0938 Q996.3125,605.0938 997.5,604.5625 Q998.6875,604 999.9375,602.8438 L999.9375,608.2813 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="302" x="1022" y="605.3086">CronTriggerFactoryBean</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="966" x2="1328" y1="629" y2="629"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="966" x2="1328" y1="645" y2="645"/><path d="M1400,573 L1400,605 L1330.14,613 L1400,621 L1400,653.5313 A0,0 0 0 0 1400,653.5313 L1682,653.5313 A0,0 0 0 0 1682,653.5313 L1682,593 L1662,573 L1400,573 A0,0 0 0 0 1400,573 " fill="#FBFB77" filter="url(#f1vdm2qtq4kqgp)" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M1662,573 L1662,593 L1682,593 L1662,573 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacingAndGlyphs" textLength="226" x="1412" y="607.1338">Liefert Trigger mit</text><text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacingAndGlyphs" textLength="240" x="1412" y="637.3994">sinnvollen Defaults</text><!--MD5=[ee1975b2984ac4c1880f3a821a6bd23f]
+class SchedulerFactoryBean--><rect fill="#DDEEE8" filter="url(#f1vdm2qtq4kqgp)" height="121.6094" id="SchedulerFactoryBean" style="stroke: #225C4D; stroke-width: 3.0;" width="346" x="440" y="552"/><ellipse cx="470" cy="584" fill="#ADD1B2" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M475.9375,595.2813 Q474.7813,595.875 473.5,596.1563 Q472.2188,596.4688 470.8125,596.4688 Q465.8125,596.4688 463.1563,593.1875 Q460.5313,589.875 460.5313,583.625 Q460.5313,577.375 463.1563,574.0625 Q465.8125,570.75 470.8125,570.75 Q472.2188,570.75 473.5,571.0625 Q474.8125,571.375 475.9375,571.9688 L475.9375,577.4063 Q474.6875,576.25 473.5,575.7188 Q472.3125,575.1563 471.0625,575.1563 Q468.375,575.1563 467,577.3125 Q465.625,579.4375 465.625,583.625 Q465.625,587.8125 467,589.9688 Q468.375,592.0938 471.0625,592.0938 Q472.3125,592.0938 473.5,591.5625 Q474.6875,591 475.9375,589.8438 L475.9375,595.2813 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="282" x="498" y="592.3086">SchedulerFactoryBean</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="442" x2="784" y1="616" y2="616"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="246" x="452" y="644.4209">jobFactory: JobFactory</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="442" x2="784" y1="657.6094" y2="657.6094"/><path d="M12,573 L12,653.5313 A0,0 0 0 0 12,653.5313 L370,653.5313 A0,0 0 0 0 370,653.5313 L370,621 L439.78,613 L370,605 L370,593 L350,573 L12,573 A0,0 0 0 0 12,573 " fill="#FBFB77" filter="url(#f1vdm2qtq4kqgp)" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M350,573 L350,593 L370,593 L350,573 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacingAndGlyphs" textLength="182" x="24" y="607.1338">Initialisiert von</text><text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacingAndGlyphs" textLength="316" x="24" y="637.3994">QuartzAutoConfiguration</text><!--MD5=[b472ae3087803149b267bc2b866fff5c]
+link QuartzJobBean to Job--><path d="M1589,138.6 C1589,171.16 1589,215.88 1589,256.3 " fill="none" id="QuartzJobBean-&gt;Job" style="stroke: #225C4D; stroke-width: 2.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="1603,256.92,1589,296.92,1575,256.92,1603,256.92" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[fbf38fe8160a5abaa22e5dd15add913b]
+link Scheduler to Trigger--><!--MD5=[9900c7b121832efe60133711f69a2f79]
+link Trigger to Job--><!--MD5=[95f314a11e1ce38ebbbde2f1d514424c]
+link JobDetail to QuartzJobBean--><path d="M1399.34,90 C1419.32,90 1439.3,90 1459.28,90 " fill="none" id="JobDetail-&gt;QuartzJobBean" style="stroke: #225C4D; stroke-width: 2.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#225C4D" points="1469.72,90,1451.72,82,1459.72,90,1451.72,98,1469.72,90" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[a26a16ab55990e47db82a2f9a12e42c0]
+reverse link Trigger to CronTriggerFactoryBean--><path d="M1147,429.6 C1147,472.6 1147,526.62 1147,564.48 " fill="none" id="Trigger&lt;-CronTriggerFactoryBean" style="stroke: #225C4D; stroke-width: 2.0;"/><polygon fill="#225C4D" points="1147,419.48,1139,437.48,1147,429.48,1155,437.48,1147,419.48" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[5dfdc4af8d3b3f5475bd5cb89b1ae5d8]
+reverse link Scheduler to SchedulerFactoryBean--><path d="M613,443.38 C613,478.68 613,519 613,551.24 " fill="none" id="Scheduler&lt;-SchedulerFactoryBean" style="stroke: #225C4D; stroke-width: 2.0;"/><polygon fill="#225C4D" points="613,432.6,605,450.6,613,442.6,621,450.6,613,432.6" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[932187b4240c71509c0344824f8427da]
+@startuml
+skinparam class {
+ BackgroundColor #DDEEE8
+ BorderColor #225C4D
+ ArrowColor #225C4D
+ }
+scale 2
+
+interface Job {
+    execute(context: JobExecutionContext)
+}
+
+abstract class QuartzJobBean
+note right: Wird bei jeder\nAusführung neu erzeugt
+
+QuartzJobBean ..|> Job
+
+interface JobDetail {
+    getJobClass(): Class<? extends Job>
+    getJobDataMap(): JobDataMap
+}
+
+interface Trigger {
+    getNextFireTime(): Date
+}
+
+interface Scheduler {
+    start()
+    scheduleJob(jobDetail: JobDetail, trigger: Trigger): Date
+}
+
+Scheduler -[hidden]> Trigger
+Trigger -[hidden]> Job
+JobDetail .> QuartzJobBean
+
+class CronTriggerFactoryBean
+note right: Liefert Trigger mit\nsinnvollen Defaults
+
+CronTriggerFactoryBean -up-> Trigger
+
+class SchedulerFactoryBean {
+    jobFactory: JobFactory
+}
+note left: Initialisiert von\nQuartzAutoConfiguration
+
+SchedulerFactoryBean -up-> Scheduler
+@enduml
+
+PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.6+10-Debian-1deb11u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: DK
+--></g></svg>

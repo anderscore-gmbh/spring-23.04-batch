@@ -1,0 +1,16 @@
+**/.gradle/
+**/build/
+**/target/
+*~
+
+# ignore eclipse specific files
+/bin/
+**/.settings/
+.project
+.classpath
+.factorypath
+
+# ignore IDEA specific files
+**/out/
+/.idea/
+*.iml

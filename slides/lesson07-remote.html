@@ -1,0 +1,314 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 7 - Remote-Verarbeitung</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_7_remote_verarbeitung" data-state="no-title-footer"><h2>Lektion 7 - Remote-Verarbeitung</h2></section>
+<section id="_überblick_zu_dieser_lektion"><h2>Überblick zu dieser Lektion</h2><div class="olist arabic"><ol class="arabic"><li><p>Lastverteilung auf mehrere Rechner</p></li><li><p><a href="http://localhost:8071/lesson07-remote.html#/_messaging">Messaging (ActiveMQ)</a></p></li><li><p><a href="http://localhost:8071/lesson07-remote.html#/_chunkorientedtasklet_bei_remote_chunking">Remote-Chunking</a>
+(<a href="http://localhost:8071/lesson07-remote.html#/_aufgabe_1_job_auf_remote_chunking_umstellen">Aufgabe 1</a>)</p></li><li><p><a href="http://localhost:8071/lesson07-remote.html#/_wiederholung_partitionstep_ausf%C3%BChrung">Remote-Partitioning</a>
+(<a href="http://localhost:8071/lesson07-remote.html#/_aufgabe_2_summe_von_1_bis_100_mit_remote_partitioning">Aufgabe 2</a>)</p></li></ol></div></section>
+<section id="_wann_ist_lastverteilung_auf_mehere_rechner_sinnvoll"><h2>Wann ist Lastverteilung auf mehere Rechner sinnvoll?</h2><div class="ulist"><div class="title">Lastverteilung ist sinnvoll bei:</div><ul><li class="fragment"><p>rechenintensiven Jobs</p></li><li class="fragment"><p>großen Datenmengen (IO, Arbeitsspeicher)</p></li><li class="fragment"><p>evtl. zur Erhöhung der Ausfallsicherheit</p></li></ul></div>
+<div class="ulist"><div class="title">aber</div><ul><li class="fragment"><p>Lastverteilung erhöht die Komplexität</p></li><li class="fragment"><p>Kommunikation zwischen Manager und Workern erhöht IO-Last</p></li><li class="fragment"><p>&#8658; Kosten und Nutzen abwägen!</p><div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Partitionierung ist sinnvoll, wenn ein externer Dienst (Datenbank, Webservice)<br>
+Wartzeiten verursacht.<br>
+Lastverteilung ist sinnvoll, wenn die Leistung eines Rechners
+nicht mehr ausreicht.</td></tr></table></div></li></ul></div></section>
+<section id="_einfachste_variante_der_lastverteilung_unabhängig_von_spring_batch"><h2>Einfachste Variante der Lastverteilung (unabhängig von Spring-Batch)</h2><div class="ulist"><div class="title">Voraussetzungen:</div><ul><li><p>Anzahl der Knoten ist fix</p></li><li><p>Name oder IP-Adressen der Knoten sind bekannt und fest</p></li><li><p>Datenmenge läßt sich in n Paritionen aufteilen (n = Anzahl Knoten)</p></li></ul></div>
+<div class="paragraph"><p><br></p></div>
+<div class="ulist"><div class="title">Umsetzung:</div><ul><li><p>Knotenname wird als Parameter übergeben</p></li><li><p>Datenmenge wird immer gleich partitioniert (auf jedem Knoten)</p></li><li><p>Jede Partition ist von einem Knoten zu bearbeiten (Zuordnung über Knotenname)</p></li></ul></div></section>
+<section id="_lastverteilung_mit_spring_batch"><h2>Lastverteilung mit Spring-Batch</h2><div class="ulist"><ul><li><p>Remote Chunking</p></li><li><p>Remote Paritioning</p></li></ul></div></section>
+<section id="_remote_chunking"><h2>Remote Chunking</h2><div class="imageblock" style=""><img src="images/remote/remote-chunking.png" alt="remote chunking" width="1000"></div></section>
+<section id="_remote_partitioning"><h2>Remote Partitioning</h2><div class="imageblock" style=""><img src="images/remote/partitioning-overview.png" alt="partitioning overview" width="1000"></div></section>
+<section id="_messaging" class="columns"><h2>Messaging</h2><div class="ulist"><ul><li><p>Verschicken von Nachrichten über Rechnergrenzen hinweg</p></li><li><p>Erfordert Messaging-Middleware (Broker)</p></li><li><p>Empfänger kann (temporär) offline sein</p></li><li><p>Zustellung wird grantiert</p></li><li><p>Einstellen und Abholen von Nachrichten ist transaktional</p></li><li><p>Kann für entfernte Methodenaufrufe (RMI) verwendet werden</p></li><li><p>Message in <em>Spring Integration</em>:</p><div class="imageblock" style="text-align: left"><img src="images/MessageClass.svg" alt="MessageClass" width="856" height="184"></div></li></ul></div>
+<div class="imageblock" style="float: right"><img src="images/remote/51SO8Sn59NL._SX376_BO1,204,203,200_.jfif" alt="51SO8Sn59NL. SX376 BO1,204,203,200 " width="500"></div></section>
+<section id="_activemq"><h2>ActiveMQ</h2><div class="ulist"><ul><li><p>Pure Java</p></li><li><p>Sehr einfach aufzusetzen (Maven-Plugin, ZIP-File, Docker-Image)</p></li><li><p>Kann in eigene Anwendungen intergriert werden (eigener Broker)</p></li><li><p>Verschiedene <em>Persistence Adapter</em> verfügbar (u. a. In-Memory)</p></li><li><p>Unterstützt verschieden Protokolle: JMS, AMQP, STOMP, MQTT</p></li><li><p>In zwei Ausprägungen verfügbar: <em>ActiveMQ 5 "Classic"</em> und <em>ActiveMQ Artemis</em> (non-blocking)</p></li><li><p>Alternativen: RabbitMQ, Kafka</p></li></ul></div></section>
+<section id="_konfiguration_einer_jms_connectionfactory_für_activemq"><h2>Konfiguration einer JMS-ConnectionFactory für ActiveMQ</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="annotation">@PropertySource</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">classpath:remote.properties</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ActiveMQConfig</span> {
+
+    <span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">${broker.url}</span><span class="delimiter">&quot;</span></span>)
+    <span class="directive">private</span> <span class="predefined-type">String</span> brokerUrl;
+
+    <span class="annotation">@Bean</span>
+    ActiveMQConnectionFactory connectionFactory() {
+        ActiveMQConnectionFactory connectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory();
+        connectionFactory.setBrokerURL(<span class="local-variable">this</span>.brokerUrl);
+        connectionFactory.setTrustAllPackages(<span class="predefined-constant">true</span>);
+        <span class="keyword">return</span> connectionFactory;
+    }
+}</code></pre>
+<div class="title">remote.properties</div><pre class="CodeRay listingblock"><code>broker.url=tcp://localhost:61616</code></pre></section>
+<section id="_chunkorientedtasklet_bei_remote_chunking"><h2>ChunkOrientedTasklet bei Remote-Chunking</h2><div class="imageblock" style=""><img src="images/RemoteChunkOrientedTasklet.svg" alt="RemoteChunkOrientedTasklet" width="2426" height="566"></div></section>
+<section id="_worker_bei_remote_chunking"><h2>Worker bei Remote-Chunking</h2><div class="imageblock" style=""><img src="images/RemoteChunkingWorker.svg" alt="RemoteChunkingWorker" width="1780" height="602"></div></section>
+<section id="_stepbuilder_für_remote_chunking"><h2>StepBuilder für Remote-Chunking</h2><div class="imageblock" style=""><img src="images/RemoteChunkingStepBuilder.svg" alt="RemoteChunkingStepBuilder" width="2122" height="630"></div></section>
+<section id="_konfiguration_von_manager_und_worker_für_remote_chunking"><h2>Konfiguration von Manager und Worker für Remote-Chunking</h2><div class="title">Manager:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="annotation">@Import</span>(ActiveMQConfig.class)
+<span class="annotation">@EnableBatchProcessing</span>
+<span class="annotation">@EnableBatchIntegration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SampleManagerConfig</span> {
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> RemoteChunkingManagerStepBuilderFactory managerStepBuilderFactory;
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> ActiveMQConnectionFactory connectionFactory;
+    <span class="comment">//...</span>
+}</code></pre>
+<div class="title">Worker:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="annotation">@Import</span>(ActiveMQConfig.class)
+<span class="annotation">@EnableBatchProcessing</span>
+<span class="annotation">@EnableBatchIntegration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SampleWorkerConfig</span> {
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> RemoteChunkingWorkerBuilder&lt;<span class="predefined-type">Integer</span>, <span class="predefined-type">Integer</span>&gt; remoteChunkingWorkerBuilder;
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> ActiveMQConnectionFactory connectionFactory;
+    <span class="comment">//...</span>
+}</code></pre></section>
+<section id="_konfiguration_eines_outbound_flow"><h2>Konfiguration eines Outbound-Flow</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+DirectChannel requests() {
+    <span class="keyword">return</span> <span class="keyword">new</span> DirectChannel();
+}
+
+<span class="annotation">@Bean</span>
+<span class="directive">public</span> IntegrationFlow outboundFlow() {
+    <span class="keyword">return</span> IntegrationFlows
+            .from(requests())
+            .handle(Jms.outboundAdapter(connectionFactory)
+                    .destination(<span class="string"><span class="delimiter">&quot;</span><span class="content">sample.requests</span><span class="delimiter">&quot;</span></span>))
+            .get();
+}</code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Die selbe Destination muss im Worker als Inbound-Flow konfiguriert werden.</td></tr></table></div></section>
+<section id="_konfiguration_eines_inbound_flow"><h2>Konfiguration eines Inbound-Flow</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> QueueChannel replies() {
+    <span class="keyword">return</span> <span class="keyword">new</span> QueueChannel();
+}
+
+<span class="annotation">@Bean</span>
+<span class="directive">public</span> IntegrationFlow inboundFlow() {
+    <span class="keyword">return</span> IntegrationFlows
+            .from(Jms.messageDrivenChannelAdapter(connectionFactory)
+                    .destination(<span class="string"><span class="delimiter">&quot;</span><span class="content">sample.replies</span><span class="delimiter">&quot;</span></span>))
+            .channel(replies())
+            .get();
+}</code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Der <code>ChunkMessageChannelItemWriter</code> (Manager) benötigt einen <code>PollableChannel</code>,
+also z. B. den <code>QueueChannel</code>. In allen anderen Fällen genügt ein einfacher <code>MessageChannel</code>,
+also z. B. <code>DirectChannel</code>.</td></tr></table></div></section>
+<section id="_manager_step_und_zugehöriger_worker_flow"><h2>Manager-Step und zugehöriger Worker-Flow</h2><div class="title">SampleRemoteChunkingManagerConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> TaskletStep managerStep() {
+    <span class="keyword">return</span> <span class="local-variable">this</span>.managerStepBuilderFactory.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">managerStep</span><span class="delimiter">&quot;</span></span>)
+            .chunk(<span class="integer">10</span>)
+            .reader(reader)
+            .outputChannel(requests())
+            .inputChannel(replies())
+            .build();
+}</code></pre>
+<div class="paragraph"><p><br></p></div>
+<div class="title">SampleRemoteChunkingWorkerConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> IntegrationFlow workerIntegrationFlow() {
+    <span class="keyword">return</span> <span class="local-variable">this</span>.remoteChunkingWorkerBuilder
+            .itemProcessor(processor)
+            .itemWriter(writer)
+            .inputChannel(requests())
+            .outputChannel(replies())
+            .build();
+}</code></pre></section>
+<section id="_aufgabe_1_job_auf_remote_chunking_umstellen"><h2>Aufgabe 1: Job auf Remote-Chunking umstellen</h2><div class="olist arabic"><ol class="arabic"><li><p>Importieren Sie das Projekt <strong>exercises-remote</strong>.</p></li><li><p>Stellen Sie <strong><code>LocalDuplicateJobConfig</code></strong> auf Remote-Chunking um, indem Sie</p><div class="ulist"><ul><li><p><strong><code>DuplicateManagerConfig</code></strong> und</p></li><li><p><strong><code>DuplicateWorkerConfig</code></strong> implementieren.</p></li></ul></div></li><li><p>Nutzen Sie dafür die vorgebene <strong><code>ActiveMQConfig</code></strong>.</p></li><li><p>Starten Sie einen ActiveMQ-Broker, indem Sie in dem Projekt <strong>activemq-broker</strong>
+über die Befehlszeile <code>mvn</code> aufrufen.</p></li><li><p>Nutzen Sie die beiden Unittests <code>DuplicateManagerStarter</code> und <code>DuplicateWorkerStarter</code> um
+Manager und Worker auszuführen.</p></li><li><p>Setzen Sie Breakpoints in der <code>read</code>- bzw. <code>process</code>-Methode und sehen Sie sich die
+Datenstrukturen von dem <code>ChunkOrientedTasklet</code> und dem <code>ChunkProcessorChunkHandler</code> an.</p></li><li><p>Sehen Sie sich den Repository-Inhalt zu diesem Remote-Chunking Job an.</p></li></ol></div></section>
+<section id="_wiederholung_partitionstep_ausführung"><h2>Wiederholung: PartitionStep Ausführung</h2><div class="imageblock" style=""><img src="images/PartitionStepExecRemote.svg" alt="PartitionStepExecRemote" width="1994" height="764"></div></section>
+<section id="_partitionstep_bei_remote_partitioning"><h2>PartitionStep bei Remote-Partitioning</h2><div class="imageblock" style=""><img src="images/RemotePartitioningStep.svg" alt="RemotePartitioningStep" width="900" height="566"></div></section>
+<section id="_worker_bei_remote_partitioning"><h2>Worker bei Remote-Partitioning</h2><div class="imageblock" style=""><img src="images/RemotePartitioningWorker.svg" alt="RemotePartitioningWorker" width="1372" height="704"></div></section>
+<section id="_stepbuilder_für_remote_partitioning"><h2>StepBuilder für Remote-Partitioning</h2><div class="imageblock" style=""><img src="images/RemotePartitioningStepBuilder.svg" alt="RemotePartitioningStepBuilder" width="2204" height="606"></div></section>
+<section id="_manager_step_und_zugehöriger_worker_flow_bei_remote_partitioning"><h2>Manager-Step und zugehöriger Worker-Flow bei Remote-Partitioning</h2><div class="title">SampleRemotePartitioningManager.java</div><pre class="CodeRay listingblock"><code class="java language-java">Step step = managerStepBuilderFactory
+        .get(<span class="string"><span class="delimiter">&quot;</span><span class="content">managerStep</span><span class="delimiter">&quot;</span></span>)
+        .partitioner(<span class="string"><span class="delimiter">&quot;</span><span class="content">workerStep</span><span class="delimiter">&quot;</span></span>, partitioner)
+        .outputChannel(requests())
+        .inputChannel(replies())
+        .build();</code></pre>
+<div class="paragraph"><p><br></p></div>
+<div class="title">SampleRemotePartitioningWorker.java</div><pre class="CodeRay listingblock"><code class="java language-java">Step step = workerStepBuilderFactory
+        .get(<span class="string"><span class="delimiter">&quot;</span><span class="content">workerStep</span><span class="delimiter">&quot;</span></span>)
+        .inputChannel(requests())
+        .outputChannel(replies())
+        .&lt;<span class="predefined-type">Integer</span>, <span class="predefined-type">Integer</span>&gt;chunk(<span class="integer">10</span>)
+        .reader(reader)
+        .processor(processor)
+        .writer(writer)
+        .build();</code></pre>
+<div class="admonitionblock caution teacherBox"><table><tr><td class="icon"><i class="fa fa-fire" title="Caution"></i></td><td class="content">Bei Remote-Partitioning darf der Input-Channel für die <em>replies</em> (Manager)
+kein <code>PollableChannel</code> sein. Man muss also <code>DirectChannel</code> statt <code>QueueChannel</code>
+verwenden.</td></tr></table></div></section>
+<section id="_unterschiede_remote_chunkingremote_partitioning" class="columns"><h2>Unterschiede Remote-Chunking&#8201;&#8212;&#8201;Remote-Partitioning</h2><div class="openblock"><div class="content"><div class="paragraph lead"><p>Remote-Chunking</p></div>
+<div class="ulist"><ul><li><p>Reader im Manager</p></li><li><p>Gelesene Items werden als<br>
+Message an Worker verschickt</p></li><li><p>Viel Netzwerk-Traffic</p></li><li><p>Sinnvoll, wenn Reader direkt<br>
+auf Dateisystem zugreift</p></li></ul></div></div></div>
+<div class="openblock"><div class="content"><div class="paragraph lead"><p>Remote-Partitioning</p></div>
+<div class="ulist"><ul><li><p>Reader auf jedem Worker</p></li><li><p>Nur Metainformationen über Partions-<br>
+grenzen werden an Worker verschickt</p></li><li><p>Netzwerk-Traffic moderat</p></li><li><p>Sinnvoll, wenn Reader die Daten von<br>
+einer zentralen Datenquelle (Datenbank,<br>
+Messaging-Middleware, Webservice) bezieht</p></li></ul></div></div></div></section>
+<section id="_zusammenfassung_lektion_7"><h2>Zusammenfassung Lektion 7</h2><div class="ulist"><ul><li><p>Einfachste Partitionierung über Parameter</p></li><li><p>Messaging: transaktional und garantierte Zustellung</p></li><li><p>Remote-Chunking: Ein Reader, viel Traffic</p></li><li><p>Remote-Partitioning: Jeder Worker hat eigenen Reader</p></li></ul></div></section>
+<section id="_aufgabe_2_summe_von_1_bis_100_mit_remote_partitioning"><h2>Aufgabe 2: Summe von 1 bis 100 mit Remote-Partitioning</h2><div class="olist arabic"><ol class="arabic"><li><p>Stellen Sie die Partitioning-Aufgabe aus der<br>
+letzten Lektion auf Remote-Partitioning um.</p></li></ol></div>
+<div class="paragraph"><p><br>
+&#8594; <a href="index.html">Agenda</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring Workshop', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

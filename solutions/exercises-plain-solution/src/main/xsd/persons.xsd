@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema
+    targetNamespace="http://anderscore.com/persons"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://anderscore.com/persons">
+
+    <xs:element name="persons">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="person" 
+                    type="PersonType" 
+                    minOccurs="0" 
+                    maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="PersonType">
+        <xs:sequence>
+            <xs:element name="firstName" type="xs:string" />
+            <xs:element name="lastName" type="xs:string" />
+            <xs:element name="birthday" type="xs:date" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

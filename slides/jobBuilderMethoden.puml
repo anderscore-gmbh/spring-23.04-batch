@@ -1,0 +1,20 @@
+scale 2
+
+hide empty description
+[*] -> JobBuilderFactory
+JobBuilderFactory -> JobBuilder: get
+JobBuilder -> SimpleJobBuilder: start(Step)
+JobBuilder --> JobFlowBuilder: start(Flow)
+note left
+Erweitert FlowBuilder
+end note
+JobBuilder --> JobFlowBuilder: flow(Step)
+SimpleJobBuilder -> SimpleJobBuilder: start(Step)
+SimpleJobBuilder -> SimpleJobBuilder: next(Step)
+SimpleJobBuilder --> JobFlowBuilder: start(Flow)
+SimpleJobBuilder -> Job: build
+JobFlowBuilder --> JobFlowBuilder: start
+JobFlowBuilder --> JobFlowBuilder: next
+JobFlowBuilder --> FlowJobBuilder: end
+FlowJobBuilder -> Job: build
+Job -> [*]

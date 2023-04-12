@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="680px" preserveAspectRatio="none" style="width:540px;height:680px;" version="1.1" viewBox="0 0 540 680" width="540px" zoomAndPan="magnify"><defs><filter height="300%" id="fr0dto7pem73l" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="4.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="8.0" dy="8.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><ellipse cx="279" cy="40" fill="#000000" filter="url(#fr0dto7pem73l)" rx="20" ry="20" style="stroke: none; stroke-width: 2.0;"/><rect fill="#FEFECE" filter="url(#fr0dto7pem73l)" height="67.9375" rx="25" ry="25" style="stroke: #A80036; stroke-width: 3.0;" width="242" x="158" y="100"/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="202" x="178" y="142.2773">Datensatz lesen</text><rect fill="#FEFECE" filter="url(#fr0dto7pem73l)" height="67.9375" rx="25" ry="25" style="stroke: #A80036; stroke-width: 3.0;" width="318" x="120" y="329.5469"/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="278" x="140" y="371.8242">Datensatz verarbeiten</text><rect fill="#FEFECE" filter="url(#fr0dto7pem73l)" height="67.9375" rx="25" ry="25" style="stroke: #A80036; stroke-width: 3.0;" width="298" x="130" y="437.4844"/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="258" x="150" y="479.7617">Datensatz schreiben</text><rect fill="#FEFECE" filter="url(#fr0dto7pem73l)" height="67.9375" rx="25" ry="25" style="stroke: #A80036; stroke-width: 3.0;" width="370" x="94" y="545.4219"/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="330" x="114" y="587.6992">Nächsten Datensatz lesen</text><polygon fill="#FEFECE" filter="url(#fr0dto7pem73l)" points="154,207.9375,404,207.9375,428,231.9375,404,255.9375,154,255.9375,130,231.9375,154,207.9375" style="stroke: #A80036; stroke-width: 3.0;"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="20" x="287" y="276.3584">ja</text><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="250" x="154" y="239.5537">Datensatz vorhanden?</text><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="48" x="82" y="226.749">nein</text><ellipse cx="48" cy="325.9375" fill="#FFFFFF" filter="url(#fr0dto7pem73l)" rx="22" ry="22" style="stroke: #000000; stroke-width: 2.0;"/><ellipse cx="48" cy="325.9375" fill="#000000" rx="12" ry="12" style="stroke: #7F7F7F; stroke-width: 2.0;"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="279" x2="279" y1="60" y2="100"/><polygon fill="#225C4D" points="271,80,279,100,287,80,279,88" style="stroke: #225C4D; stroke-width: 2.0;"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="279" x2="279" y1="397.4844" y2="437.4844"/><polygon fill="#225C4D" points="271,417.4844,279,437.4844,287,417.4844,279,425.4844" style="stroke: #225C4D; stroke-width: 2.0;"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="279" x2="279" y1="505.4219" y2="545.4219"/><polygon fill="#225C4D" points="271,525.4219,279,545.4219,287,525.4219,279,533.4219" style="stroke: #225C4D; stroke-width: 2.0;"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="279" x2="279" y1="255.9375" y2="329.5469"/><polygon fill="#225C4D" points="271,309.5469,279,329.5469,287,309.5469,279,317.5469" style="stroke: #225C4D; stroke-width: 2.0;"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="279" x2="279" y1="613.3594" y2="633.3594"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="279" x2="488" y1="633.3594" y2="633.3594"/><polygon fill="#225C4D" points="480,454.6484,488,434.6484,496,454.6484,488,446.6484" style="stroke: #225C4D; stroke-width: 3.0;"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="488" x2="488" y1="231.9375" y2="633.3594"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="488" x2="428" y1="231.9375" y2="231.9375"/><polygon fill="#225C4D" points="448,223.9375,428,231.9375,448,239.9375,440,231.9375" style="stroke: #225C4D; stroke-width: 2.0;"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="130" x2="48" y1="231.9375" y2="231.9375"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="48" x2="48" y1="231.9375" y2="303.9375"/><polygon fill="#225C4D" points="40,283.9375,48,303.9375,56,283.9375,48,291.9375" style="stroke: #225C4D; stroke-width: 2.0;"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="279" x2="279" y1="167.9375" y2="207.9375"/><polygon fill="#225C4D" points="271,187.9375,279,207.9375,287,187.9375,279,195.9375" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[7477ba87b7017c2b3d5d5f055c998de9]
+@startuml
+skinparam class {
+ BackgroundColor #DDEEE8
+ BorderColor #225C4D
+ ArrowColor #225C4D
+ }
+scale 2
+
+start
+:Datensatz lesen;
+while (Datensatz vorhanden?) is (ja)
+    :Datensatz verarbeiten;
+    :Datensatz schreiben;
+    :Nächsten Datensatz lesen;
+endwhile (nein)
+stop
+@enduml
+
+PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.6+10-Debian-1deb11u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: DK
+--></g></svg>

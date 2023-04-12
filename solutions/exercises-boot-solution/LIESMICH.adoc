@@ -1,0 +1,7 @@
+= Lösung zu Hello-World mit SpringBatch und Spring-Boot
+
+Die Lösung umfasst Teile der Lektionen 2 und 3.
+
+Zum Ausführen mit Parametern:
+
+    mvn spring-boot:run -Dspring-boot.run.arguments="name=Hugo -count=7"

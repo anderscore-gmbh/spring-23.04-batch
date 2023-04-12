@@ -1,0 +1,20 @@
+<xs:schema
+    targetNamespace="http://anderscore.com/spring-batch-deep-dive/stepExecution"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://anderscore.com/spring-batch-deep-dive/stepExecution">
+
+    <xs:element name="stepExecutionElement">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="stepExecutionId" type="xs:long" />
+                <xs:element name="stepName" type="xs:string" />
+                <xs:element name="status" type="xs:string" />
+                <xs:element name="readCount" type="xs:int" />
+                <xs:element name="writeCount" type="xs:int" />
+                <xs:element name="startTime" type="xs:dateTime" />
+                <xs:element name="endTime" type="xs:dateTime" />
+                <xs:element name="exitCode" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="494px" preserveAspectRatio="none" style="width:780px;height:494px;" version="1.1" viewBox="0 0 780 494" width="780px" zoomAndPan="magnify"><defs><filter height="300%" id="fjshhw73wdoc5" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="4.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="8.0" dy="8.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[0d482ad21d5c7c11aa976e45da5ecfe6]
+entity core--><rect fill="#FEFECE" filter="url(#fjshhw73wdoc5)" height="72.5938" style="stroke: #A80036; stroke-width: 3.0;" width="286" x="206" y="208"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 3.0;" width="20" x="196" y="218"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 3.0;" width="20" x="196" y="260.5938"/><text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacingAndGlyphs" textLength="246" x="226" y="253.9902">spring-batch-core</text><!--MD5=[1bf6c14d8b468624c8bf6af0e2bcba95]
+entity infra--><rect fill="#FEFECE" filter="url(#fjshhw73wdoc5)" height="72.5938" style="stroke: #A80036; stroke-width: 3.0;" width="408" x="145" y="400"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 3.0;" width="20" x="135" y="410"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 3.0;" width="20" x="135" y="452.5938"/><text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacingAndGlyphs" textLength="368" x="165" y="445.9902">spring-batch-infrastructure</text><!--MD5=[d3dac679b1e8583df0e4104897d7ce0a]
+entity test--><rect fill="#FEFECE" filter="url(#fjshhw73wdoc5)" height="72.5938" style="stroke: #A80036; stroke-width: 3.0;" width="278" x="12" y="16"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 3.0;" width="20" x="2" y="26"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 3.0;" width="20" x="2" y="68.5938"/><text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacingAndGlyphs" textLength="238" x="32" y="61.9902">spring-batch-test</text><!--MD5=[6208ec3a5c6eed3382019a0268a70113]
+entity integration--><rect fill="#FEFECE" filter="url(#fjshhw73wdoc5)" height="72.5938" style="stroke: #A80036; stroke-width: 3.0;" width="372" x="387" y="16"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 3.0;" width="20" x="377" y="26"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 3.0;" width="20" x="377" y="68.5938"/><text fill="#000000" font-family="sans-serif" font-size="28" lengthAdjust="spacingAndGlyphs" textLength="332" x="407" y="61.9902">spring-batch-integration</text><!--MD5=[a06b352b5e0b0ef9842785bb3ba197bd]
+link integration to core--><path d="M532.44,88.04 C494.62,119.78 438.14,167.18 397.86,201 " fill="none" id="integration-&gt;core" style="stroke: #225C4D; stroke-width: 2.0;"/><polygon fill="#225C4D" points="390.02,207.58,408.9497,202.1332,397.6787,201.1501,398.6618,189.8792,390.02,207.58" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[77d6e1f3d4274f06f56111c46d9ab190]
+link test to core--><path d="M187.32,88.48 C220.52,120.02 269.74,166.74 305.14,200.34 " fill="none" id="test-&gt;core" style="stroke: #225C4D; stroke-width: 2.0;"/><polygon fill="#225C4D" points="312.92,207.74,305.4046,189.5324,305.6793,200.8427,294.3689,201.1175,312.92,207.74" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[0739542554f0b27b612a5ef995f3c3d1]
+link core to infra--><path d="M349,280.48 C349,310.96 349,355.62 349,388.92 " fill="none" id="core-&gt;infra" style="stroke: #225C4D; stroke-width: 2.0;"/><polygon fill="#225C4D" points="349,399.74,357,381.74,349,389.74,341,381.74,349,399.74" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[f726ebe96558feb0b4ffe9f8e51e5b64]
+link integration to infra--><path d="M572.76,88.6 C570.98,135.16 562.58,219.16 527,280 C499.58,326.9 452.62,366.62 413.84,393.96 " fill="none" id="integration-&gt;infra" style="stroke: #225C4D; stroke-width: 2.0;"/><polygon fill="#225C4D" points="405.18,399.96,424.5364,396.3092,413.4071,394.2753,415.441,383.1459,405.18,399.96" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[d29b3c454ff0bfa1d6c018cf574a9a9e]
+link test to infra--><path d="M146.38,88.34 C141.82,134.6 139.42,218.28 171,280 C195.4,327.68 241.48,366.92 280.64,393.84 " fill="none" id="test-&gt;infra" style="stroke: #225C4D; stroke-width: 2.0;"/><polygon fill="#225C4D" points="289.4,399.74,278.9268,383.0573,281.1016,394.16,269.9989,396.3348,289.4,399.74" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[da85d68629074f4b7ebaa602a6d191d2]
+@startuml
+skinparam class {
+ BackgroundColor #DDEEE8
+ BorderColor #225C4D
+ ArrowColor #225C4D
+ }
+scale 2
+
+component "spring-batch-core" as core
+component "spring-batch-infrastructure" as infra
+component "spring-batch-test" as test
+component "spring-batch-integration" as integration
+
+integration - -> core
+test - -> core
+core - -> infra
+integration - -> infra
+test - -> infra
+@enduml
+
+PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.6+10-Debian-1deb11u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: DK
+--></g></svg>

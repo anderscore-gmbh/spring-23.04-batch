@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persons>
+    <person>
+        <firstName>Anna</firstName>
+        <lastName>Gramm</lastName>
+        <birthday>1967-11-09Z</birthday>
+    </person>
+    <person>
+        <firstName>Ka</firstName>
+        <lastName>Putt</lastName>
+        <birthday>2041-04-18Z</birthday>
+    </person>
+    <person>
+        <firstName>Izmir</firstName>
+        <lastName>Egal</lastName>
+        <birthday>2012-04-27Z</birthday>
+    </person>
+</persons>

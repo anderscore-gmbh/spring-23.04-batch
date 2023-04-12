@@ -1,0 +1,314 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 4 - Transaktionen und Fehlerbehandlung</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_4_transaktionen_und_fehlerbehandlung" data-state="no-title-footer"><h2>Lektion 4 - Transaktionen und Fehlerbehandlung</h2></section>
+<section id="_überblick_zu_dieser_lektion"><h2>Überblick zu dieser Lektion</h2><div class="olist arabic"><ol class="arabic"><li><p><a href="lesson04-chunks.html#/_readerprocessorwriter">Reader, Processor und Writer</a></p></li><li><p><a href="lesson04-chunks.html#/_transaktionen_bei_der_batchverarbeitung">Chunk-Verarbeitung</a>,
+<a href="lesson04-chunks.html#/_chunkorientedtasklet">ChunkOrientedTasklet</a></p></li><li><p><a href="lesson04-chunks.html#/_fehler_bei_der_batchverarbeitung">Fehlertoleranz</a>,
+<a href="lesson04-chunks.html#/_retrytemplatenoch_ein_framework_f%C3%BCr_eine_schleife">RetryTemplate</a></p></li><li><p><a href="lesson04-chunks.html#/_komponenten_zur_job_konfiguration">Job-Konfiguration im Detail</a></p></li><li><p><a href="lesson04-chunks.html#/_listener_interfaces">Listener Interfaces</a>
+(<a href="lesson04-chunks.html#/_aufgabe_teil_a">Aufgabe</a>)</p></li></ol></div></section>
+<section id="_typischer_ablauf_eines_batch_jobs"><h2>Typischer Ablauf eines Batch-Jobs</h2><div class="imageblock" style=""><img src="images/typischer_batch_job_ablauf.svg" alt="typischer batch job ablauf" width="540" height="680"></div></section>
+<section id="_definition_eines_typischen_batch_jobs"><h2>Definition eines typischen Batch-Jobs</h2><div class="ulist"><ul><li><p>Spring-Batch definiert die Interfaces</p><div class="ulist"><ul><li><p><code>ItemReader&lt;T&gt;</code></p></li><li><p><code>ItemProcessor&lt;I,O&gt;</code> und</p></li><li><p><code>ItemWriter&lt;T&gt;</code>.</p></li></ul></div></li><li><p>Diese Interfaces kann man in eine Job-Konfiguration einbinden</p></li><li><p>Alternativ kann man auch die entsprechenden <strong>JSR-352</strong> Interfaces implementieren</p></li></ul></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Eigene Implementierung möglichst unabhängig vom Framework-Code halten.</td></tr></table></div>
+<aside class="notes"><p>Praktisch alles, was man für eine eigene Implementierung benötigt, liegt in
+<code>spring-batch-infrastructure</code>. Nur die Job-Konfiguration sollte eine
+Abhängigkeit zu <code>spring-batch-core</code> benötigen. Das kann man über <em>ArchUnit</em>-Tests,
+ein Multi-Module-Projekt oder XML basierte Konfiguration sicherstellen.</p></aside></section>
+<section id="_readerprocessorwriter" class="columns center top"><h2>Reader&#8201;&#8212;&#8201;Processor&#8201;&#8212;&#8201;Writer</h2><div class="openblock"><div class="content"><div class="paragraph lead"><p>Spring-Batch</p></div>
+<div class="imageblock" style=""><img src="images/ReaderWriter.svg.svg" alt="ReaderWriter.svg" width="632" height="620"></div>
+<div class="ulist"><ul><li><p>Spring-Batch verwendet Generics</p></li><li><p>Spring-Batch unterstützt JSR-352</p></li></ul></div></div></div>
+<div class="openblock"><div class="content"><div class="paragraph lead"><p>JSR-352</p></div>
+<div class="imageblock" style=""><img src="images/JsrReaderWriter.svg.svg" alt="JsrReaderWriter.svg" width="556" height="772"></div></div></div></section>
+<section id="_vereinfachter_batch_ablauf_mit_reader_processor_und_writer" class="columns"><h2>Vereinfachter Batch-Ablauf mit Reader, Processor und Writer</h2><div class="imageblock" style=""><img src="images/simplified_reader_writer.svg" alt="simplified reader writer" width="676" height="434"></div>
+<div class="openblock"><div class="content"><div class="paragraph lead"><p>Rückgabewerte/Verhalten:</p></div>
+<div class="dlist"><dl><dt class="hdlist1">null bei read: </dt><dd><p>Markiert Ende der Verarbeitung</p></dd><dt class="hdlist1">null bei process: </dt><dd><p>Überspringt Datensatz (wird nicht geschrieben)</p></dd><dt class="hdlist1">Exception: </dt><dd><p>Markiert Datensatz als Fehlerhaft<br>
+(Was damit geschieht, hängt von der Konfiguration ab)</p></dd></dl></div></div></div></section>
+<section id="_beispielimplementierung_simplereader"><h2>Beispielimplementierung: SimpleReader</h2><div class="title">SimpleReader.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SimpleReader</span> <span class="directive">implements</span> ItemReader&lt;<span class="predefined-type">Integer</span>&gt; {
+    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">Iterator</span>&lt;<span class="predefined-type">Integer</span>&gt; iter;
+
+    <span class="directive">public</span> SimpleReader(<span class="type">int</span> numItems) {
+        iter = IntStream.rangeClosed(<span class="integer">1</span>, numItems).boxed().iterator();
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">Integer</span> read() {
+        <span class="keyword">return</span> iter.hasNext() ? iter.next() : <span class="predefined-constant">null</span>;
+    }
+}</code></pre></section>
+<section id="_beispielimplementierung_simpleprocessor"><h2>Beispielimplementierung: SimpleProcessor</h2><div class="title">SimpleProcessor.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SimpleProcessor</span> <span class="directive">implements</span> ItemProcessor&lt;<span class="predefined-type">Integer</span>, <span class="predefined-type">String</span>&gt; {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">String</span> process(<span class="predefined-type">Integer</span> item) {
+        <span class="keyword">return</span> <span class="predefined-type">String</span>.format(<span class="string"><span class="delimiter">&quot;</span><span class="content">Item %03d</span><span class="delimiter">&quot;</span></span>, item);
+    }
+
+}</code></pre></section>
+<section id="_beispielimplementierung_simplewriter"><h2>Beispielimplementierung: SimpleWriter</h2><div class="title">SimpleWriter.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">SimpleWriter</span> <span class="directive">implements</span> ItemWriter&lt;<span class="predefined-type">String</span>&gt; {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> write(<span class="predefined-type">List</span>&lt;? <span class="directive">extends</span> <span class="predefined-type">String</span>&gt; items) {
+        <span class="predefined-type">System</span>.out.println(items.stream().collect(Collectors.joining(<span class="string"><span class="delimiter">&quot;</span><span class="content">, </span><span class="delimiter">&quot;</span></span>)));
+    }
+
+}</code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Writer verarbeitet eine Liste von Items.</td></tr></table></div></section>
+<section id="_beispielimplementierung_simplejobconfig"><h2>Beispielimplementierung: SimpleJobConfig</h2><div class="title">SimpleJobConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+Job simpleJob() {
+    Step simpleStep = stepBuilderFactory.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">simpleStep</span><span class="delimiter">&quot;</span></span>)
+            .&lt;<span class="predefined-type">Integer</span>, <span class="predefined-type">String</span>&gt;chunk(<span class="integer">1</span>)
+            .reader(simpleReader())
+            .processor(simpleProcessor())
+            .writer(simpleWriter())
+            .build();
+
+    <span class="keyword">return</span> jobBuilderFactory.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">simpleJob</span><span class="delimiter">&quot;</span></span>).start(simpleStep).build();
+}</code></pre></section>
+<section id="_transaktionen_bei_der_batchverarbeitung"><h2>Transaktionen bei der Batchverarbeitung</h2><div class="paragraph"><p>Möglichkeiten der Verarbeitung:</p></div>
+<div class="ulist"><ul><li class="fragment"><p>Eine Transaktion für jeden einzelnen Datensatz</p></li><li class="fragment"><p>&#8658; zu langsam</p></li><li class="fragment"><p>Alle Datensätze in einer Transaktion schreiben</p></li><li class="fragment"><p>&#8658; zu fehleranfällig, bei großen Datenmengen nicht machbar</p></li><li class="fragment"><p>Lösung: Daten <strong>Chunk</strong>-weise verarbeiten</p></li></ul></div></section>
+<section id="_step_mit_repeattemplate_und_transactionmanager"><h2>Step mit RepeatTemplate und TransactionManager</h2><div class="imageblock" style=""><img src="images/TaskletStep.svg" alt="TaskletStep" width="1952" height="592"></div></section>
+<section id="_step_mit_einzelnem_tasklet" class="columns"><h2>Step mit einzelnem Tasklet</h2><div class="imageblock" style=""><img src="images/repeat_tasklet.svg" alt="repeat tasklet" width="792" height="434"></div>
+<div class="openblock"><div class="content"><div class="ulist"><ul><li class="fragment"><p>Iteriert wird mit dem <code>RepeatTemplate</code></p></li><li class="fragment"><p>Das Tasklet wird innerhalb einer Transaktion ausgeführt</p></li><li class="fragment"><p>&#8658; Für Chunkverarbeitung müsste Tasklet über<br>
+die Elemente eines Chunks iterieren</p></li></ul></div></div></div></section>
+<section id="_chunkorientedtasklet"><h2>ChunkOrientedTasklet</h2><div class="imageblock" style=""><img src="images/ChunkOrientedTasklet.svg" alt="ChunkOrientedTasklet" width="1972" height="566"></div></section>
+<section id="_chunkverarbeitung_mit_dem_chunkorientedtasklet"><h2>Chunkverarbeitung mit dem ChunkOrientedTasklet</h2><div class="imageblock" style=""><img src="images/ChunkExec.svg" alt="ChunkExec" width="2398" height="790"></div></section>
+<section id="_fehler_bei_der_batchverarbeitung" class="top"><h2>Fehler bei der Batchverarbeitung</h2><div class="ulist"><ul><li><p>Welche Fehler sind bei der Batchverarbeitung zu erwarten?</p></li><li><p>Wie soll damit umgegangen werden?</p></li></ul></div>
+<table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Fehler</th><th class="tableblock halign-left valign-top">Umgang</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td></tr></table></section>
+<section id="_beispiele_für_fehler"><h2>Beispiele für Fehler</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:33.3333%"><col style="width:33.3334%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Datensatz überpringen</th><th class="tableblock halign-left valign-top">Erneut versuchen</th><th class="tableblock halign-left valign-top">Job abbrechen</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Programmierfehler</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Verbindungsunterbrechung</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Systemausfall</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Ungültiges Zeichen in Datensatz</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Neustart eines Servers</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Fehlende Berechtigung</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Datei defekt</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Datensatz gesperrt</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Nicht berücksichtigte Exception</p></td></tr></table>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Das erwünschte Fehlerverhalten gibt man bei der Job-Konfiguration an.</td></tr></table></div></section>
+<section id="_konfiguration_eines_fehlertoleranten_jobs"><h2>Konfiguration eines fehlertoleranten Jobs</h2><div class="title">SkipSimulatorJobConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+TaskletStep skipSimulationStep() {
+    <span class="keyword">return</span> stepBuilderFactory.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">skip-simulation-step</span><span class="delimiter">&quot;</span></span>)
+            .listener(logListener())
+            .&lt;Ball, Ball&gt;chunk(<span class="integer">6</span>)
+            .reader(ballContainer())
+            .processor(ballProcessor())
+            .writer(ballContainer())
+            .faultTolerant().skip(InvalidBallException.class).skipLimit(<span class="integer">3</span>)
+            .build();
+}</code></pre>
+<div class="olist arabic"><div class="title">Der Job &#8230;&#8203;</div><ol class="arabic"><li><p>verarbeitet Chunks der Größe 6,</p></li><li><p>ist fehlertolerant gegenüber <code>InvalidBallException</code> und</p></li><li><p>bricht nach 3 Exceptions ab.</p></li></ol></div></section>
+<section id="_simulation_fehler_bei_chunkverarbeitung"><h2>Simulation: Fehler bei Chunkverarbeitung</h2><div class="paragraph"><p><span class="image"><img src="images/chunk/SkipSimulator.png" alt="SkipSimulator"></span></p></div>
+<div class="ulist"><div class="title">Installationsvoraussetzungen:</div><ul><li><p>JavaFX-SDK muss installiert sein &#8594; <a href="https://gluonhq.com/products/javafx/" class="bare">https://gluonhq.com/products/javafx/</a></p></li><li><p>Variable <em>PATH_TO_FX</em> muss auf das <strong>lib</strong>-Verzeichnis des SDK zeigen (Eclipse)</p></li><li><p>Aufruf mit <em>VM arguments</em>:</p><pre class="CodeRay listingblock"><code>--module-path ${PATH_TO_FX}
+--add-modules javafx.controls,javafx.fxml</code></pre></li><li><p>Varianten über <code>skipsim.model.BallContainer.skipMode</code> einstellbar&#8230;&#8203;</p></li></ul></div>
+<aside class="notes"><p>Der Simulator zeigt in der 1. Zeile die noch zu lesenden Elemente, in der 2. Zeile das gerade
+bearbeitete Element und in der 3. Zeile die geschriebenen Elemente. Der Simulator macht eine
+Pause, wenn er die Bearbeitung beginnt (Kugel sichtbar) und wenn er die Bearbeitung abgeschlossen
+hat (Kugel nicht sichtbar). Blaue Kugeln führen in der entsprechenden Phase (<code>skipMode</code>) zu
+einer <code>InvalidBallException</code>. <strong>Besonders auf das Verhalten bei Prozess- oder Schreibfehlern achten!</strong></p></aside></section>
+<section id="_retrytemplatenoch_ein_framework_für_eine_schleife"><h2>RetryTemplate&#8201;&#8212;&#8201;Noch ein Framework für eine Schleife&#8230;&#8203;</h2><div class="imageblock" style=""><img src="images/RetryTemplate.svg" alt="RetryTemplate" width="2148" height="761"></div></section>
+<section id="_chunkverarbeitung_mit_retry"><h2>Chunkverarbeitung mit Retry</h2><div class="imageblock" style=""><img src="images/ChunkExecWithRetry.svg" alt="ChunkExecWithRetry" width="2123" height="763"></div></section>
+<section id="_fehlertoleranz_bei_chunkorientedtasklet"><h2>Fehlertoleranz bei ChunkOrientedTasklet</h2><div class="imageblock" style=""><img src="images/FaulttolerantChunkOrientedTasklet.svg" alt="FaulttolerantChunkOrientedTasklet" width="2430" height="702"></div></section>
+<section id="_beispiel_für_aufwendigere_retry_konfiguration"><h2>Beispiel für aufwendigere Retry-Konfiguration</h2><pre class="CodeRay listingblock"><code>        TaskletStep step = stepBuilderFactory
+                .get("retryStep") // StepBuilder
+                .&lt;Integer, String&gt;chunk(4) // SimpleStepBuilder
+                .reader(reader()).processor(processor()).writer(writer())
+                .faultTolerant() // FaultTolerantStepBuilder
+                    .retryLimit(7) // bis zu 7 mal wiederholen
+                    .retry(MyRetryException.class)
+                    .backOffPolicy(new ExponentialBackOffPolicy()) // nach jedem Versuch doppelt so lange Warten
+                .skip(MyRetryException.class) // nach 7 Fehlversuchen diesen Datensatz überspringen
+                    .skipLimit(3) // Maximal 3 Datensätze überspringen
+                .listener(loggingSkipListener())
+                .build();</code></pre>
+<div class="olist arabic"><ol class="arabic"><li><p>Wiederholt den Process- oder Write-Schritt bei einer <code>MyRetryException</code> bis zu 7 mal.</p></li><li><p>Wartet vor jedem Versuch 100ms, 200ms, 400ms, &#8230;&#8203;</p></li><li><p>Überspringt den Datensatz nach 7 fehlgeschlagenen Versuchen.</p></li><li><p>Loggt übersprungene Datensätze.</p></li><li><p>Bricht den Step nach 3 übersprungenen Datensätzen ab.</p></li></ol></div></section>
+<section id="_wissenswertes_zur_retry_konfiguration"><h2>Wissenswertes zur Retry-Konfiguration</h2><div class="ulist"><ul><li><p>Eine <strong><code>BackOffPolicy</code></strong> gibt an, wie lange vor jedem erneuten Versuch gewartet werden soll.</p></li><li><p>Die <strong><code>ExponentialBackOffPolicy</code></strong> wartet beim ersten Versuch 100ms und verdoppelt dann die
+Wartezeit bis zu maximal 30s. (Ist natürlich alles konfigurierbar).</p></li><li><p>Mehr Einflussmöglichkeiten hat man durch eine eigene <strong><code>RetryPolicy</code></strong>.<br>
+(Spring-Batch bringt einige Varianten davon mit.)</p></li><li><p>Mit einer nachgelagerten <strong><code>SkipPolicy</code></strong> kann man dafür sorgen, das der Datensatz nach
+n Versuchen übersprungen wird.</p></li></ul></div>
+<div class="admonitionblock warning teacherBox"><table><tr><td class="icon"><i class="fa fa-warning" title="Warning"></i></td><td class="content">Die <strong><code>RetryPolicy</code></strong> hat keine Auswirkung auf Fehler beim Lesen, da nur der
+<code>FaultTolerantChunkProcessor</code> ein <code>RetryTemplate</code> verwendet, nicht aber der
+<code>FaultTolerantChunkProvider</code>. Letzterer hat nur eine <strong><code>SkipPolicy</code></strong>.</td></tr></table></div></section>
+<section id="_komponenten_zur_job_konfiguration"><h2>Komponenten zur Job-Konfiguration</h2><div class="imageblock" style=""><img src="images/BatchConfigurer.svg" alt="BatchConfigurer" width="1900" height="736"></div></section>
+<section id="_stepbuilder_methoden"><h2>StepBuilder-Methoden</h2><div class="imageblock" style=""><img src="images/StepBuilder.svg" alt="StepBuilder" width="2302" height="850"></div></section>
+<section id="_jobbuilder_methoden"><h2>JobBuilder-Methoden</h2><div class="imageblock" style=""><img src="images/JobBuilderMethoden.svg" alt="JobBuilderMethoden" width="1524" height="586"></div></section>
+<section id="_konfiguration_des_transaktions_und_wiederanlaufverhaltens"><h2>Konfiguration des Transaktions- und Wiederanlaufverhaltens</h2><div class="imageblock" style=""><img src="images/TxConfig.svg" alt="TxConfig" width="2476" height="732"></div>
+<aside class="notes"><p>Hier ist jede einzelne Methode relevant!</p></aside></section>
+<section id="_listener_interfaces"><h2>Listener-Interfaces</h2><div class="imageblock" style=""><img src="images/ListenerInterfaces.svg" alt="ListenerInterfaces" width="2786" height="887"></div></section>
+<section id="_registrierung_der_listener_interfaces"><h2>Registrierung der Listener-Interfaces</h2><div class="imageblock" style=""><img src="images/ListenerRegistierung.svg" alt="ListenerRegistierung" width="1838" height="882"></div></section>
+<section id="_wissenswertes_zu_listenern"><h2>Wissenswertes zu Listenern</h2><div class="ulist"><ul><li><p><strong><code>ItemReader</code></strong>, <strong><code>ItemProcessor</code></strong> und <strong><code>ItemWriter</code></strong> werden automatisch als <strong><code>StepListener</code></strong>
+registiert, sobald sie eines der entsprechenden Interfaces implementieren.</p></li><li><p>Für jede Listener-Methode gibt es eine korrespondierende Annotation (z. B. <strong><code>@BeforeRead</code></strong>).<br>
+Ein Objekt, das eine so annotierte Methode enthält kann genauso also Listener registiert
+werden, wie ein Objekt, welches das entsprechende Interface implementiert.</p></li><li><p>Zu praktisch jedem Listener gibt es ein entsprechendes JSR-352 Pendant. Diese können genauso
+wie die Spring-Batch eigenen Listener verwendet werden.</p></li></ul></div>
+<div class="admonitionblock caution teacherBox"><table><tr><td class="icon"><i class="fa fa-fire" title="Caution"></i></td><td class="content">Damit das automatische Registieren funktioniert, muss als Return-Type bei der Bean-Methode
+eine Klasse oder Interface angegeben werden, das den bzw. die entsprechenden Listener implementiert.
+<code>@Bean ItemReader&lt;String&gt; myItemReader()</code> funktioniert nicht.</td></tr></table></div></section>
+<section id="_wozu_sind_listener_gut"><h2>Wozu sind Listener gut?</h2><div class="olist arabic"><ol class="arabic"><li class="fragment"><p>Monitoring und Tracing</p></li><li class="fragment"><p>Ausnahmebehandlung</p></li><li class="fragment"><p>Einflussname auf den Batch-Workflow</p></li><li class="fragment"><p>Zugriff auf Framework-Informationen</p><div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Man kann beispielsweise in <strong><code>beforeStep()</code></strong> auf Inhalte der <strong><code>StepExecution</code></strong> zugreifen
+und in einer Instanzvariablen speichern. Andere (Listener)-Methoden kommen so an die
+entsprechende Information.</td></tr></table></div></li><li class="fragment"><p>Kommunikation mit Batch-Framework</p></li><li class="fragment"><p>Parameterübergabe zwischen Steps</p></li></ol></div></section>
+<section id="_parameter_der_listener_methoden"><h2>Parameter der Listener-Methoden</h2><div class="imageblock" style=""><img src="images/ListenerParameter.svg" alt="ListenerParameter" width="2210" height="856"></div></section>
+<section id="_spezielle_listener"><h2>Spezielle Listener</h2><div class="imageblock" style=""><img src="images/SpezielleListener.svg" alt="SpezielleListener" width="1932" height="748"></div></section>
+<section id="_zusammenfassung_lektion_4"><h2>Zusammenfassung Lektion 4</h2><div class="ulist"><ul><li><p>Interfaces <strong><code>ItemReader</code></strong>, <strong><code>ItemProcessor</code></strong> und <strong><code>ItemWriter</code></strong> implementieren und verwenden</p></li><li><p>Aufbau und Funktsionsweise des <strong><code>ChunkorientetTasklet</code></strong></p></li><li><p>Konfiguration von Fehlertoleranz und Umgang mit Fehlern</p></li><li><p>Registrierung, Zweck und Verwendung der diversen Listener Interfaces</p></li><li><p>Job- und Step-Builder im Detail</p></li></ul></div></section>
+<section id="_aufgabe_teil_a"><h2>Aufgabe: (Teil A)</h2><div class="olist arabic"><ol class="arabic"><li><p>Implementieren Sie einen ItemReader, der eine über einen Parameter einstellbare Anzahl von
+Zufallsbrüchen mit Nenner und Zähler zwischen -10 und +10 liefert. Nutzen Sie dafür die
+bereits vorbereitete Klasse <code>Fraction</code>.</p></li><li><p>Implementieren Sie einen ItemProcessor, der jeden Bruch in der Form <strong><code>3/4 = 0,750</code></strong> ausgibt.
+Nutzen Sie dafür <code>Fraction.toDescription()</code>.</p></li><li><p>Implementieren Sie einen ItemWriter, der alle Brüche eines Chunks in einer Zeile über <code>System.out</code> ausgibt.</p></li><li><p>Stellen Sie alles in einem fehlertoleranten Job zusammen, der bis zu 5 <code>ArithmeticException</code> (wegen
+Division durch <code>0</code>) zulässt.</p></li><li><p>Führen Sie den Job aus und sehen Sie sich das Job-Repository an (dieses muss natürlich entsprechend
+konfiguriert sein).</p></li><li><p>Welche Exceptions landen in <code>jobExecution.getAllFailureExceptions()</code>?</p></li></ol></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Mit Log-Level DEBUG gibt Spring-Batch alle Exception aus.</td></tr></table></div></section>
+<section id="_aufgabe_teil_b_optional"><h2>Aufgabe: (Teil B - optional)</h2><div class="olist arabic"><ol class="arabic" start="6"><li><p>Erstellen Sie einen weiteren Step, der alle Brüche ausgibt, bei denen ein Fehler aufgetreten ist.
+Nutzen Sie den <code>ExecutionContext</code> und geeignete Listener, um diese 2er-Tupel zu übergeben.</p></li><li><p>Führen Sie einen neunen Exit-Status "WARNING" ein, der zurückgegeben werden soll, sobald eine
+<code>ArithmeticException</code> aufgetreten ist.</p></li><li><p>Sorgen Sie dafür, dass der Job bei Exit-Status "WARNING" mit Return-Code 99 beendet wird:</p><div class="imageblock" style="text-align: left"><img src="images/chunk/ExitCode.png" alt="ExitCode" width="1000"></div></li></ol></div>
+<div class="paragraph"><p><br>
+&#8594; <a href="index.html">Agenda</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring Workshop', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

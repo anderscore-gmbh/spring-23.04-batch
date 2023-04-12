@@ -1,0 +1,504 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 5 - Die Spring-Batch Infrastruktur</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_5_die_spring_batch_infrastruktur" data-state="no-title-footer"><h2>Lektion 5 - Die Spring-Batch Infrastruktur</h2></section>
+<section id="_überblick_zu_dieser_lektion" class="columns"><h2>Überblick zu dieser Lektion</h2><div class="olist arabic"><ol class="arabic"><li><p>Die Reader und Writer von Spring-Batch</p></li><li><p><a href="lesson05-infra.html#/_datenbankzugriff_mit_spring_batch">Reader und Writer für die Datenbank</a></p></li><li><p><a href="lesson05-infra.html#/_dateisystemzugriff_mit_spring_batch">Zugriff auf das Dateisystem</a></p></li><li><p><a href="lesson05-infra.html#/_die_supportklassen">Komposition von Readern und Writern</a></p></li><li><p><a href="lesson05-infra.html#/_filterung_von_items">Filterung und Validierung</a></p></li><li><p><a href="lesson05-infra.html#/_xml">Unterstützung für XML und JSON</a>
+(<a href="lesson05-infra.html#/_aufgabe">Aufgabe</a>)</p></li></ol></div>
+<div class="imageblock" style=""><img src="images/SpringCoreUndInfra.svg" alt="SpringCoreUndInfra" width="648" height="342"></div></section>
+<section><section id="_die_org_springframework_batch_item_packages"><h2>Die <code>org.springframework.batch.item&#8230;&#8203;</code> Packages</h2><div class="paragraph lead"><p>Datenbankzugriff</p></div><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:14.2857%"><col style="width:85.7143%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">avro</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Apache Avro Daten Serialisierung</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">data</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">NoSQL-Datenbanken (GemFire, MongoDB, Neo4j, Spring-Data Repository)</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">database</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">SQL-Datenbanken (Jdbc, Hibernate, JPA, Stored Procedures)</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">ldif</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">LDAP Data Interchange Format: Reader für Zugriff auf LDAP-Quellen</p></td></tr></table></section><section id="_messaging"><h2>Messaging</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:14.2857%"><col style="width:85.7143%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">amqp</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Reader und Writer für Advanced Message Queuing Protocol<br>
+(Apache Qpid, Microsoft Windows Azure Service Bus, RabbitMQ)</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jms</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">JMS Reader und Writer</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">kafka</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Apache Kafka Reader und Writer</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">mail</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Writer zum versenden von Mails</p></td></tr></table></section><section id="_einfache_dateien"><h2>Einfache Dateien</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:14.2857%"><col style="width:85.7143%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">file</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Framework zum Arbeiten mit Dateien (CSV, feste Spaltenbreite)</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">json</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Lesen und Schreiben von JSON-Dateien</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">xml</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Lesen und Schreiben von XML-Dateien</p></td></tr></table></section><section id="_support"><h2>Support</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:14.2857%"><col style="width:85.7143%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">adapter</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Beliebige Methoden als Reader, Processor oder Writer verwenden</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">function</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Funktionen als ItemProcessor verwenden</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Komposition von Readern, Prozessoren und Writern</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">validator</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Validierung vor oder nach der Verarbeitung im Prozessor</p></td></tr></table></section></section>
+<section id="_datenbankzugriff_mit_spring_batch"><h2>Datenbankzugriff mit Spring-Batch</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:20%"><col style="width:20%"><col style="width:20%"><col style="width:20%"><col style="width:20%"></colgroup><thead><tr><th class="tableblock halign-left valign-top"></th><th class="tableblock halign-left valign-top">JDBC</th><th class="tableblock halign-left valign-top">JPA</th><th class="tableblock halign-left valign-top">Hibernate</th><th class="tableblock halign-left valign-top">Stored Procedure</th></tr><tbody><tr><th class="tableblock halign-left valign-top"><p class="tableblock header">Reader (Cursor)</p></th><td class="tableblock halign-left valign-top"><p class="tableblock">JdbcCursor-ItemReader</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">JpaCursor-ItemReader</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">HibernateCursor-ItemReader</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">StoredProcedure-ItemReader</p></td></tr><tr><th class="tableblock halign-left valign-top"><p class="tableblock header">Reader (paged)</p></th><td class="tableblock halign-left valign-top"><p class="tableblock">JdbcPaging-ItemReader</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">JpaPaging-ItemReader</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">HibernatePaging-ItemReader</p></td><td class="tableblock halign-left valign-top"></td></tr><tr><th class="tableblock halign-left valign-top"><p class="tableblock header">Writer</p></th><td class="tableblock halign-left valign-top"><p class="tableblock">JdbcBatch-ItemWriter</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">JpaItemWriter</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Hibernate-ItemWriter</p></td><td class="tableblock halign-left valign-top"></td></tr></table>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Der <code>JdbcCursorItemReader</code> verwendet eine eigene Connection und ist somit nicht in
+Transaktionen bei der Step-Verarbeitung eingebunden.</td></tr></table></div></section>
+<section id="_dateisystemzugriff_mit_spring_batch"><h2>Dateisystemzugriff mit Spring-Batch</h2><div class="paragraph"><p>Folgende Reader und Writer dienen dem Zugriff auf das Dateisystem:</p></div>
+<div class="ulist"><ul><li><p><strong><code>FlatFileItemReader</code></strong> und <strong><code>FlatFileItemWriter</code></strong> für Textdateien (CSV, feste Spaltenbereite)</p></li><li><p><strong><code>StaxEventItemReader</code></strong> und <strong><code>StaxEventItemWriter</code></strong> verarbeiten XML-Dateien fragmentweise,
+wobei jedes Fragment mit <strong>OXM</strong> (<em>JAXB</em>, <em>Castor</em>, <em>XStream</em>, etc.) gemapped wird.<br>
+&#8658; OXM mit sehr großen Dateien möglich.</p></li><li><p><strong><code>JsonItemReader</code></strong> und <strong><code>JsonFileItemWriter</code></strong> zur sequentiellen Verarbeitung von JSON-Objekten,
+unterstützt <em>Jackson</em> und <em>GSON</em>.</p></li><li><p><strong><code>ResourcesItemReader</code></strong> iteriert über Dateien</p></li><li><p><strong><code>MultiResourceItemReader</code></strong> zur elementweisen Verarbeitung mehrerer Dateien</p></li></ul></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Man kann diese Klassen auch ohne den Overhead des Spring-Batch Frameworks nutzen.
+Siehe dazu <a href="https://www.informatik-aktuell.de/entwicklung/methoden/strukturierte-textdateien-mit-spring-batch-verarbeiten.html">
+&#8594; <em>Informatik Aktuell</em>: Strukturierte Textdateien mit Spring Batch verarbeiten</a>.</td></tr></table></div></section>
+<section id="_flatfileitemreader"><h2>FlatFileItemReader</h2><div class="imageblock" style=""><img src="images/FlatFileItemReader.svg" alt="FlatFileItemReader" width="1994" height="618"></div></section>
+<section id="_beispieldaten_für_verarbeitung_einer_csv_datei"><h2>Beispieldaten für Verarbeitung einer CSV-Datei</h2><div class="title">Persons.csv</div><pre class="CodeRay listingblock"><code>Nachname; Vorname; Geburtsdatum
+&quot;Brantwein&quot;; &quot;Franz&quot;; 17.12.1958
+&quot;Bolika&quot;; &quot;Anna&quot;; 03.07.1972
+&quot;Panse&quot;; &quot;Jim&quot;; 08.02.2002</code></pre>
+<div class="title">Person.java (mit JSR-303 Annotationen)</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Person</span> {
+    <span class="annotation">@NotBlank</span>
+    <span class="annotation">@Size</span>(max = <span class="integer">80</span>)
+    <span class="directive">private</span> <span class="predefined-type">String</span> firstName;
+    <span class="annotation">@NotNull</span>
+    <span class="annotation">@Size</span>(min = <span class="integer">2</span>, max = <span class="integer">80</span>)
+    <span class="directive">private</span> <span class="predefined-type">String</span> lastName;
+    <span class="annotation">@DateTimeFormat</span>(pattern = <span class="string"><span class="delimiter">&quot;</span><span class="content">dd.MM.yyyy</span><span class="delimiter">&quot;</span></span>)
+    <span class="annotation">@Past</span>
+    <span class="directive">private</span> LocalDate birthday;
+
+    <span class="comment">// getters, setters, toString...</span>
+}</code></pre></section>
+<section id="_konfiguration_des_flatfileitemreader"><h2>Konfiguration des FlatFileItemReader</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="annotation">@JobScope</span>
+FlatFileItemReader&lt;Person&gt; personCsvReader(
+        <span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobParameters[file]}</span><span class="delimiter">&quot;</span></span>) Resource source) {
+    <span class="keyword">return</span> <span class="keyword">new</span> FlatFileItemReaderBuilder&lt;Person&gt;()
+            .name(<span class="string"><span class="delimiter">&quot;</span><span class="content">personCsvReader</span><span class="delimiter">&quot;</span></span>) <span class="comment">// arbitrary name</span>
+            .saveState(<span class="predefined-constant">false</span>) <span class="comment">// don't save progress in ExecutionContext</span>
+            .resource(source) <span class="comment">// read from this Resource</span>
+            .delimited() <span class="comment">// expect a delimited (CSV) file</span>
+            .delimiter(<span class="string"><span class="delimiter">&quot;</span><span class="content">;</span><span class="delimiter">&quot;</span></span>) <span class="comment">// use ';' as delimiter instead of ','</span>
+            .quoteCharacter(<span class="string"><span class="delimiter">'</span><span class="content">\&quot;</span><span class="delimiter">'</span></span>) <span class="comment">// remove quotation from content</span>
+            .names(<span class="keyword">new</span> <span class="predefined-type">String</span><span class="type">[]</span> { <span class="string"><span class="delimiter">&quot;</span><span class="content">lastName</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">firstName</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">birthday</span><span class="delimiter">&quot;</span></span> }) <span class="comment">// map column to names</span>
+            .fieldSetMapper(<span class="keyword">new</span> BeanWrapperFieldSetMapper&lt;Person&gt;() {
+                {
+                    setTargetType(Person.class); <span class="comment">// initialize mapper</span>
+                    DefaultFormattingConversionService cv = <span class="keyword">new</span> DefaultFormattingConversionService();
+                    setConversionService(cv); <span class="comment">// convert date/time values</span>
+                }
+            })
+            .linesToSkip(<span class="integer">1</span>) <span class="comment">// skip first (header) row</span>
+            .build(); <span class="comment">// create the reader</span>
+}</code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Für praktisch jeden Reader oder Writer gibt es einen korrespondierenden Builder.</td></tr></table></div></section>
+<section id="_die_supportklassen"><h2>Die Supportklassen&#8230;&#8203;</h2><div class="ulist"><ul><li><p><strong><code>ItemReaderAdapter</code></strong>, <strong><code>ItemProcessorAdapter</code></strong> und <strong><code>ItemWriterAdapter</code></strong> dienen dazu eine
+beliebige Methode für die entsprechende Operation zu verwenden. (Dank <em>functional Interfaces</em> überflüssig.)</p></li><li><p><strong><code>CompositeItemStream</code></strong>, <strong><code>CompositeItemProcessor</code></strong> und <strong><code>CompositeItemWriter</code></strong> dienen dazu,
+mehrere Streams, Prozessoren bzw. Writer zu verketten. Bei Prozessoren wird das Ergebnis an den
+nächsten Prozessor weitergereicht.</p></li><li><p><strong><code>IteratorItemReader</code></strong>,<strong><code>ListItemReader</code></strong> und <strong><code>ListItemWriter</code></strong> sind Wrapper für entsprechende
+Collection-Interfaces.</p></li><li><p>Mit dem <strong><code>ScriptItemProcessor</strong></code> kann man die <code>process</code>-Logik in ein Skript auslagern.</p></li><li><p>Der <strong><code>SingleItemPeekableItemReader</code></strong> ist ein Wrapper for einen Reader, mit dem man auf das nächste
+Item vorausschauen kann.</p></li><li><p><strong><code>SynchronizedItemStreamReader</code></strong> ist ein Decorator, der Zugriffe auf die <code>read</code>-Methode synchronisiert.</p></li></ul></div></section>
+<section id="_spezielle_tasklets"><h2>Spezielle Tasklets</h2><div class="imageblock" style=""><img src="images/SpecialTasklets.svg" alt="SpecialTasklets" width="1450" height="578"></div></section>
+<section id="_das_itemstream_interface"><h2>Das ItemStream Interface</h2><div class="paragraph"><p>Die meisten Reader und Writer müssen geöffnet und geschlossen werden, dafür implementieren Sie das ItemStream Interface:</p></div>
+<div class="imageblock" style=""><img src="images/spring-batch-reader-writer.svg" alt="spring batch reader writer" width="1920" height="576"></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Mit der <code>update</code> Methode kann der ItemStream seinen Forschritt im ExecutionContext speichern.
+Diese Information dient zum Wiederanlauf nach einem Abbruch.</td></tr></table></div></section>
+<section id="_delegate_pattern"><h2>Delegate Pattern</h2><div class="paragraph"><p>Sehr häufig wird das <em>Delegate Pattern</em> verwendet, um vorhandene Reader, Prozessoren oder Writer
+für eigene Zwecke anzupassen:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">DelegateReader</span> <span class="directive">implements</span> ItemReader&lt;<span class="predefined-type">BigDecimal</span>&gt; {
+
+    <span class="directive">private</span> <span class="directive">final</span> ItemReader&lt;? <span class="directive">extends</span> <span class="predefined-type">Number</span>&gt; delegate;
+
+    <span class="directive">public</span> DelegateReader(ItemReader&lt;? <span class="directive">extends</span> <span class="predefined-type">Number</span>&gt; delegate) {
+        <span class="local-variable">this</span>.delegate = delegate;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="predefined-type">BigDecimal</span> read() <span class="directive">throws</span> <span class="exception">Exception</span> {
+        <span class="predefined-type">Number</span> value = delegate.read();
+        <span class="keyword">return</span> value == <span class="predefined-constant">null</span> ? <span class="predefined-constant">null</span> : <span class="predefined-type">BigDecimal</span>.valueOf(value.longValue());
+    }
+}</code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Vererbung ist keine gute Idee um Code wiederzuverwenden, weil es zu einer starken
+Kopplung führt und u. a. das Testen erschwert.</td></tr></table></div></section>
+<section id="_filterung_von_items"><h2>Filterung von Items</h2><div class="paragraph"><p>Es gibt zwei Stellen an denen Items gefiltert werden können:</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p><strong><code>ItemReader</code></strong> überspringt die zu filternden Items</p><div class="ulist"><ul><li><p>&#8658; Übersprungene Datensätze werden nicht gezählt</p></li></ul></div></li><li><p><strong><code>ItemProcessor</code></strong> filtert, indem er <strong><code>null</code></strong> zurück gibt</p><div class="ulist"><ul><li><p><strong><code>readCount</code></strong>: Alle Datensätze</p></li><li><p><strong><code>writeCount</code></strong>: Nur tatsächlich verarbeitete Datensätze</p></li><li><p><strong><code>filterCount</code></strong>: Datensätze, die der <em>Processor</em> herausgefiltert hat</p></li></ul></div></li></ol></div></section>
+<section id="_validierung_von_items"><h2>Validierung von Items</h2><div class="ulist"><ul><li><p>Erste Validierung erfolgt durch Reader:</p><div class="ulist"><ul><li><p>Spalte in CSV-Datei existiert nicht oder kann nicht in entsprechenden Typ umgewandelt werden</p></li><li><p>Mapping eines XML-Fragments mit OXM nicht möglich</p></li><li><p>&#8658; Bei invaliden Datensätzen wird immer eine Exception geworfen</p></li></ul></div></li><li><p>Für Validierung bei der Verarbeitung definiert Spring-Batch das <strong><code>Validator</code></strong> Interface:</p><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">Validator</span>&lt;T&gt; {
+    <span class="type">void</span> validate(T value) <span class="directive">throws</span> ValidationException;
+}</code></pre></li><li><p>Dieses Interface wird in Kombination mit einem <strong><code>ValidatingItemProcessor</code></strong> verwendet</p><div class="ulist"><ul><li><p>Dieser kann wahlweise invalide Datensätze filtern oder die Chunkverarbeitung mit einer
+Exception abbrechen</p></li><li><p>Man kann entweder davon ableiten oder einen <strong><code>CompositeItemProcessor</code></strong> verwenden</p></li></ul></div></li></ul></div></section>
+<section id="_spring_batch_validierungsframework"><h2>Spring-Batch Validierungsframework</h2><div class="imageblock" style=""><img src="images/ValidationFramework.svg" alt="ValidationFramework" width="1932" height="814"></div></section>
+<section id="_jsr_303_abhängigkeiten"><h2>JSR-303 Abhängigkeiten</h2><div class="paragraph"><p>Die folgenden Abhängigkeiten sind notwendig, wenn man den <strong><code>BeanValidatingItemProcessor</code></strong>
+verwenden möchte:</p></div>
+<pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.validation<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>validation-api<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.tomcat.embed<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>tomcat-embed-el<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.hibernate.validator<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>hibernate-validator<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content"><code>tomcat-embed-el</code> ist die <code>javax.el</code> Implementierung, die standardmäßig von
+Spring-Boot Applikationen verwendet wird.</td></tr></table></div></section>
+<section id="_verwendung_des_beanvalidatingitemprocessor"><h2>Verwendung des BeanValidatingItemProcessor</h2><div class="title">Konfiguration eines Validators für JSR-303 Annotationen:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+BeanValidatingItemProcessor&lt;Person&gt; validator() {
+    BeanValidatingItemProcessor&lt;Person&gt; validator = <span class="keyword">new</span> BeanValidatingItemProcessor&lt;&gt;();
+    validator.setFilter(<span class="predefined-constant">true</span>);
+    <span class="keyword">return</span> validator;
+}</code></pre>
+<div class="paragraph"><p><br></p></div>
+<div class="title">Komposition des Validators mit einem anderen Prozessor:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+ItemProcessor&lt;PersonJaxb, Person&gt; processor() {
+    <span class="keyword">return</span> <span class="keyword">new</span> CompositeItemProcessorBuilder&lt;PersonJaxb, Person&gt;()
+            .delegates((ItemProcessor&lt;PersonJaxb, Person&gt;) <span class="local-variable">this</span>::map, validator())
+            .build();
+}</code></pre></section>
+<section id="_xml"><h2>XML</h2><div class="paragraph"><p>Zur Verarbeitung von XML-Dateien dienen die folgenden Klassen:</p></div>
+<div class="ulist"><ul><li><p><strong><code>StaxEventItemReader</code></strong></p></li><li><p><strong><code>StaxEventItemWriter</code></strong></p></li></ul></div>
+<div class="paragraph"><p>Diese kombinieren StAX mit OXM:</p></div>
+<div class="ulist"><ul><li><p><em>StAX</em> ist ein Pull-API zur effizienten Verarbeitung großer XML-Dateien</p></li><li><p><em>OXM</em> steht für Objekt-XML-Mapping und ist eine Mapping-API von Spring</p></li><li><p>OXM bietet eine einheitliche API für verschiedene Mapping-Implementierungen,<br>
+wie z. B. <em>JAXB</em>, <em>Castor</em> oder <em>XStream</em></p></li><li><p>OXM verwandelt eine komplette XML-Datensturktur in eine korrespondierende
+Objektstruktur oder umgekehrt.<br>
+&#8658; Die Objektsturktur muss im Arbeisspeicher Platz haben</p></li><li><p>Durch die Kombination von OXM mit StAX können XML-Dateien fragmentweise
+mit OXM verarbeitet werden.<br>
+&#8658; Verarbeitung oder Erstellung sehr großer XML-Dateien möglich</p></li></ul></div></section>
+<section id="_jaxb"><h2>JAXB</h2><div class="ulist"><ul><li><p>JAXB steht für <em>Java Architecture for XML Binding</em></p></li><li><p>Man kann damit</p><div class="ulist"><ul><li><p>aus einem XML-Schema korresponierende Java-Klassen (üblicher Weg) oder</p></li><li><p>aus entsprechend annotierten Java-Klassen ein XML-Schema erzeugen.</p></li></ul></div></li><li><p>OXM bietet einen <code>Jaxb2Marshaller</code> mit dem man sehr einfach JAXB verwenden kann:</p><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+Unmarshaller getUnmarshaller() {
+    Jaxb2Marshaller marshaller = <span class="keyword">new</span> Jaxb2Marshaller();
+    marshaller.setContextPath(Persons.class.getPackage().getName());
+    marshaller.setMappedClass(PersonJaxb.class);
+    <span class="keyword">return</span> marshaller;
+}</code></pre></li><li><p>Der Jaxb2Marshaller implementiert sowohl das <code>Marshaller</code> als auch das <code>Unmarshaller</code>
+Interface.</p></li></ul></div></section>
+<section id="_abhängigkeiten_für_oxmjaxb2"><h2>Abhängigkeiten für OXM+JAXB2</h2><div class="paragraph"><p>Seit Java 11 ist JAXB kein Bestandteil des JDK mehr. Deswegen sind jetzt explizite
+Abhängigkeiten zu JAXB notwendig:</p></div>
+<pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-oxm<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.xml.bind<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>jaxb-api<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.glassfish.jaxb<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>jaxb-runtime<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>javax.activation<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>javax.activation-api<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre></section>
+<section id="_konfiguration_des_jaxb_plugins" class="columns"><h2>Konfiguration des JAXB-Plugins</h2><div class="openblock"><div class="content"><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.mojo<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>jaxb2-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.5.0<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;dependencies&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>javax.xml.bind<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>jaxb-api<span class="tag">&lt;/artifactId&gt;</span>
+            <span class="tag">&lt;version&gt;</span>${javax-jaxb.version}<span class="tag">&lt;/version&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.glassfish.jaxb<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>jaxb-jxc<span class="tag">&lt;/artifactId&gt;</span>
+            <span class="tag">&lt;version&gt;</span>${glassfish-jaxb.version}<span class="tag">&lt;/version&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.glassfish.jaxb<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>jaxb-runtime<span class="tag">&lt;/artifactId&gt;</span>
+            <span class="tag">&lt;version&gt;</span>${glassfish-jaxb.version}<span class="tag">&lt;/version&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>javax.activation<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>javax.activation-api<span class="tag">&lt;/artifactId&gt;</span>
+            <span class="tag">&lt;version&gt;</span>${javax-activation.version}<span class="tag">&lt;/version&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+    <span class="tag">&lt;/dependencies&gt;</span></code></pre></div></div>
+<div class="openblock"><div class="content"><pre class="CodeRay listingblock"><code class="xml language-xml">    <span class="tag">&lt;executions&gt;</span>
+        <span class="tag">&lt;execution&gt;</span>
+            <span class="tag">&lt;id&gt;</span>xjc<span class="tag">&lt;/id&gt;</span>
+            <span class="tag">&lt;goals&gt;</span>
+                <span class="tag">&lt;goal&gt;</span>xjc<span class="tag">&lt;/goal&gt;</span>
+            <span class="tag">&lt;/goals&gt;</span>
+        <span class="tag">&lt;/execution&gt;</span>
+    <span class="tag">&lt;/executions&gt;</span>
+<span class="tag">&lt;/plugin&gt;</span></code></pre>
+<div class="paragraph"><p>Erzeugt Java-Klassen aus<br>
+den Schema-Dateien im<br>
+Verzeichnis <code>src/main/xsd</code><br>
+entsprechend der Bindings<br>
+in <code>src/main/xjb</code>.</p></div></div></div></section>
+<section id="_binding_eines_schemas" class="columns"><h2>Binding eines Schemas</h2><div class="openblock two-col"><div class="content"><div class="title">persons.xsd</div><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
+<span class="tag">&lt;xs:schema</span>
+    <span class="attribute-name">targetNamespace</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://anderscore.com/persons</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xmlns:xs</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://anderscore.com/persons</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+
+    <span class="tag">&lt;xs:element</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">persons</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;xs:complexType&gt;</span>
+            <span class="tag">&lt;xs:sequence&gt;</span>
+                <span class="tag">&lt;xs:element</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">person</span><span class="delimiter">&quot;</span></span>
+                    <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">PersonType</span><span class="delimiter">&quot;</span></span>
+                    <span class="attribute-name">minOccurs</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">0</span><span class="delimiter">&quot;</span></span>
+                    <span class="attribute-name">maxOccurs</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">unbounded</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/xs:sequence&gt;</span>
+        <span class="tag">&lt;/xs:complexType&gt;</span>
+    <span class="tag">&lt;/xs:element&gt;</span>
+
+    <span class="tag">&lt;xs:complexType</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">PersonType</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;xs:sequence&gt;</span>
+            <span class="tag">&lt;xs:element</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">firstName</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">xs:string</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;xs:element</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">lastName</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">xs:string</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;xs:element</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">birthday</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">xs:date</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;/xs:sequence&gt;</span>
+    <span class="tag">&lt;/xs:complexType&gt;</span>
+<span class="tag">&lt;/xs:schema&gt;</span></code></pre></div></div>
+<div class="openblock two-col top"><div class="content"><div class="title">bindings.xjb</div><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;jaxb:bindings</span> <span class="attribute-name">version</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">2.0</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xmlns:jaxb</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://java.sun.com/xml/ns/jaxb</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xmlns:xjc</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://java.sun.com/xml/ns/jaxb/xjc</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xmlns:xs</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">jaxb:extensionBindingPrefixes</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">xjc</span><span class="delimiter">&quot;</span></span>
+<span class="tag">&gt;</span>
+    <span class="tag">&lt;jaxb:bindings</span>
+        <span class="attribute-name">namespace</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://anderscore.com/persons</span><span class="delimiter">&quot;</span></span>
+        <span class="attribute-name">schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">../xsd/persons.xsd</span><span class="delimiter">&quot;</span></span>
+    <span class="tag">&gt;</span>
+        <span class="comment">&lt;!-- Bindet XML-Namespace an ein Java-Package --&gt;</span>
+        <span class="tag">&lt;jaxb:schemaBindings&gt;</span>
+            <span class="tag">&lt;jaxb:package</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">infra.persons.jaxb</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;/jaxb:schemaBindings&gt;</span>
+
+        <span class="comment">&lt;!-- Expliziter Klassename für ein XML-Element --&gt;</span>
+        <span class="tag">&lt;jaxb:bindings</span>
+            <span class="attribute-name">node</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">//xs:complexType[@name='PersonType']</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;jaxb:class</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">PersonJaxb</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;/jaxb:bindings&gt;</span>
+    <span class="tag">&lt;/jaxb:bindings&gt;</span>
+<span class="tag">&lt;/jaxb:bindings&gt;</span></code></pre></div></div></section>
+<section id="_konfiguration_eines_reader_für_xmljaxb"><h2>Konfiguration eines Reader für XML+JAXB</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="annotation">@JobScope</span>
+StaxEventItemReader&lt;PersonJaxb&gt; personXmlReader(
+        <span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobParameters[file]}</span><span class="delimiter">&quot;</span></span>) Resource source) {
+    <span class="keyword">return</span> <span class="keyword">new</span> StaxEventItemReaderBuilder&lt;PersonJaxb&gt;()
+            .name(<span class="string"><span class="delimiter">&quot;</span><span class="content">personXmlReader</span><span class="delimiter">&quot;</span></span>)
+            .resource(source)
+            .addFragmentRootElements(<span class="string"><span class="delimiter">&quot;</span><span class="content">person</span><span class="delimiter">&quot;</span></span>)
+            .unmarshaller(getUnmarshaller())
+            .build();
+}</code></pre>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+Unmarshaller getUnmarshaller() {
+    Jaxb2Marshaller marshaller = <span class="keyword">new</span> Jaxb2Marshaller();
+    marshaller.setContextPath(Persons.class.getPackage().getName());
+    marshaller.setMappedClass(PersonJaxb.class);
+    <span class="keyword">return</span> marshaller;
+}</code></pre>
+<div class="paragraph"><p>Wichtig ist, dass das Root-Element für das Fragment mit der <em>MappedClass</em> beim
+<code>Jaxb2Marshaller</code> übereinstimmt.</p></div></section>
+<section id="_json"><h2>JSON</h2><div class="paragraph"><p>Analog zur XML-Verarbeitung gibt es für JSON die beiden Klassen:</p></div>
+<div class="ulist"><ul><li><p><strong><code>JsonItemReader</code></strong></p></li><li><p><strong><code>JsonItemWriter</code></strong></p></li></ul></div>
+<div class="paragraph"><p>Auch diese Verarbeiten bzw. Erstellen JSON-Dateien fragmentweise (ermöglicht große Dateien)</p></div>
+<div class="ulist"><ul><li><p>Zur (De-)Serialisierung können wahlweise <em>Jackson</em> oder <em>Gson</em> eingesetzt werden.</p></li><li><p>Je Fragment ist ein entsprechender <code>JsonObjectReader</code> zum Lesen bzw.
+ein <code>JsonObjectMarshaller</code> zum Schreiben notwendig.</p></li></ul></div></section>
+<section id="_lesen_mit_jackson"><h2>Lesen mit Jackson</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="annotation">@Qualifier</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">jackson</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@StepScope</span>
+JsonItemReader&lt;Person&gt; personJacksonReader(<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobParameters[file]}</span><span class="delimiter">&quot;</span></span>) Resource source) {
+    <span class="keyword">return</span> <span class="keyword">new</span> JsonItemReaderBuilder&lt;Person&gt;()
+            .name(<span class="string"><span class="delimiter">&quot;</span><span class="content">personJacksonReader</span><span class="delimiter">&quot;</span></span>)
+            .jsonObjectReader(jacksonJsonObjectReader())
+            .resource(source)
+            .build();
+}
+
+<span class="annotation">@Bean</span>
+JacksonJsonObjectReader&lt;Person&gt; jacksonJsonObjectReader() {
+        JacksonJsonObjectReader&lt;Person&gt; objectReader = <span class="keyword">new</span> JacksonJsonObjectReader&lt;&gt;(Person.class);
+    objectReader.setMapper(objectMapper());
+    <span class="keyword">return</span> objectReader;
+}
+
+<span class="annotation">@Bean</span>
+ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();
+    objectMapper.registerModule(<span class="keyword">new</span> JavaTimeModule());
+    <span class="keyword">return</span> objectMapper;
+}</code></pre></section>
+<section id="_lesen_mit_gson"><h2>Lesen mit Gson</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="annotation">@Qualifier</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">gson</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@StepScope</span>
+JsonItemReader&lt;Person&gt; personGsonReader(<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobParameters[file]}</span><span class="delimiter">&quot;</span></span>) Resource source) {
+    <span class="keyword">return</span> <span class="keyword">new</span> JsonItemReaderBuilder&lt;Person&gt;()
+            .name(<span class="string"><span class="delimiter">&quot;</span><span class="content">personGsonReader</span><span class="delimiter">&quot;</span></span>)
+            .jsonObjectReader(gsonJsonObjectReader())
+            .resource(source)
+            .build();
+}
+
+<span class="annotation">@Bean</span>
+GsonJsonObjectReader&lt;Person&gt; gsonJsonObjectReader() {
+        GsonJsonObjectReader&lt;Person&gt; objectReader = <span class="keyword">new</span> GsonJsonObjectReader&lt;&gt;(Person.class);
+    objectReader.setMapper(gson());
+    <span class="keyword">return</span> objectReader;
+}
+
+<span class="annotation">@Bean</span>
+Gson gson() {
+    <span class="keyword">return</span> <span class="keyword">new</span> GsonBuilder()
+            .registerTypeAdapter(LocalDate.class, <span class="keyword">new</span> LocalDateTypeAdapter().nullSafe())
+            .create();
+}
+
+<span class="comment">// see https://stackoverflow.com/questions/39192945/serialize-java-8-localdate-as-yyyy-mm-dd-with-gson/39193077#39193077</span>
+<span class="directive">static</span> <span class="type">class</span> <span class="class">LocalDateTypeAdapter</span> <span class="directive">extends</span> TypeAdapter&lt;LocalDate&gt; {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> write(JsonWriter out, LocalDate value) <span class="directive">throws</span> <span class="exception">IOException</span> {
+        out.value(DateTimeFormatter.ISO_LOCAL_DATE.format(value));
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> LocalDate read(JsonReader in) <span class="directive">throws</span> <span class="exception">IOException</span> {
+        <span class="keyword">return</span> LocalDate.parse(in.nextString());
+    }
+}</code></pre></section>
+<section id="_zusammenfassung_lektion_5"><h2>Zusammenfassung Lektion 5</h2><div class="ulist"><ul><li><p>Überblick über die Reader und Writer von Spring-Batch</p></li><li><p>Reader und Writer für die Datenbankzugriff</p></li><li><p>Dateisystemzugriff und Verarbeitung von strukturierten Textdateien (CSV, XML, JSON)</p></li><li><p>Konfiguration des <code>FlatFileItemReader</code>.</p></li><li><p>Hilfsklassen für Komposition und Dekoration von Readern und Writern</p></li><li><p>Validierung</p></li></ul></div></section>
+<section id="_aufgabe"><h2>Aufgabe:</h2><div class="olist arabic"><ol class="arabic"><li><p>Erstellen Sie einen Batch-Job, der die Einträge aus der Tabelle<br>
+<code>BATCH_STEP_EXECUTION</code> als CSV-Datei exportiert.</p><div class="ulist"><ul><li><p>Verwenden Sie dazu die Klasse <code>StepExecutionData</code>,</p></li><li><p>das SQL-Statement <code>select * from BATCH_STEP_EXECUTION order by STEP_EXECUTION_ID</code>,</p></li><li><p>den <code>JdbcCursorItemReader</code> und</p></li><li><p>den <code>FlatFileItemWriterBuilder</code>.</p></li></ul></div></li><li><p>Filtern Sie alle Step-Executions mit Read-Count 0 heraus.
+Verwenden Sie dafür den <code>BeanValidatingItemProcessor</code>
+(siehe <code>@Min(value = 50)</code> in <code>StepExecutionData</code>).</p></li><li><p><em>Optional</em>: Exportieren Sie die Einträge als XML- oder JSON-Datei.</p></li></ol></div>
+<div class="paragraph"><p><br>
+&#8594; <a href="index.html">Agenda</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring Workshop', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

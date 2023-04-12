@@ -1,0 +1,15 @@
+= Spring-Batch Deep-Dive (2-Tage-Training)
+
+== Lektionen
+
+Jede Lektion ist ein unabhängiges Projekt und kann mit Maven gebaut werden.
+Codefragmente, die auf den Folien verwendet werden befinden sich in der Regel in einem `fragments`
+Package bei den _test_ Sourcen.
+
+== Lösungen
+
+Die Lösungen befinden sich alle in dem _solutions_ Verzeichnis. Auch diese sind wieder unabhängige
+Projekte, die von der jeweiligen Aufgaben-Lektion kopiert wurden.
+
+NOTE: Sie erhalten alle Musterlösungen zum Kursende
+

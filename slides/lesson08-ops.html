@@ -1,0 +1,542 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 8 - Betrieb von Batch-Anwendungen</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_8_betrieb_von_batch_anwendungen" data-state="no-title-footer"><h2>Lektion 8 - Betrieb von Batch-Anwendungen</h2></section>
+<section id="_überblick_zu_dieser_lektion"><h2>Überblick zu dieser Lektion</h2><div class="olist arabic"><ol class="arabic"><li><p><a href="#/_zeitgesteuerte_ausf%C3%BChrung_von_batch_jobs">Zeitgesteuerte Ausführung von Batch-Jobs</a></p></li><li><p><a href="#/_spring_integration_und_spring_batch">Integration via Messaging</a></p></li><li><p><a href="#/_rest">RESTful job processing</a></p></li><li><p><a href="#/_batchanwendungen_in_der_cloud">Batch-Anwendungen in der Cloud</a></p></li><li><p><a href="#/_monitoring_mit_micrometer">Monitoring</a></p></li></ol></div></section>
+<section id="_möglichkeiten_einen_batch_job_anzustoßen"><h2>Möglichkeiten einen Batch-Job anzustoßen</h2><div class="olist arabic"><ol class="arabic"><li><p>Über die Befehlszeile mit dem <strong><code>CommandLineJobRunner</code></strong></p></li><li><p>Programmatisch über <strong><code>JobOperator.start()</code></strong> or <strong><code>JobLauncher.run()</code></strong></p></li><li><p>Als Spring-Boot-Anwendung:<br>
+Standardmäßig werden alle Jobs beim Hochfahren der Anwendung ausgeführt.
+Dieses Verhalten kann man in der <em>application.properties</em> mit
+<code>spring.batch.job.enabled=false</code> unterbinden.</p></li><li><p>Über eine <em>Message</em> via Spring-Integration mit dem <strong><code>JobLaunchingMessageHandler</code></strong></p></li></ol></div></section>
+<section id="_möglichkeiten_einen_batch_job_auszuliefern"><h2>Möglichkeiten einen Batch-Job auszuliefern</h2><div class="olist arabic"><ol class="arabic"><li><p>Als Shell-Skript (.bat, .sh) mit allen Abhängigkeiten in einem Verzeichnis</p></li><li><p>Als Maven <em>pom.xml</em> oder als Gradle-Skript</p></li><li><p>Als Spring-Boot-Anwendung (<em>uber jar</em>)</p></li><li><p>Als Docker-Image</p></li><li><p>Als Bestandteil einer bestehenden (Web-)Anwendung</p></li></ol></div></section>
+<section id="_zeitgesteuerte_ausführung_von_batch_jobs"><h2>Zeitgesteuerte Ausführung von Batch-Jobs</h2><div class="olist arabic"><ol class="arabic"><li><p>Mit Bordmitteln des Betriebssystems: Crontab, Windows Task Scheduler (Aufgabenplanung)</p></li><li><p>Enterprise Job-Scheduler</p></li><li><p>Mit <code>@EnableScheduling</code> + <code>@Scheduled</code> in Spring</p></li><li><p>Quartz Job Scheduling Library</p></li></ol></div></section>
+<section id="_verwendung_der_taskscheduler_abstraktion_von_spring"><h2>Verwendung der TaskScheduler-Abstraktion von Spring</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@EnableScheduling</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">HelloScheduledConfig</span> {
+    <span class="annotation">@Scheduled</span>(cron = <span class="string"><span class="delimiter">&quot;</span><span class="content">${ops.hello.schedule.cron:-}</span><span class="delimiter">&quot;</span></span>)
+    <span class="type">void</span> executeHelloJob() {
+        <span class="comment">// ...</span>
+    }
+}</code></pre>
+<div class="paragraph"><p>Die Property <code>ops.hello.schedule.cron</code> muss einen Cron-Ausdruck enthalten.
+Siehe <a href="https://docs.spring.io/spring/docs/5.2.4.RELEASE/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html">
+&#8594; Java-Docs zu CronSequenceGenerator</a>. Die Endung <strong><code>:-</code></strong> bewirkt, dass ein leerer String als
+Cron-Ausdruck verwendet wird, wenn die Property nicht gesetzt ist. Damit wird die Ausführung unterbunden.</p></div>
+<div class="paragraph"><p>Wenn beispielsweise der Job ab 0:03 Uhr alle 5 Minuten laufen soll, ist folgender Eintrag in
+der <em>application.properties</em> notwendig:</p></div>
+<pre class="CodeRay listingblock"><code>ops.hello.schedule.cron = 0 3/5 * * * *</code></pre></section>
+<section id="_quartz_job_scheduling_library"><h2>Quartz Job Scheduling Library</h2><div class="ulist"><ul><li><p>Open-Source (Apache 2.0 license)</p></li><li><p>Java</p></li><li><p>Leicht in beliebige Applikationen zu integrieren</p></li><li><p>Job-Store wahlweise</p><div class="ulist"><ul><li><p>In-Memory (<code>RAMJobStore</code>) und Konfiguration via quartz.properties</p></li><li><p>JDBC sowohl über DataSource-Transaktionen (<code>JobStoreTX</code>)<br>
+als auch JTA-Transaktionen (<code>JobStoreCMT</code>)</p></li></ul></div></li><li><p>Von Spring unterstützt</p></li></ul></div></section>
+<section id="_die_wichtigsten_elemente_von_quartz"><h2>Die wichtigsten Elemente von Quartz</h2><div class="imageblock" style=""><img src="images/Quartz.svg" alt="Quartz" width="2152" height="694"></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Interfaces sind von Quartz und Klassen sind von Spring.</td></tr></table></div></section>
+<section id="_quartzjobbean_um_einen_batch_job_zu_starten"><h2>QuartzJobBean um einen Batch-Job zu starten</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">HelloQuartzJob</span> <span class="directive">extends</span> QuartzJobBean {
+    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">Logger</span> log = LoggerFactory.getLogger(HelloQuartzJob.class);
+
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> JobExplorer jobExplorer;
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> JobLauncher jobLauncher;
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> Job helloQuartzJob;
+
+    <span class="annotation">@Override</span>
+    <span class="directive">protected</span> <span class="type">void</span> executeInternal(JobExecutionContext context) <span class="directive">throws</span> JobExecutionException {
+        JobParameters jobParameters = <span class="keyword">new</span> JobParametersBuilder(jobExplorer)
+                .addDate(<span class="string"><span class="delimiter">&quot;</span><span class="content">scheduled.at</span><span class="delimiter">&quot;</span></span>, context.getScheduledFireTime()) <span class="comment">// wird im Cluster nur einmal ausgeführt</span>
+                .toJobParameters();
+        <span class="keyword">try</span> {
+            JobExecution jobExecution = jobLauncher.run(helloQuartzJob, jobParameters);
+            log.info(<span class="string"><span class="delimiter">&quot;</span><span class="content">HelloQuartzJob finished: {}</span><span class="delimiter">&quot;</span></span>, jobExecution);
+            <span class="keyword">if</span> (!ExitStatus.COMPLETED.getExitCode().equals(jobExecution.getExitStatus().getExitCode())) {
+                <span class="keyword">throw</span> <span class="keyword">new</span> JobExecutionException(<span class="string"><span class="delimiter">&quot;</span><span class="content">HelloQuartzJob ended with </span><span class="delimiter">&quot;</span></span> + jobExecution.getExitStatus());
+            }
+        } <span class="keyword">catch</span> (JobExecutionAlreadyRunningException | JobRestartException
+                | JobInstanceAlreadyCompleteException | JobParametersInvalidException ex) {
+            log.error(<span class="string"><span class="delimiter">&quot;</span><span class="content">HelloQuartzJob failed.</span><span class="delimiter">&quot;</span></span>, ex);
+            <span class="keyword">throw</span> <span class="keyword">new</span> JobExecutionException(<span class="string"><span class="delimiter">&quot;</span><span class="content">HelloQuartzJob failed</span><span class="delimiter">&quot;</span></span>, ex);
+        }
+    }
+}</code></pre></section>
+<section id="_quartz_konfiguration_spring_boot"><h2>Quartz-Konfiguration (Spring-Boot)</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">QuartzConfig</span> {
+    <span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">${ops.quartz.cron:0 0/5 * * * ?}</span><span class="delimiter">&quot;</span></span>)
+    <span class="directive">private</span> <span class="predefined-type">String</span> cronExpression;
+
+    <span class="annotation">@Bean</span>
+    JobDetail helloQuartzJobDetail() {
+        <span class="keyword">return</span> JobBuilder.newJob(HelloQuartzJob.class)
+                .storeDurably()
+                .build();
+    }
+
+    <span class="annotation">@Bean</span>
+    CronTriggerFactoryBean cronTrigger() {
+        CronTriggerFactoryBean cronTrigger = <span class="keyword">new</span> CronTriggerFactoryBean();
+        cronTrigger.setCronExpression(cronExpression);
+        cronTrigger.setJobDetail(helloQuartzJobDetail());
+        <span class="keyword">return</span> cronTrigger;
+    }
+}</code></pre>
+<div class="title">application.properties:</div><pre class="CodeRay listingblock"><code>spring.quartz.job-store-type=jdbc
+spring.quartz.jdbc.initialize-schema=always
+
+ops.quartz.cron = 0 0/5 * * * ?</code></pre></section>
+<section id="_spring_integration_und_spring_batch"><h2>Spring-Integration und Spring-Batch</h2><div class="ulist"><ul><li><p>Der <strong><code>JobLaunchingMessageHandler</code></strong> startet einen Batch-Job nach Empfang einer Message.</p></li><li><p>Inhalt (<em>Payload</em>) der Message ist ein <strong><code>JobLaunchRequest</code></strong>.</p></li><li><p>Ein <code>JobLaunchRequest</code> enthält den Job und die Parameter.</p></li><li><p>Spring-Integration ermöglicht die Modellierung einer Software als Datenfluss
+entsprechend der <em>Enterprise Integration Patterns</em>, auch ohne Messaging-Middleware.</p></li><li><p>Es ist auch möglich Webservices, E-Mail, FTP etc. zu integrieren.</p></li><li><p>Beispielsweise erzeugt ein <em>FileInboundChannelAdapter</em> eine Nachricht, sobald eine
+Datei einem bestimmten Verzeichnis angelegt wird und kann damit direkt einen
+Batch-Job zum Verarbeiten dieser Datei anstoßen.</p></li></ul></div></section>
+<section id="_start_eines_batch_jobs_bei_anlegen_einer_datei"><h2>Start eines Batch-Jobs bei Anlegen einer Datei</h2><div class="imageblock" style=""><img src="images/ops/launch-batch-job.png" alt="launch batch job" width="100%"></div></section>
+<section id="_implementierung_des_transformers"><h2>Implementierung des Transformers</h2><div class="title">FileMessageToJobRequest.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">FileMessageToJobRequest</span> {
+    <span class="directive">private</span> Job job;
+    <span class="directive">private</span> <span class="predefined-type">String</span> fileParameterName;
+
+    <span class="directive">public</span> <span class="type">void</span> setFileParameterName(<span class="predefined-type">String</span> fileParameterName) {
+        <span class="local-variable">this</span>.fileParameterName = fileParameterName;
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> setJob(Job job) {
+        <span class="local-variable">this</span>.job = job;
+    }
+
+    <span class="annotation">@Transformer</span> <span class="comment">// diese Annotation macht die Klasse zu einem Transformer</span>
+    <span class="directive">public</span> JobLaunchRequest toRequest(Message&lt;<span class="predefined-type">File</span>&gt; message) {
+        JobParametersBuilder jobParametersBuilder = <span class="keyword">new</span> JobParametersBuilder();
+
+        jobParametersBuilder.addString(fileParameterName,
+                message.getPayload().getAbsolutePath()); <span class="comment">// Inhalt der Message ist ein File Objekt</span>
+
+        <span class="keyword">return</span> <span class="keyword">new</span> JobLaunchRequest(job, jobParametersBuilder.toJobParameters());
+    }
+}</code></pre></section>
+<section id="_konfiguration_des_transformers"><h2>Konfiguration des Transformers</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> FileMessageToJobRequest fileMessageToJobRequest(Job filePollerJob) {
+    FileMessageToJobRequest fileMessageToJobRequest = <span class="keyword">new</span> FileMessageToJobRequest();
+    fileMessageToJobRequest.setFileParameterName(<span class="string"><span class="delimiter">&quot;</span><span class="content">input.file.name</span><span class="delimiter">&quot;</span></span>);
+    fileMessageToJobRequest.setJob(filePollerJob);
+    <span class="keyword">return</span> fileMessageToJobRequest;
+}</code></pre>
+<div class="paragraph"><p><br></p></div>
+<div class="paragraph"><p>Der Reader kann damit folgendermaßen auf den Parameter zugreifen:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="annotation">@StepScope</span>
+ResourcesItemReader filePollerReader(<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobParameters['input.file.name']}</span><span class="delimiter">&quot;</span></span>) <span class="predefined-type">String</span> resource) {
+        ResourcesItemReader reader = <span class="keyword">new</span> ResourcesItemReader();
+    reader.setResources(<span class="keyword">new</span> Resource<span class="type">[]</span> { <span class="keyword">new</span> FileSystemResource(resource) });
+    <span class="keyword">return</span> reader;
+}</code></pre></section>
+<section id="_konfiguration_des_gateways"><h2>Konfiguration des Gateways</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> JobLaunchingGateway jobLaunchingGateway() {
+    SimpleJobLauncher simpleJobLauncher = <span class="keyword">new</span> SimpleJobLauncher();
+    simpleJobLauncher.setJobRepository(jobRepository);
+    simpleJobLauncher.setTaskExecutor(<span class="keyword">new</span> SyncTaskExecutor());
+    JobLaunchingGateway jobLaunchingGateway = <span class="keyword">new</span> JobLaunchingGateway(simpleJobLauncher);
+
+    <span class="keyword">return</span> jobLaunchingGateway;
+}</code></pre>
+<div class="ulist"><ul><li><p>Mit dem <code>SyncTaskExecutor</code> wird die Antwort erst verschickt, wenn der Job fertig ist</p></li><li><p>Mit einem <code>AsyncTaskExecutor</code> wird die Antwort sofort verschickt.<br>
+&#8658; Anhand der Job-ID in der Antwort kann man das <em>JobRepository</em> pollen, um den Fortschritt zu ermitteln</p></li><li><p>Alternativ kann der Job auch aktiv Nachrichten zu seinem Fortschritt verschicken</p></li></ul></div>
+<div class="admonitionblock warning teacherBox"><table><tr><td class="icon"><i class="fa fa-warning" title="Warning"></i></td><td class="content">Die Datei muss gelöscht werden, <strong>bevor</strong> die Antwort eintrifft, andernfalls wird sofort eine
+neue Message zur selben Datei verschickt.</td></tr></table></div></section>
+<section id="_konfiguration_des_flows"><h2>Konfiguration des Flows</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> IntegrationFlow integrationFlow(FileMessageToJobRequest fileMessageToJobRequest) {
+    FileInboundChannelAdapterSpec source = Files
+            .inboundAdapter(<span class="keyword">new</span> <span class="predefined-type">File</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">target/myfiles</span><span class="delimiter">&quot;</span></span>))
+            .filter(<span class="keyword">new</span> SimplePatternFileListFilter(<span class="string"><span class="delimiter">&quot;</span><span class="content">*.txt</span><span class="delimiter">&quot;</span></span>));
+    <span class="keyword">return</span> IntegrationFlows.from(source, <span class="local-variable">this</span>::configureEndpoint)
+            .handle(fileMessageToJobRequest)
+            .handle(jobLaunchingGateway())
+            .log(LoggingHandler.Level.WARN, <span class="string"><span class="delimiter">&quot;</span><span class="content">headers.id + ': ' + payload</span><span class="delimiter">&quot;</span></span>) <span class="comment">// response loggen</span>
+            .get();
+}
+
+<span class="directive">private</span> <span class="type">void</span> configureEndpoint(SourcePollingChannelAdapterSpec channelAdapter) {
+    PollerSpec poller = Pollers.fixedRate(<span class="integer">1000</span>).maxMessagesPerPoll(<span class="integer">1</span>);
+    channelAdapter.poller(poller);
+}</code></pre></section>
+<section id="_aufgabe_1_scheduling_und_intergration"><h2>Aufgabe 1: Scheduling und Intergration</h2><div class="olist arabic"><ol class="arabic"><li><p>Sehen Sie sich den Sourcecode der besprochenen Beispiele im Projekt <code>exercises-ops</code> an.</p></li><li><p>Ändern Sie die Zeiten für das Scheduling und führen Sie die Beispielanwendung aus.</p></li><li><p>Führen Sie den <code>FilePollerJob</code> aus, indem Sie eine entsprechende Datei anlegen.</p></li><li><p>Können Sie die ausgeführten Jobs und Steps im Repository finden?</p></li><li><p>Was passiert, wenn Sie in <code>FilePollerJobConfig</code> den <code>SyncTaskExecutor</code> durch einen
+<code>SimpleAsyncTaskExecutor</code> austauschen?</p></li><li><p>Setzen Sie Breakpoints im Tasklet bzw. im Processor und versuchen Sie die besprochenen
+Klassen in den Laufzeit-Datenstrukturen zu finden.</p></li></ol></div></section>
+<section id="_rest"><h2>REST</h2><div class="paragraph"><p>REST in wenigen Worten:</p></div>
+<div class="ulist"><ul><li><p>Bei Rest geht es um Ressourcen (Dinge), die eindeutig über URI identifiziert werden</p></li><li><p>Aktionen beschränken sich auf CRUD-Operationen (HTTP-Verben)</p></li><li><p>Operationen (Funktionsaufrufe) sind über POST-Request möglich, sollten aber vermieden werden</p></li></ul></div>
+<div class="paragraph"><p>Beispiel:</p></div>
+<div class="ulist"><ul><li><p>Statt der Operation Überweise Betrag X von A nach B</p></li><li><p>wird eine neue Überweisung angelegt, die über eine eigene URI identifiziert werden kann</p></li></ul></div>
+<div class="paragraph"><p>Mehr dazu <a href="https://www.restapitutorial.com/lessons/whatisrest.html#">&#8594; https://www.restapitutorial.com</a></p></div></section>
+<section id="_restful_job_processing"><h2>RESTful job processing</h2><div class="paragraph"><p>Hier muss man unterscheiden:</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>Der Job steht im Mittelpunkt</p></li><li><p>Das Ergebnis der Jobausführung (z. B. ein Report) steht im Mittelpunkt</p></li></ol></div></section>
+<section id="_jobs_per_rest_api_steuern"><h2>Jobs per REST-API steuern</h2><div class="literalblock"><div class="content"><pre>POST https://api.site.com/batchjobs/helloJob name='Egon'
+HTTP/1.1 201 Created
+Location /batchjobs/helloJob/123</pre></div></div>
+<div class="paragraph"><p>Erzeugt eine neue Job-Execution mit der ID 123</p></div>
+<div class="paragraph"><p>Wichtig ist ein <strong><code>SimpleJobLauncher</code></strong> mit einem <strong><code>AsyncTaskExecutor</code></strong></p></div>
+<div class="literalblock"><div class="content"><pre>GET https://api.site.com/batchjobs/helloJob/123</pre></div></div>
+<div class="paragraph"><p>Liefert Meta-Information (Startzeitpunkt, Parameter, Status, &#8230;&#8203;) der JobExecution</p></div>
+<div class="literalblock"><div class="content"><pre>GET https://api.site.com/batchjobs/helloJob</pre></div></div>
+<div class="paragraph"><p>Liefert Liste aller JobExecutions</p></div>
+<div class="literalblock"><div class="content"><pre>PUT https://api.site.com/batchjobs/helloJob status=stopped</pre></div></div></section>
+<section id="_ergebnis_eines_batch_jobs_per_rest_api"><h2>Ergebnis eines Batch-Jobs per REST-API</h2><div class="literalblock"><div class="content"><pre>POST https://api.site.com/reports/2020-03
+HTTP/1.1 202 Accepted
+Location /queue/124</pre></div></div>
+<div class="paragraph"><p>Startet den <em>createReport</em> Batch-Job mit Execution-ID 124</p></div>
+<div class="literalblock"><div class="content"><pre>GET https://api.site.com/batchjobs/createReport/124</pre></div></div>
+<div class="paragraph"><p>Liefert Meta-Information zur Job-Ausführung</p></div>
+<div class="literalblock"><div class="content"><pre>GET https://api.site.com/queue/124
+HTTP/1.1 200 Ok</pre></div></div>
+<div class="literalblock"><div class="content"><pre>{ "status": "STARTED" }</pre></div></div>
+<div class="paragraph"><p>Liefert Status-Info, solange der Job noch läuft</p></div>
+<div class="literalblock"><div class="content"><pre>GET https://api.site.com/queue/124
+HTTP/1.1 303 See Other
+Location: /reports/2020-03</pre></div></div>
+<div class="paragraph"><p>oder ein Redirect, falls der Job fertig ist.</p></div>
+<div class="paragraph"><p>Siehe auch <a href="https://farazdagi.com/2014/rest-and-long-running-jobs/" class="bare">https://farazdagi.com/2014/rest-and-long-running-jobs/</a></p></div>
+<aside class="notes"><div class="ulist"><ul><li><p>Wenn <code>POST <a href="https://api.site.com/reports/2020-03" class="bare">https://api.site.com/reports/2020-03</a></code> erneut aufgerufen wird gibt man 409 (Conflict)
+zurück.</p></li><li><p>Ein <code>GET <a href="https://api.site.com/reports/2020-03" class="bare">https://api.site.com/reports/2020-03</a></code> liefert 404 (Not Found) solange der Report noch nicht
+erstellt wurde.</p></li></ul></div></aside></section>
+<section id="_batchanwendungen_in_der_cloud"><h2>Batchanwendungen in der Cloud</h2><div class="ulist"><ul><li><p>Die Cloud bietet fast unbegrenzt Rechenleistung</p></li><li><p>Diese Rechenleistung verursacht nur solange Kosten, solange sie tatsächlich genutzt wird</p></li><li><p>Batch-Jobs benötigen sehr viele Rechenleistung, aber nur solange sie tatsächlich laufen</p></li><li><p>&#8658; Passt irgendwie gut zusammen&#8230;&#8203;</p></li></ul></div></section>
+<section id="_spring_cloud_task"><h2>Spring Cloud Task</h2><div class="ulist"><ul><li><p>Erstellung kurzlebiger Microservices</p></li><li><p>Verwendet eigenes Task-Repository um die Ergebnisse der Task-Ausführung zu speichern</p></li><li><p>Dependency in <em>Spring Initializr</em>:</p><div class="imageblock" style="text-align: left"><img src="images/ops/cloud-task-dependency.png" alt="cloud task dependency" width="100%"></div></li><li><p>Dependency in Maven:</p><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+        <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+        <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-jdbc<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+        <span class="tag">&lt;groupId&gt;</span>org.springframework.cloud<span class="tag">&lt;/groupId&gt;</span>
+        <span class="tag">&lt;artifactId&gt;</span>spring-cloud-starter-task<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre></li></ul></div></section>
+<section id="_spring_cloud_taskbeispiel"><h2>Spring Cloud Task&#8201;&#8212;&#8201;Beispiel</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@SpringBootApplication</span>
+<span class="annotation">@EnableTask</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">CloudTaskHelloWorldApplication</span> {
+
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+        SpringApplication.run(CloudTaskHelloWorldApplication.class, args);
+    }
+
+    <span class="annotation">@Bean</span>
+    <span class="directive">public</span> CommandLineRunner commandLineRunner() {
+        <span class="keyword">return</span> (args) -&gt; <span class="predefined-type">System</span>.out.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, World!</span><span class="delimiter">&quot;</span></span>);
+    }
+}</code></pre>
+<div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Die <strong><code>@EnableTask</code></strong> Annotation zeichnet die Applikation als <em>Spring Could Task</em> aus</td></tr></table></div>
+<div class="paragraph"><p><br></p></div>
+<div class="title">application.properties:</div><pre class="CodeRay listingblock"><code># Der application.name erscheint in der Datenbank-Spalte TASK_NAME
+spring.application.name=helloWorld
+logging.level.org.springframework.cloud.task=DEBUG
+
+# Database connection
+spring.datasource.url=jdbc:hsqldb:hsql://localhost:9001/xdb;sql.enforce_strict_size=true;hsqldb.tx=mvcc
+spring.datasource.username=SA
+spring.datasource.password=</code></pre></section>
+<section id="_spring_cloud_taskrespository"><h2>Spring Cloud Task&#8201;&#8212;&#8201;Respository</h2><div class="imageblock" style=""><img src="images/ops/cloud-task-repository.png" alt="cloud task repository" width="60%"></div></section>
+<section id="_spring_cloud_taskähnlichkeiten_zu_spring_batch"><h2>Spring Cloud Task&#8201;&#8212;&#8201;Ähnlichkeiten zu Spring-Batch</h2><div class="ulist"><ul><li><p>Name, Argumente, Zeitpunkte, Exit-Code und Fehler-/Exit-Message werden im Repository protokolliert</p></li><li><p>Es gibt einen <strong><code>ExitCodeExceptionMapper</code></strong>, der Exceptions auf Exit-Codes mapped</p></li><li><p>Es gibt einen <strong><code>TaskExecutionListener</code></strong> und korrespondierende <code>@BeforeTask</code>, <code>@AfterTask</code> und <code>@FailedTask</code>
+Annotationen (keine Registierung erforderlich, Listener muss nur Bean sein)</p></li><li><p>Man kann verhindern, dass zwei Tasks mit dem gleichen Namen gleichzeitig ausgeführt werden</p></li></ul></div>
+<div class="paragraph"><p>Siehe auch <a href="https://docs.spring.io/spring-cloud-task/docs/current/reference/#features">&#8594; Spring Cloud Task Reference Guide</a></p></div></section>
+<section id="_spring_cloud_task_spring_batch"><h2>Spring Cloud Task + Spring-Batch</h2><div class="ulist"><ul><li><p>Spring Cloud Task bietet den <strong><code>TaskBatchExecutionListener</code></strong>, der jeden Batch-Job als Cloud-Task behandelt</p></li><li><p>Lediglich <strong><code>@EnableTask</code></strong> und <strong><code>@EnableBatchProcessing</code></strong> notwendig.</p></li><li><p>Spring Boot basierte Batch-Applikation wird damit automatisch zum Spring Cloud-Task</p></li><li><p>Die Tabelle <strong><code>TASK_TASK_BATCH</code></strong> stellt die Verbindung zwischen den beiden Welten her</p></li></ul></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Wenn man keinen <code>JobParametersIncrementer</code> angegeben hat, muss man für jeden erneuten Aufruf einen
+anderen Parameter angeben. Spring-Boot-Applikationen verwenden den <code>JobLauncherCommandLineRunner</code>.
+Dieser wertet Parameter genauso aus, wie der <code>CommandLineJobRunner</code> (also z. B. <code>my.id(long)=1</code>).</td></tr></table></div></section>
+<section id="_paritionierung_in_der_cloud"><h2>Paritionierung in der Cloud</h2><div class="ulist"><ul><li><p>Partitionierung mit dem <strong><code>DeployerPartitionHandler</code></strong> ist ähnlich dem Remote-Partitioning:</p><div class="ulist"><ul><li><p>Es gibt einen Manager, der die Arbeit aufteilt und die Ergebnisse einsammelt und zusammenfasst.</p></li><li><p>Es gibt viele Worker, die die eigentliche Arbeit machen.</p></li></ul></div></li><li><p>Unterschiede:</p><div class="ulist"><ul><li><p>Der Manager startet die Worker selbst.</p></li><li><p>Die Parameter werden nicht per Message an die Worker übergeben sondern direkt als Aufruf-Parameter beim Start
+oder werden vom Worker aus dem Repository ausgelesen.</p></li><li><p>Der Manager empfängt keine Antwort-Message, sondern pollt das Repository bis alle Worker fertig sind und holt
+sich dann Teilergebnisse aus dem Repository.</p></li></ul></div></li><li><p>Zum Starten der Worker benötigt der <code>DeployerPartitionHandler</code> einen <strong><code>TaskLauncher</code></strong>. Momentan
+gibt es Implementierungen für <em>CloudFoundry</em>, <em>Kubernetes</em> und eine lokale Version.</p></li></ul></div></section>
+<section id="_maven_abhängigkeiten_für_den_deployerpartitionhandler"><h2>Maven-Abhängigkeiten für den DeployerPartitionHandler</h2><div class="paragraph"><p>Notwendige Abhängigkeiten für lokales Deployment:</p></div>
+<pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework.cloud<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-cloud-starter-task<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework.cloud<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-cloud-deployer-local<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.7.2<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework.batch<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-batch-integration<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre></section>
+<section id="_deployerpartitionhandler_verwenden"><h2>DeployerPartitionHandler verwenden</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> PartitionHandler partitionHandler() {
+    Resource resource = <span class="local-variable">this</span>.resourceLoader
+            .getResource(<span class="string"><span class="delimiter">&quot;</span><span class="content">maven://de.springbatchdeepdive:exercises-cloud-gauss-solution:1.0.0-SNAPSHOT</span><span class="delimiter">&quot;</span></span>);
+
+    DeployerPartitionHandler partitionHandler = <span class="keyword">new</span> DeployerPartitionHandler(taskLauncher, jobExplorer, resource,
+            <span class="string"><span class="delimiter">&quot;</span><span class="content">workerStep</span><span class="delimiter">&quot;</span></span>, taskRepository);
+
+    <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; commandLineArgs = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;(<span class="integer">3</span>);
+    commandLineArgs.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">--spring.profiles.active=worker</span><span class="delimiter">&quot;</span></span>);
+    commandLineArgs.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">--spring.cloud.task.initialize-enabled=false</span><span class="delimiter">&quot;</span></span>);
+    commandLineArgs.add(<span class="string"><span class="delimiter">&quot;</span><span class="content">--spring.batch.initializer.enabled=false</span><span class="delimiter">&quot;</span></span>);
+    partitionHandler
+            .setCommandLineArgsProvider(<span class="keyword">new</span> PassThroughCommandLineArgsProvider(commandLineArgs));
+    partitionHandler
+            .setEnvironmentVariablesProvider(<span class="keyword">new</span> SimpleEnvironmentVariablesProvider(<span class="local-variable">this</span>.environment));
+    partitionHandler.setMaxWorkers(<span class="integer">2</span>);
+    partitionHandler.setApplicationName(<span class="string"><span class="delimiter">&quot;</span><span class="content">PartitionedGaussJobTask</span><span class="delimiter">&quot;</span></span>);
+
+    <span class="keyword">return</span> partitionHandler;
+}
+
+<span class="annotation">@Bean</span>
+<span class="annotation">@Profile</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">worker</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> DeployerStepExecutionHandler stepExecutionHandler(JobExplorer jobExplorer) {
+    <span class="keyword">return</span> <span class="keyword">new</span> DeployerStepExecutionHandler(<span class="local-variable">this</span>.context, jobExplorer, <span class="local-variable">this</span>.jobRepository);
+}</code></pre></section>
+<section id="_spring_cloud_data_flow"><h2>Spring Cloud Data Flow</h2><div class="olist arabic"><ol class="arabic"><li><p><a href="https://dataflow.spring.io/docs/installation/local/docker/">&#8594; Installation mit Docker Compose</a><br>
+<a href="https://raw.githubusercontent.com/spring-cloud/spring-cloud-dataflow/master/spring-cloud-dataflow-server/docker-compose.yml">&#8594; docker-compose.yml herunterladen</a></p><pre class="CodeRay listingblock"><code>set DATAFLOW_VERSION=2.6.3
+set SKIPPER_VERSION=2.5.2
+
+rem up oder down
+docker-compose %1</code></pre></li><li><p><a href="https://dataflow.spring.io/docs/installation/local/docker-customize/">&#8594; Lokales Maven Repository mounten</a>
+(bei <code>dataflow-server</code> und bei <code>skipper-server</code>)</p><pre class="CodeRay listingblock"><code>  volumes:
+    - ~/.m2:/root/.m2</code></pre></li><li><p>Dashboard aufrufen: <a href="http://localhost:9393/dashboard" class="bare">http://localhost:9393/dashboard</a></p></li><li><p>Applikation registieren mit:</p><pre class="CodeRay listingblock"><code>`maven://de.springbatchdeepdive:exercises-cloud-task-solution:1.0.0-SNAPSHOT`</code></pre></li><li><p>Task erstellen und ausführen</p></li></ol></div></section>
+<section id="_monitoring_mit_micrometer"><h2>Monitoring mit Micrometer</h2><div class="ulist"><ul><li><p><a href="https://micrometer.io/">&#8594; Micrometer</a> ist das Monitoring-Gegenstück zu <a href="http://www.slf4j.org/">&#8594; SLF4J</a>.</p></li><li><p>Micrometer unterstützt alle gängigen Monitoring-Backends (u.a. Azure Monitor, Netflix Atlas,
+Prometheus + Grafana, Elastic).</p></li><li><p>Spring setzt durchgängig auf Micrometer und bietet bereits standardmäßig ein umfangereiches
+Set eingebauter Metriken.</p></li><li><p>Eigene Metriken lassen sich sehr einfach über Annotationen oder die Micrometer-API hinzufügen.</p></li><li><p>Zur Einbindung eines bestimmten Backends sind nur die zugehörige Maven-Dependency und die
+entsprechende Konfiguration notwendig.</p></li></ul></div></section>
+<section id="_micrometer_architektur"><h2>Micrometer Architektur</h2><div class="dlist"><dl><dt class="hdlist1">Micrometer Core (<code>micrometer-core-1.3.5.jar</code>) </dt><dd><p>Enthält nur die API, hat keine Abhängigkeiten zu anderen Bibliotheken</p></dd><dt class="hdlist1">Meter Registry: </dt><dd><p>Erweitert die abstrakte Klasse <strong><code>MeterRegistry</strong></code> und stellt damit die Anbindung an ein Backend
+zum Speichern von Metriken her.<br>
+Beispiele: <code>micrometer-registry-prometheus</code>, <code>micrometer-registry-atlas</code></p></dd><dt class="hdlist1">Adapter zum Abgreifen von Metriken: </dt><dd><p>Beispielsweise <strong>Spring Boot Actuator</strong> sammelt Metriken aus diversen Quellen ein und stellt sie über Micrometer bereit.</p></dd></dl></div></section>
+<section id="_die_wichtigsen_metrik_typen"><h2>Die wichtigsen Metrik-Typen</h2><div class="imageblock" style=""><img src="images/Meter.svg" alt="Meter" width="1682" height="552"></div></section>
+<section id="_beispiel_für_eigenen_messwert"><h2>Beispiel für eigenen Messwert</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Component</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SampleCounter</span> <span class="directive">implements</span> InitializingBean {
+
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> MeterRegistry registry;
+
+    <span class="directive">private</span> Counter counter;
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> afterPropertiesSet() <span class="directive">throws</span> <span class="exception">Exception</span> {
+        counter = Counter.builder(<span class="string"><span class="delimiter">&quot;</span><span class="content">sample.tick.counter</span><span class="delimiter">&quot;</span></span>)
+                .description(<span class="string"><span class="delimiter">&quot;</span><span class="content">Zählt die Aufrufe der tick-Methode</span><span class="delimiter">&quot;</span></span>)
+                .tags(<span class="string"><span class="delimiter">&quot;</span><span class="content">app</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">statistics</span><span class="delimiter">&quot;</span></span>)
+                .register(registry);
+    }
+
+    <span class="directive">public</span> <span class="type">void</span> count() {
+        counter.increment();
+    }
+}</code></pre>
+<div class="title">Verwendung:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Autowired</span>
+<span class="directive">private</span> SampleCounter sampleCounter;
+
+<span class="annotation">@Scheduled</span>(fixedRate = <span class="integer">1000L</span>)
+<span class="type">void</span> tick() <span class="directive">throws</span> <span class="exception">InterruptedException</span> {
+    sampleCounter.count();
+    sampleService.sinusDelay();
+}</code></pre></section>
+<section id="_messwerte_in_spring_anwendungen"><h2>Messwerte in Spring-Anwendungen</h2><div class="paragraph"><p>Micrometer-Annotationen für Methoden:</p></div>
+<div class="ulist"><ul><li><p><strong><code>@Counted</code></strong> erfordert <code>CountedAspect</code> Bean</p></li><li><p><strong><code>@Timed</code></strong> erfordert <code>TimedAspect</code> Bean</p></li></ul></div>
+<div class="title">Notwendige Konfiguration für <code>@Timed</code> Annotation:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+TimedAspect timedAspect(MeterRegistry registry) {
+    <span class="keyword">return</span> <span class="keyword">new</span> TimedAspect();
+}</code></pre>
+<div class="title">Beispiel:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Timed</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">sample.sinus.timer</span><span class="delimiter">&quot;</span></span>,
+        description = <span class="string"><span class="delimiter">&quot;</span><span class="content">Timer, der eine Sinuskurve produziert</span><span class="delimiter">&quot;</span></span>,
+        extraTags = {<span class="string"><span class="delimiter">&quot;</span><span class="content">app</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">statistics</span><span class="delimiter">&quot;</span></span>})
+<span class="directive">public</span> <span class="type">void</span> sinusDelay() <span class="directive">throws</span> <span class="exception">InterruptedException</span> {
+    <span class="type">double</span> x = <span class="predefined-type">System</span>.nanoTime() * <span class="predefined-type">Math</span>.PI / <span class="float">60e9</span>;
+    <span class="type">long</span> y = <span class="integer">250L</span> - (<span class="type">long</span>) (<span class="integer">100</span> * <span class="predefined-type">Math</span>.sin(x));
+    log.debug(<span class="string"><span class="delimiter">&quot;</span><span class="content">delaying {} ms</span><span class="delimiter">&quot;</span></span>, y);
+    <span class="predefined-type">TimeUnit</span>.MILLISECONDS.sleep(y);
+}</code></pre>
+<div class="admonitionblock warning teacherBox"><table><tr><td class="icon"><i class="fa fa-warning" title="Warning"></i></td><td class="content">Die Annotationen <code>@Counted</code> und <code>@Timed</code> wirken nur auf nicht private Methoden von Beans.</td></tr></table></div></section>
+<section id="_eingebaute_spring_batch_metriken"><h2>Eingebaute Spring-Batch Metriken</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:33.3333%"><col style="width:33.3333%"><col style="width:33.3334%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Metrik-Name</th><th class="tableblock halign-left valign-top">Typ</th><th class="tableblock halign-left valign-top">Beschreibung</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">spring.batch.job</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">TIMER</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Dauer der Job-Ausführung</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">spring.batch.job.active</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">LONG_TASK_TIMER</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Gerade aktive Jobs</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">spring.batch.step</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">TIMER</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Dauer der Step-Ausführung</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">spring.batch.item.read</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">TIMER</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Dauer des Lesens</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">spring.batch.item.process</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">TIMER</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Dauer der Verarbeitung</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">spring.batch.chunk.write</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">TIMER</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Dauer des Schreibens von Chunks</p></td></tr></table></section>
+<section id="_prometheus"><h2>Prometheus</h2><div class="paragraph"><p>Open-Source Zeitreihendatenbank von Google</p></div>
+<div class="paragraph"><p><strong>Installation:</strong></p></div>
+<div class="paragraph"><p>ZIP-Datei von <a href="https://prometheus.io/download/" class="bare">https://prometheus.io/download/</a> herunterladen und entpacken.</p></div>
+<div class="paragraph"><p><strong>Ausführung:</strong></p></div>
+<div class="literalblock"><div class="content"><pre>cd &lt;Installationsverzeichnis&gt;
+prometheus.exe --config.file=&lt;Pfad&gt;\prometheus.yml</pre></div></div>
+<div class="paragraph"><p>Aufruf: <a href="http://localhost:9090" class="bare">http://localhost:9090</a></p></div></section>
+<section id="_grafana"><h2>Grafana</h2><div class="paragraph"><p>Webbasierte Visualisierungsplattfrom für Monitoring-Daten, Open-Source</p></div>
+<div class="paragraph"><p><strong>Installation (Standalone Windows Binaries):</strong></p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>ZIP-Datei von <a href="https://grafana.com/grafana/download" class="bare">https://grafana.com/grafana/download</a> herunterladen</p></li><li><p>Eigenschaften der ZIP-Datei ändern:
+<span class="image"><img src="images/ops/Grafana-Zip.png" alt="Grafana Zip"></span></p></li><li><p>ZIP-Datei entpacken</p></li></ol></div>
+<div class="paragraph"><p><strong>Ausführung:</strong></p></div>
+<div class="literalblock"><div class="content"><pre>cd &lt;Installationsverzeichnis&gt;\bin
+grafana-server.exe</pre></div></div>
+<div class="paragraph"><p>siehe auch <a href="https://grafana.com/docs/grafana/next/setup-grafana/installation/windows/">Windows installation guide</a></p></div>
+<div class="paragraph"><p>Aufruf: <a href="http://localhost:3000" class="bare">http://localhost:3000</a>
+Login: admin/admin</p></div></section>
+<section id="_spring_boot_actuator"><h2>Spring Boot Actuator</h2><div class="paragraph"><p>Stellt Monitoring-Daten aus Spring-Boot Anwendungen per JMX oder REST zur Verfügung</p></div>
+<div class="title">pom.xml</div><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+<div class="title">application.properties</div><pre class="CodeRay listingblock"><code class="xml language-xml"># Expose all actuator endpoints (niemals in der Produktion!)
+management.endpoints.web.exposure.include=*</code></pre>
+<div class="paragraph"><p>Aufruf: <a href="http://localhost:8080/actuator" class="bare">http://localhost:8080/actuator</a></p></div></section>
+<section id="_konfiguration_von_micrometer_für_prometheus"><h2>Konfiguration von Micrometer für Prometheus</h2><div class="title">pom.xml</div><pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>io.micrometer<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>micrometer-registry-prometheus<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>runtime<span class="tag">&lt;/scope&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+<div class="title">application.properties</div><pre class="CodeRay listingblock"><code class="xml language-xml">management.endpoint.metrics.enabled=true
+management.endpoint.prometheus.enabled=true
+management.metrics.export.prometheus.enabled=true</code></pre>
+<div class="paragraph"><p>Aufruf: <a href="http://localhost:8080/actuator/prometheus" class="bare">http://localhost:8080/actuator/prometheus</a></p></div></section>
+<section id="_abfrage_mit_prometheus"><h2>Abfrage mit Prometheus</h2><div class="imageblock" style=""><img src="images/ops/Prometheus_Abfrage.png" alt="Prometheus Abfrage"></div></section>
+<section id="_prometheus_aus_datenquelle_in_grafana_einbinden"><h2>Prometheus aus Datenquelle in Grafana einbinden</h2><div class="imageblock" style=""><img src="images/ops/Grafana_Datasource.png" alt="Grafana Datasource"></div></section>
+<section id="_prometheus_aus_datenquelle_in_grafana_einbinden_2"><h2>Prometheus aus Datenquelle in Grafana einbinden</h2><div class="imageblock" style=""><img src="images/ops/Grafana-AdhocAbfrage.png" alt="Grafana AdhocAbfrage"></div></section>
+<section id="_grafana_dashboard"><h2>Grafana Dashboard</h2><div class="imageblock" style=""><img src="images/ops/Grafana_Dashboard.png" alt="Grafana Dashboard"></div></section>
+<section id="_zusammenfassung_lektion_8"><h2>Zusammenfassung Lektion 8</h2><div class="ulist"><ul><li><p>Batchjobs mit Quartz oder TaskScheduler anstoßen</p></li><li><p>Batch mit Spring-Integration einbinden und über eine Message anstoßen</p></li><li><p>Batchverarbeitung in der Cloud, insbes. <code>DeployerPartitionHandler</code></p></li><li><p>Monitoring mit Micrometer</p></li></ul></div></section>
+<section id="_aufgaben"><h2>Aufgaben</h2><div class="olist arabic"><ol class="arabic"><li><p>Machen Sie sich mit der Beispielanwendung vertraut. Welche Actuator-Endpoints gibt es?</p></li><li><p>Ändern Sie die Ausführungshäufigkeit der beiden Hello-Jobs.</p></li><li><p>Bringen Sie den <em>FilePollerJob</em> zur Ausführung, indem Sie eine entsprechende Datei anlegen.</p></li><li><p>Sehen Sie sich die Stacktraces bei der Ausführung der obigen Jobs und den Inhalt des
+Repositories an.</p></li><li><p>Erstellen Sie mit <em>Spring Initializr</em> einen Cloud-Task, der den Hello-World Job ausführt</p></li><li><p>Verwenden Sie Prometheus + Grafana zum Anzeigen der Metriken zum Step-Counter und Sinus-Timer</p></li></ol></div>
+<div class="paragraph"><p><br>
+&#8594; <a href="index.html">Agenda</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring Workshop', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

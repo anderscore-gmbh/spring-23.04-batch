@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="578px" preserveAspectRatio="none" style="width:1450px;height:578px;" version="1.1" viewBox="0 0 1450 578" width="1450px" zoomAndPan="magnify"><defs><filter height="300%" id="fxl44v0a9k6i2" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="4.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="8.0" dy="8.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[7fa27d7515fd28ae64a1c743985a4c75]
+class Tasklet--><rect fill="#DDEEE8" filter="url(#fxl44v0a9k6i2)" height="121.6094" id="Tasklet" style="stroke: #225C4D; stroke-width: 3.0;" width="968" x="70" y="16"/><ellipse cx="503.5" cy="48" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M495.3438,39.5313 L495.3438,35.2188 L510.125,35.2188 L510.125,39.5313 L505.1875,39.5313 L505.1875,55.6875 L510.125,55.6875 L510.125,60 L495.3438,60 L495.3438,55.6875 L500.2813,55.6875 L500.2813,39.5313 L495.3438,39.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="84" x="544.5" y="56.3086">Tasklet</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="72" x2="1036" y1="80" y2="80"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="72" x2="1036" y1="96" y2="96"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="944" x="82" y="124.4209">execute(contribution: StepContribution, chunkContext: ChunkContext): RepeatStatus</text><!--MD5=[f234d571808326cc8c22299c68d0abf4]
+class StoppableTasklet--><rect fill="#DDEEE8" filter="url(#fxl44v0a9k6i2)" height="121.6094" id="StoppableTasklet" style="stroke: #225C4D; stroke-width: 3.0;" width="270" x="1109" y="16"/><ellipse cx="1139" cy="48" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M1130.8438,39.5313 L1130.8438,35.2188 L1145.625,35.2188 L1145.625,39.5313 L1140.6875,39.5313 L1140.6875,55.6875 L1145.625,55.6875 L1145.625,60 L1130.8438,60 L1130.8438,55.6875 L1135.7813,55.6875 L1135.7813,39.5313 L1130.8438,39.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="206" x="1167" y="56.3086">StoppableTasklet</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1111" x2="1377" y1="80" y2="80"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1111" x2="1377" y1="96" y2="96"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="66" x="1121" y="124.4209">stop()</text><!--MD5=[70571802d737df0121f9207f900c4ca3]
+class CallableTaskletAdapter--><rect fill="#DDEEE8" filter="url(#fxl44v0a9k6i2)" height="96" id="CallableTaskletAdapter" style="stroke: #225C4D; stroke-width: 3.0;" width="352" x="12" y="258"/><ellipse cx="42" cy="290" fill="#ADD1B2" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M47.9375,301.2813 Q46.7813,301.875 45.5,302.1563 Q44.2188,302.4688 42.8125,302.4688 Q37.8125,302.4688 35.1563,299.1875 Q32.5313,295.875 32.5313,289.625 Q32.5313,283.375 35.1563,280.0625 Q37.8125,276.75 42.8125,276.75 Q44.2188,276.75 45.5,277.0625 Q46.8125,277.375 47.9375,277.9688 L47.9375,283.4063 Q46.6875,282.25 45.5,281.7188 Q44.3125,281.1563 43.0625,281.1563 Q40.375,281.1563 39,283.3125 Q37.625,285.4375 37.625,289.625 Q37.625,293.8125 39,295.9688 Q40.375,298.0938 43.0625,298.0938 Q44.3125,298.0938 45.5,297.5625 Q46.6875,297 47.9375,295.8438 L47.9375,301.2813 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="288" x="70" y="298.3086">CallableTaskletAdapter</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="14" x2="362" y1="322" y2="322"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="14" x2="362" y1="338" y2="338"/><!--MD5=[72db382c5a3dae8954a4cb2e73261534]
+class MethodInvokingTaskletAdapter--><rect fill="#DDEEE8" filter="url(#fxl44v0a9k6i2)" height="96" id="MethodInvokingTaskletAdapter" style="stroke: #225C4D; stroke-width: 3.0;" width="450" x="435" y="258"/><ellipse cx="465" cy="290" fill="#ADD1B2" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M470.9375,301.2813 Q469.7813,301.875 468.5,302.1563 Q467.2188,302.4688 465.8125,302.4688 Q460.8125,302.4688 458.1563,299.1875 Q455.5313,295.875 455.5313,289.625 Q455.5313,283.375 458.1563,280.0625 Q460.8125,276.75 465.8125,276.75 Q467.2188,276.75 468.5,277.0625 Q469.8125,277.375 470.9375,277.9688 L470.9375,283.4063 Q469.6875,282.25 468.5,281.7188 Q467.3125,281.1563 466.0625,281.1563 Q463.375,281.1563 462,283.3125 Q460.625,285.4375 460.625,289.625 Q460.625,293.8125 462,295.9688 Q463.375,298.0938 466.0625,298.0938 Q467.3125,298.0938 468.5,297.5625 Q469.6875,297 470.9375,295.8438 L470.9375,301.2813 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="386" x="493" y="298.3086">MethodInvokingTaskletAdapter</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="437" x2="883" y1="322" y2="322"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="437" x2="883" y1="338" y2="338"/><!--MD5=[570eade8034b49193c6ad76b61115bc0]
+class SystemCommandTasklet--><rect fill="#DDEEE8" filter="url(#fxl44v0a9k6i2)" height="96" id="SystemCommandTasklet" style="stroke: #225C4D; stroke-width: 3.0;" width="368" x="1060" y="258"/><ellipse cx="1090" cy="290" fill="#ADD1B2" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M1095.9375,301.2813 Q1094.7813,301.875 1093.5,302.1563 Q1092.2188,302.4688 1090.8125,302.4688 Q1085.8125,302.4688 1083.1563,299.1875 Q1080.5313,295.875 1080.5313,289.625 Q1080.5313,283.375 1083.1563,280.0625 Q1085.8125,276.75 1090.8125,276.75 Q1092.2188,276.75 1093.5,277.0625 Q1094.8125,277.375 1095.9375,277.9688 L1095.9375,283.4063 Q1094.6875,282.25 1093.5,281.7188 Q1092.3125,281.1563 1091.0625,281.1563 Q1088.375,281.1563 1087,283.3125 Q1085.625,285.4375 1085.625,289.625 Q1085.625,293.8125 1087,295.9688 Q1088.375,298.0938 1091.0625,298.0938 Q1092.3125,298.0938 1093.5,297.5625 Q1094.6875,297 1095.9375,295.8438 L1095.9375,301.2813 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="304" x="1118" y="298.3086">SystemCommandTasklet</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1062" x2="1426" y1="322" y2="322"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="1062" x2="1426" y1="338" y2="338"/><path d="M1065,474 L1065,554.5313 A0,0 0 0 0 1065,554.5313 L1423,554.5313 A0,0 0 0 0 1423,554.5313 L1423,494 L1403,474 L1252,474 L1244,354.3 L1236,474 L1065,474 A0,0 0 0 0 1065,474 " fill="#FBFB77" filter="url(#fxl44v0a9k6i2)" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M1403,474 L1403,494 L1423,494 L1403,474 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacingAndGlyphs" textLength="316" x="1077" y="508.1338">Anderes Programm über</text><text fill="#000000" font-family="sans-serif" font-size="26" lengthAdjust="spacingAndGlyphs" textLength="288" x="1077" y="538.3994">Befehlszeile ausführen</text><!--MD5=[289cdd231f53fdf376fdee1af7ffb039]
+reverse link Tasklet to StoppableTasklet--><path d="M1078.86,77 C1088.68,77 1098.5,77 1108.32,77 " fill="none" id="Tasklet&lt;-StoppableTasklet" style="stroke: #225C4D; stroke-width: 2.0;"/><polygon fill="none" points="1078.48,91,1038.48,77,1078.48,63,1078.48,91" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[32f9297051df4b854e3226f08226a4d6]
+reverse link Tasklet to CallableTaskletAdapter--><path d="M423.68,159.12 C369.9,192.18 309.5,229.3 263.32,257.7 " fill="none" id="Tasklet&lt;-CallableTaskletAdapter" style="stroke: #225C4D; stroke-width: 2.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="416.42,147.14,457.84,138.12,431.1,171,416.42,147.14" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[ad032b1d2f754064f0e7b61d5b87a9b6]
+reverse link Tasklet to MethodInvokingTaskletAdapter--><path d="M598.92,174.34 C612.44,203.04 626.68,233.28 638.02,257.34 " fill="none" id="Tasklet&lt;-MethodInvokingTaskletAdapter" style="stroke: #225C4D; stroke-width: 2.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="586.24,180.26,581.86,138.12,611.56,168.34,586.24,180.26" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[a2775436e02199e2c76e0e5d643a17e8]
+reverse link StoppableTasklet to SystemCommandTasklet--><path d="M1244,178.22 C1244,205.76 1244,234.36 1244,257.34 " fill="none" id="StoppableTasklet&lt;-SystemCommandTasklet" style="stroke: #225C4D; stroke-width: 2.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="none" points="1230,178.12,1244,138.12,1258,178.12,1230,178.12" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[99b4827e81cc39df30e685002f25b8ef]
+@startuml
+skinparam class {
+ BackgroundColor #DDEEE8
+ BorderColor #225C4D
+ ArrowColor #225C4D
+ }
+scale 2
+
+interface Tasklet {
+    execute(contribution: StepContribution, chunkContext: ChunkContext): RepeatStatus
+}
+
+interface StoppableTasklet {
+    stop()
+}
+
+Tasklet <|- StoppableTasklet
+
+Tasklet <|.. CallableTaskletAdapter
+Tasklet <|.. MethodInvokingTaskletAdapter
+
+class SystemCommandTasklet
+note bottom
+    Anderes Programm über
+    Befehlszeile ausführen
+end note
+
+StoppableTasklet <|.. SystemCommandTasklet
+@enduml
+
+PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.6+10-Debian-1deb11u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: DK
+--></g></svg>

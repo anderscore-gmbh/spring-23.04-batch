@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="508.3333px" preserveAspectRatio="none" style="width:1850px;height:508px;" version="1.1" viewBox="0 0 1850 508" width="1850px" zoomAndPan="magnify"><defs><filter height="300%" id="f8pvi5r3avh3t" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="3.3333333333333335"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="6.666666666666667" dy="6.666666666666667" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[23b17dc1ecf59e830c25482fce1586ee]
+class BatchStatus--><rect fill="#DDEEE8" filter="url(#f8pvi5r3avh3t)" height="250.7292" id="BatchStatus" style="stroke: #225C4D; stroke-width: 2.5;" width="181.6667" x="420.8333" y="24.1667"/><ellipse cx="445.8333" cy="50.8333" fill="#EB937F" rx="18.3333" ry="18.3333" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><path d="M452.6823,60.8333 L439.8177,60.8333 L439.8177,40.1823 L452.6823,40.1823 L452.6823,43.776 L443.9063,43.776 L443.9063,48.2292 L451.849,48.2292 L451.849,51.8229 L443.9063,51.8229 L443.9063,57.2396 L452.6823,57.2396 L452.6823,60.8333 Z "/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="128.3333" x="469.1667" y="57.7572">BatchStatus</text><line style="stroke: #225C4D; stroke-width: 2.5;" x1="422.5" x2="600.8333" y1="77.5" y2="77.5"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="113.3333" x="430.8333" y="101.1841">COMPLETED</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="93.3333" x="430.8333" y="122.5252">STARTING</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="85" x="430.8333" y="143.8664">STARTED</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="96.6667" x="430.8333" y="165.2075">STOPPING</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="88.3333" x="430.8333" y="186.5487">STOPPED</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="61.6667" x="430.8333" y="207.8898">FAILED</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="116.6667" x="430.8333" y="229.231">ABANDONED</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="95" x="430.8333" y="250.5721">UNKNOWN</text><line style="stroke: #225C4D; stroke-width: 2.5;" x1="422.5" x2="600.8333" y1="261.5625" y2="261.5625"/><!--MD5=[f0b083eab9f5f4c12d2fe90cecbf6406]
+class ExitStatus--><rect fill="#DDEEE8" filter="url(#f8pvi5r3avh3t)" height="272.0703" id="ExitStatus" style="stroke: #225C4D; stroke-width: 2.5;" width="258.3333" x="887.5" y="13.3333"/><ellipse cx="957.5" cy="40" fill="#ADD1B2" rx="18.3333" ry="18.3333" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><path d="M962.4479,49.401 Q961.4844,49.8958 960.4167,50.1302 Q959.349,50.3906 958.1771,50.3906 Q954.0104,50.3906 951.7969,47.6563 Q949.6094,44.8958 949.6094,39.6875 Q949.6094,34.4792 951.7969,31.7188 Q954.0104,28.9583 958.1771,28.9583 Q959.349,28.9583 960.4167,29.2188 Q961.5104,29.4792 962.4479,29.974 L962.4479,34.5052 Q961.4063,33.5417 960.4167,33.099 Q959.4271,32.6302 958.3854,32.6302 Q956.1458,32.6302 955,34.4271 Q953.8542,36.1979 953.8542,39.6875 Q953.8542,43.1771 955,44.974 Q956.1458,46.7448 958.3854,46.7448 Q959.4271,46.7448 960.4167,46.3021 Q961.4063,45.8333 962.4479,44.8698 L962.4479,49.401 Z "/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="105" x="990.8333" y="46.9238">ExitStatus</text><line style="stroke: #225C4D; stroke-width: 2.5;" x1="889.1667" x2="1144.1667" y1="66.6667" y2="66.6667"/><ellipse cx="905.8333" cy="85" fill="none" rx="5" ry="5" style="stroke: #038048; stroke-width: 1.6666666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="95" x="920.8333" y="90.3507">UNKNOWN</text><ellipse cx="905.8333" cy="106.3411" fill="none" rx="5" ry="5" style="stroke: #038048; stroke-width: 1.6666666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="106.6667" x="920.8333" y="111.6919">EXECUTING</text><ellipse cx="905.8333" cy="127.6823" fill="none" rx="5" ry="5" style="stroke: #038048; stroke-width: 1.6666666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="113.3333" x="920.8333" y="133.033">COMPLETED</text><ellipse cx="905.8333" cy="149.0234" fill="none" rx="5" ry="5" style="stroke: #038048; stroke-width: 1.6666666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="55" x="920.8333" y="154.3742">NOOP</text><ellipse cx="905.8333" cy="170.3646" fill="none" rx="5" ry="5" style="stroke: #038048; stroke-width: 1.6666666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="61.6667" x="920.8333" y="175.7153">FAILED</text><ellipse cx="905.8333" cy="191.7057" fill="none" rx="5" ry="5" style="stroke: #038048; stroke-width: 1.6666666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" text-decoration="underline" textLength="88.3333" x="920.8333" y="197.0565">STOPPED</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="0" x="925.8333" y="218.3976"/><rect fill="none" height="10" style="stroke: #C82930; stroke-width: 1.6666666666666667;" width="10" x="900.8333" y="229.388"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="150" x="920.8333" y="239.7388">exitCode: String</text><rect fill="none" height="10" style="stroke: #C82930; stroke-width: 1.6666666666666667;" width="10" x="900.8333" y="250.7292"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="215" x="920.8333" y="261.0799">exitDescription: String;</text><line style="stroke: #225C4D; stroke-width: 2.5;" x1="889.1667" x2="1144.1667" y1="272.0703" y2="272.0703"/><!--MD5=[0879cea99455fa54acdb12ba24138b76]
+class JobExecution--><rect fill="#DDEEE8" filter="url(#f8pvi5r3avh3t)" height="122.6823" id="JobExecution" style="stroke: #225C4D; stroke-width: 2.5;" width="451.6667" x="225.8333" y="368.3333"/><ellipse cx="377.9167" cy="395" fill="#ADD1B2" rx="18.3333" ry="18.3333" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><path d="M382.8646,404.401 Q381.901,404.8958 380.8333,405.1302 Q379.7656,405.3906 378.5938,405.3906 Q374.4271,405.3906 372.2135,402.6563 Q370.026,399.8958 370.026,394.6875 Q370.026,389.4792 372.2135,386.7188 Q374.4271,383.9583 378.5938,383.9583 Q379.7656,383.9583 380.8333,384.2188 Q381.9271,384.4792 382.8646,384.974 L382.8646,389.5052 Q381.8229,388.5417 380.8333,388.099 Q379.8438,387.6302 378.8021,387.6302 Q376.5625,387.6302 375.4167,389.4271 Q374.2708,391.1979 374.2708,394.6875 Q374.2708,398.1771 375.4167,399.974 Q376.5625,401.7448 378.8021,401.7448 Q379.8438,401.7448 380.8333,401.3021 Q381.8229,400.8333 382.8646,399.8698 L382.8646,404.401 Z "/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="133.3333" x="412.0833" y="401.9238">JobExecution</text><line style="stroke: #225C4D; stroke-width: 2.5;" x1="227.5" x2="675.8333" y1="421.6667" y2="421.6667"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="431.6667" x="235.8333" y="445.3507">status : BatchStatus = BatchStatus.STARTING</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="428.3333" x="235.8333" y="466.6919">exitStatus : ExitStatus = ExitStatus.UNKNOWN</text><line style="stroke: #225C4D; stroke-width: 2.5;" x1="227.5" x2="675.8333" y1="477.6823" y2="477.6823"/><!--MD5=[9c9ec500049159b97cab276b888cef43]
+class StepExecution--><rect fill="#DDEEE8" filter="url(#f8pvi5r3avh3t)" height="122.6823" id="StepExecution" style="stroke: #225C4D; stroke-width: 2.5;" width="460" x="845" y="368.3333"/><ellipse cx="992.9167" cy="395" fill="#ADD1B2" rx="18.3333" ry="18.3333" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><path d="M997.8646,404.401 Q996.901,404.8958 995.8333,405.1302 Q994.7656,405.3906 993.5938,405.3906 Q989.4271,405.3906 987.2135,402.6563 Q985.026,399.8958 985.026,394.6875 Q985.026,389.4792 987.2135,386.7188 Q989.4271,383.9583 993.5938,383.9583 Q994.7656,383.9583 995.8333,384.2188 Q996.9271,384.4792 997.8646,384.974 L997.8646,389.5052 Q996.8229,388.5417 995.8333,388.099 Q994.8438,387.6302 993.8021,387.6302 Q991.5625,387.6302 990.4167,389.4271 Q989.2708,391.1979 989.2708,394.6875 Q989.2708,398.1771 990.4167,399.974 Q991.5625,401.7448 993.8021,401.7448 Q994.8438,401.7448 995.8333,401.3021 Q996.8229,400.8333 997.8646,399.8698 L997.8646,404.401 Z "/><text fill="#000000" font-family="sans-serif" font-size="20" lengthAdjust="spacingAndGlyphs" textLength="150" x="1027.0833" y="401.9238">StepExecution</text><line style="stroke: #225C4D; stroke-width: 2.5;" x1="846.6667" x2="1303.3333" y1="421.6667" y2="421.6667"/><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="431.6667" x="855" y="445.3507">status : BatchStatus = BatchStatus.STARTING</text><text fill="#000000" font-family="sans-serif" font-size="18.3333" lengthAdjust="spacingAndGlyphs" textLength="440" x="855" y="466.6919">exitStatus : ExitStatus = ExitStatus.EXECUTING</text><line style="stroke: #225C4D; stroke-width: 2.5;" x1="846.6667" x2="1303.3333" y1="477.6823" y2="477.6823"/><path d="M10,115.8333 L10,182.9427 A0,0 0 0 0 10,182.9427 L253.3333,182.9427 A0,0 0 0 0 253.3333,182.9427 L253.3333,155.8333 L420.3667,149.1667 L253.3333,142.5 L253.3333,132.5 L236.6667,115.8333 L10,115.8333 A0,0 0 0 0 10,115.8333 " fill="#FBFB77" filter="url(#f8pvi5r3avh3t)" style="stroke: #A80036; stroke-width: 1.6666666666666667;"/><path d="M236.6667,115.8333 L236.6667,132.5 L253.3333,132.5 L236.6667,115.8333 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.6666666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="21.6667" lengthAdjust="spacingAndGlyphs" textLength="208.3333" x="20" y="144.2782">Gibt den Status der</text><text fill="#000000" font-family="sans-serif" font-size="21.6667" lengthAdjust="spacingAndGlyphs" textLength="203.3333" x="20" y="169.4995">Ausführung wieder.</text><path d="M1312.5,115.8333 L1312.5,142.5 L1146.2,149.1667 L1312.5,155.8333 L1312.5,182.9427 A0,0 0 0 0 1312.5,182.9427 L1830.8333,182.9427 A0,0 0 0 0 1830.8333,182.9427 L1830.8333,132.5 L1814.1667,115.8333 L1312.5,115.8333 A0,0 0 0 0 1312.5,115.8333 " fill="#FBFB77" filter="url(#f8pvi5r3avh3t)" style="stroke: #A80036; stroke-width: 1.6666666666666667;"/><path d="M1814.1667,115.8333 L1814.1667,132.5 L1830.8333,132.5 L1814.1667,115.8333 " fill="#FBFB77" style="stroke: #A80036; stroke-width: 1.6666666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="21.6667" lengthAdjust="spacingAndGlyphs" textLength="438.3333" x="1322.5" y="144.2782">Gibt das Ergebnis der Ausführung wieder.</text><text fill="#000000" font-family="sans-serif" font-size="21.6667" lengthAdjust="spacingAndGlyphs" textLength="483.3333" x="1322.5" y="169.4995">Man kann eigene ExitStatus Werte definieren.</text><!--MD5=[3963637b078376e471e37e7b1ca28b58]
+reverse link BatchStatus to JobExecution--><path d="M483.0167,283.3333 C476.6,313 470.1,343.05 464.7,368.0333 " fill="none" id="BatchStatus&lt;-JobExecution" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><polygon fill="#225C4D" points="484.8333,274.9667,475.1452,288.2175,483.071,283.1115,488.177,291.0373,484.8333,274.9667" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><!--MD5=[f212cbac2104550163a4ecf8614ea470]
+reverse link BatchStatus to StepExecution--><path d="M610.7333,199.6333 C706.0833,246.6 850.5333,317.7667 952.95,368.2167 " fill="none" id="BatchStatus&lt;-StepExecution" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><polygon fill="#225C4D" points="602.8,195.7333,613.2996,208.3509,610.2725,199.422,619.2014,196.3949,602.8,195.7333" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><!--MD5=[8c2805e54b55d2ab30647a1eda1d389a]
+reverse link ExitStatus to JobExecution--><path d="M879.25,218.3333 C786,264.1333 663.7833,324.15 573.9167,368.3 " fill="none" id="ExitStatus&lt;-JobExecution" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><polygon fill="#225C4D" points="887.05,214.5,870.6469,215.1195,879.5681,218.1695,876.5181,227.0906,887.05,214.5" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><!--MD5=[5fef5872294c56d82757dd9738946a9a]
+reverse link ExitStatus to StepExecution--><path d="M1046.7,293.6833 C1052.2167,319.95 1057.7,346.05 1062.35,368.15 " fill="none" id="ExitStatus&lt;-StepExecution" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><polygon fill="#225C4D" points="1044.9833,285.5167,1041.5404,301.5663,1046.6953,293.6723,1054.5893,298.8272,1044.9833,285.5167" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><!--MD5=[d17e55344a10fd257c803883240bf2c5]
+link JobExecution to StepExecution--><path d="M677.5,430 C730.3167,430 783.1333,430 835.95,430 " fill="none" id="JobExecution-&gt;StepExecution" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><polygon fill="#225C4D" points="844.4167,430,829.4167,423.3333,836.0833,430,829.4167,436.6667,844.4167,430" style="stroke: #225C4D; stroke-width: 1.6666666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="21.6667" lengthAdjust="spacingAndGlyphs" textLength="40" x="791.496" y="424.4895">1..n</text><!--MD5=[fe18ac6d99faf6151f3038e6ae47e9ba]
+@startuml
+skinparam class {
+ BackgroundColor #DDEEE8
+ BorderColor #225C4D
+ ArrowColor #225C4D
+ }
+scale 5/3
+skinparam nodesep 100
+skinparam ranksep 50
+
+enum BatchStatus {
+    COMPLETED
+    STARTING
+    STARTED
+    STOPPING
+    STOPPED
+    FAILED
+    ABANDONED
+    UNKNOWN
+}
+
+class ExitStatus {
+    {static} +UNKNOWN
+    {static} +EXECUTING
+    {static} +COMPLETED
+    {static} +NOOP
+    {static} +FAILED
+    {static} +STOPPED
+
+    -exitCode: String
+    -exitDescription: String;
+}
+
+class JobExecution {
+    status : BatchStatus = BatchStatus.STARTING
+    exitStatus : ExitStatus = ExitStatus.UNKNOWN
+}
+
+class StepExecution {
+    status : BatchStatus = BatchStatus.STARTING
+    exitStatus : ExitStatus = ExitStatus.EXECUTING
+}
+
+BatchStatus <- - JobExecution
+BatchStatus <- - StepExecution
+ExitStatus <- - JobExecution
+ExitStatus <- - StepExecution
+
+JobExecution -> "1..n" StepExecution
+
+note left of BatchStatus
+    Gibt den Status der
+    Ausführung wieder.
+end note
+
+note right of ExitStatus
+    Gibt das Ergebnis der Ausführung wieder.
+    Man kann eigene ExitStatus Werte definieren.
+end note
+@enduml
+
+PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.6+10-Debian-1deb11u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: DK
+--></g></svg>

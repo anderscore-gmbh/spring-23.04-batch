@@ -1,0 +1,424 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 2 - Hello World mit Spring-Batch</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_2_hello_world_mit_spring_batch" data-state="no-title-footer"><h2>Lektion 2 - Hello World mit Spring-Batch</h2></section>
+<section id="_überblick_zu_dieser_lektion"><h2>Überblick zu dieser Lektion</h2><div class="olist arabic"><ol class="arabic"><li><p><a href="lesson02-hello.html#/_spring_batch_anwendung_mit_spring_initializr">Hello World mit Spring Initializr</a>
+(<a href="lesson02-hello.html#/_aufgabe_1_spring_batch_anwendung_mit_spring_initilizr">Aufgabe 1</a>)</p></li><li><p><a href="lesson02-hello.html#/_tasklet_stacktrace_transactiontemplate">Stacktrace</a> und
+<a href="lesson02-hello.html#/_relevante_singleton_beans_aus_dem_applicationcontext">ApplicationContext</a> analysieren</p></li><li><p><a href="lesson02-hello.html#/_commandlinejobrunner">CommandLineRunner verwenden</a>
+(<a href="lesson02-hello.html#/_aufgabe_2_spring_batch_anwendung_ohne_spring_boot_ausf%C3%BChren">Aufgabe 2</a>)</p></li><li><p><a href="lesson02-hello.html#/<em>job_parameter">Parameterübergabe und Wiederholung</a>
+mit <a href="lesson02-hello.html#/_l%C3%B6sung_1_jobexecutionlistener">Listener</a>
+(<a href="lesson02-hello.html#/_aufgabe_3_job_mit_parameter">Aufgabe 3</a>)
+oder <a href="lesson02-hello.html#/_l%C3%B6sung_3_job_parameter</em>%C3%BCber_expression_language">EL</a>
+(<a href="lesson02-hello.html#/_aufgabe_4_expression_language">Aufgabe 4</a>)</p></li><li><p><a href="lesson02-hello.html#/_hello_world_job_als_unit_test">Testing</a></p></li><li><p><a href="lesson02-hello.html#/_manuelle_job_konfiguration">Spring-Batch ohne Autowiring</a></p></li></ol></div></section>
+<section id="_bestandteile_eines_spring_batch_jobs"><h2>Bestandteile eines Spring-Batch Jobs</h2><div class="imageblock" style=""><img src="images/HelloJob.svg" alt="HelloJob" width="1008" height="374"></div></section>
+<section id="_implementierung_hello_world_tasklet"><h2>Implementierung Hello World-Tasklet</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">HelloTasklet</span> <span class="directive">implements</span> Tasklet {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) {
+        <span class="predefined-type">System</span>.out.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello World!</span><span class="delimiter">&quot;</span></span>);
+        <span class="keyword">return</span> RepeatStatus.FINISHED;
+    }
+}</code></pre>
+<div class="paragraph"><p>Der Rückgabewert <code>RepeatStatus.FINISHED</code> bewirkt, dass der Step nach der 1. Ausführung beendet wird.</p></div></section>
+<section id="_grundgerüst_einer_job_konfiguration"><h2>Grundgerüst einer Job-Konfiguration</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="annotation">@EnableBatchProcessing</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">HelloConfig</span> {
+
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> JobBuilderFactory jobBuilderFactory;
+
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> StepBuilderFactory stepBuilderFactory;
+
+    <span class="comment">// ...</span>
+
+}</code></pre>
+<div class="paragraph"><p>Die Annotation <code>EnableBatchProcessing</code> (&#8594; Source) bewirkt, dass alle relevanten Beans für Spring-Batch
+angelegt werden.</p></div></section>
+<section id="_konfiguration_des_hello_jobs"><h2>Konfiguration des Hello-Jobs</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+HelloTasklet helloTasklet() {
+    <span class="keyword">return</span> <span class="keyword">new</span> HelloTasklet();
+}
+
+<span class="annotation">@Bean</span>
+Step helloStep() {
+    <span class="keyword">return</span> stepBuilderFactory.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">helloStep</span><span class="delimiter">&quot;</span></span>).tasklet(helloTasklet()).build();
+}
+
+<span class="annotation">@Bean</span>
+Job helloJob() {
+    <span class="keyword">return</span> jobBuilderFactory.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">helloJob</span><span class="delimiter">&quot;</span></span>).start(helloStep()).build();
+}</code></pre>
+<div class="paragraph"><p>Jobs und Steps sollte man immer mit den zugehörigen Builder-Factories erzeugen.</p></div></section>
+<section id="_spring_initializr"><h2>Spring Initializr</h2><div class="ulist"><ul><li><p>Bootstraping von Spring-Boot Applikation</p></li><li><p>Web-UI: <a href="https://start.spring.io/" class="bare">https://start.spring.io/</a></p></li><li><p>In Java-IDEs integriert</p></li><li><p>Bietet Oberfläche zur Auswahl von</p><div class="ulist"><ul><li><p>Sprache (Java, Kotlin)</p></li><li><p>Build-System (Maven, Gradle)</p></li><li><p>Versionen</p></li><li><p>Abhängigkeiten</p></li></ul></div></li><li><p>Erzeugt lauffähiges Grundgerüst einer Applikation</p></li></ul></div></section>
+<section id="_spring_batch_anwendung_mit_spring_initializr"><h2>Spring-Batch-Anwendung mit Spring Initializr</h2><div class="imageblock" style=""><img src="images/hello/Spring_Initializr.png" alt="Spring Initializr"></div></section>
+<section id="_optionen_für_hello_world_anwendung"><h2>Optionen für Hello World Anwendung</h2><div class="imageblock" style=""><img src="images/hello/Spring_Initializr-Options.png" alt="Spring Initializr Options" width="800px"></div></section>
+<section id="_build_mit_maven"><h2>Build mit Maven</h2><div class="imageblock" style=""><img src="images/hello/Maven-Befehlszeile.png" alt="Maven Befehlszeile" width="1600px"></div></section>
+<section id="_aufgabe_1_spring_batch_anwendung_mit_spring_initilizr"><h2>Aufgabe 1: Spring-Batch-Anwendung mit Spring-Initilizr</h2><div class="olist arabic"><ol class="arabic"><li><p>Erstellen Sie eine Spring-Boot Anwendung mit Spring-Initilizr mit folgenden Einstellungen:</p><div class="ulist"><ul><li><p>Maven</p></li><li><p>Java 17</p></li><li><p>Abhängigkeiten: Spring Batch, HyperSQL Database</p></li></ul></div></li><li><p>Fügen Sie eine <code>HelloConfig</code> mit einem Hello World Job hinzu</p></li><li><p>Führen Sie die Anwendung aus</p></li><li><p>Was fällt Ihnen bei den Logausgaben auf, wenn Sie die Anwendung mit "debug=true" ausführen?</p></li><li><p>Setzen Sie einen Breakpoint in der <code>execute</code> Methode. Welche Abschnitte des Stacktrace gehören zu Spring-Batch?</p></li><li><p>Welche Beans im <em>ApplicationContext</em> gehören zu Spring-Batch? Wie könnten Sie das herausfinden?</p></li></ol></div></section>
+<section id="_tasklet_stacktrace_transactiontemplate"><h2>Tasklet-Stacktrace: TransactionTemplate</h2><pre class="CodeRay listingblock"><code>execute:17, HelloTasklet (de.springbatchdeepdive.lesson02.hello)
+doInTransaction:407, TaskletStep$ChunkTransactionCallback (org.springframework.batch.core.step.tasklet)
+doInTransaction:331, TaskletStep$ChunkTransactionCallback (org.springframework.batch.core.step.tasklet)
+execute:140, TransactionTemplate (org.springframework.transaction.support)
+doInChunkContext:273, TaskletStep$2 (org.springframework.batch.core.step.tasklet)
+...</code></pre>
+<div class="paragraph"><p>Jeder Aufruf von <code>Tasklet.execute</code> wird in einer eigenen Transaktion ausgeführt.</p></div></section>
+<section id="_tasklet_stacktrace_repeattemplate"><h2>Tasklet-Stacktrace: RepeatTemplate</h2><pre class="CodeRay listingblock"><code>...
+doInChunkContext:273, TaskletStep$2 (org.springframework.batch.core.step.tasklet)
+doInIteration:82, StepContextRepeatCallback (org.springframework.batch.core.scope.context)
+getNextResult:375, RepeatTemplate (org.springframework.batch.repeat.support)
+executeInternal:215, RepeatTemplate (org.springframework.batch.repeat.support)
+iterate:145, RepeatTemplate (org.springframework.batch.repeat.support)
+doExecute:258, TaskletStep (org.springframework.batch.core.step.tasklet)
+...</code></pre>
+<div class="paragraph"><p>Das <code>RepeatTemplate</code> ersetzt eine Schleife zur Wiederholung des <code>Tasklet</code>.</p></div></section>
+<section id="_repeattemplateein_framework_für_eine_schleife"><h2>RepeatTemplate&#8201;&#8212;&#8201;Ein Framework für eine Schleife</h2><div class="imageblock" style=""><img src="images/RepeatTemplate.svg" alt="RepeatTemplate" width="2188" height="840"></div></section>
+<section id="_verwendung_des_repeattemplate_beim_taskletstep"><h2>Verwendung des RepeatTemplate beim TaskletStep</h2><div class="imageblock" style=""><img src="images/TaskletStep.svg" alt="TaskletStep" width="1952" height="592"></div></section>
+<section id="_tasklet_ausführen"><h2>Tasklet ausführen</h2><div class="imageblock" style=""><img src="images/TaskletExec.svg" alt="TaskletExec" width="792" height="434"></div></section>
+<section id="_tasklet_stacktrace_simplejoblauncher"><h2>Tasklet-Stacktrace: SimpleJobLauncher</h2><pre class="CodeRay listingblock"><code>...
+doExecute:258, TaskletStep (org.springframework.batch.core.step.tasklet)
+execute:208, AbstractStep (org.springframework.batch.core.step)
+handleStep:152, SimpleStepHandler (org.springframework.batch.core.job)
+handleStep:413, AbstractJob (org.springframework.batch.core.job)
+doExecute:136, SimpleJob (org.springframework.batch.core.job)
+execute:320, AbstractJob (org.springframework.batch.core.job)
+run:149, SimpleJobLauncher$1 (org.springframework.batch.core.launch.support)
+...</code></pre>
+<div class="paragraph"><p>Der <code>SimpleJobLauncher</code> führt den Batch-Job aus.</p></div>
+<aside class="notes"><p>Den Stacktraces am besten direkt im Debugger ansehen.</p></aside></section>
+<section id="_tasklet_stacktrace_simplejoblauncher_ist_als_lazyproxy_verpackt"><h2>Tasklet-Stacktrace: SimpleJobLauncher ist als <em>LazyProxy</em> verpackt</h2><pre class="CodeRay listingblock"><code>...
+run:149, SimpleJobLauncher$1 (org.springframework.batch.core.launch.support)
+execute:50, SyncTaskExecutor (org.springframework.core.task)
+run:140, SimpleJobLauncher (org.springframework.batch.core.launch.support)
+invoke0:-1, NativeMethodAccessorImpl (jdk.internal.reflect)
+invoke:77, NativeMethodAccessorImpl (jdk.internal.reflect)
+invoke:43, DelegatingMethodAccessorImpl (jdk.internal.reflect)
+invoke:568, Method (java.lang.reflect)
+invokeJoinpointUsingReflection:344, AopUtils (org.springframework.aop.support)
+invokeJoinpoint:198, ReflectiveMethodInvocation (org.springframework.aop.framework)
+proceed:163, ReflectiveMethodInvocation (org.springframework.aop.framework)
+invoke:128, SimpleBatchConfiguration$PassthruAdvice (org.springframework.batch.core.configuration.annotation)
+proceed:186, ReflectiveMethodInvocation (org.springframework.aop.framework)
+invoke:215, JdkDynamicAopProxy (org.springframework.aop.framework)
+run:-1, $Proxy50 (jdk.proxy2)
+...</code></pre>
+<div class="paragraph"><p>Die <code>SimpleBatchConfiguration</code> (&#8594; Source) verpackt Spring-Batch Beans als lazy Proxy.<br>
+Das löst Probleme bei der Initialisierungsreihenfolge.</p></div>
+<div class="admonitionblock caution teacherBox"><table><tr><td class="icon"><i class="fa fa-fire" title="Caution"></i></td><td class="content">Name der Beans (z. B. <strong>transactionManager</strong>) ist in <code>SimpleBatchConfiguration</code> hart verdrahtet!</td></tr></table></div></section>
+<section id="_tasklet_stacktrace_joblauncherapplicationrunner"><h2>Tasklet-Stacktrace: JobLauncherApplicationRunner</h2><pre class="CodeRay listingblock"><code>...
+run:-1, $Proxy50 (jdk.proxy2)
+execute:199, JobLauncherApplicationRunner (org.springframework.boot.autoconfigure.batch)
+executeLocalJobs:173, JobLauncherApplicationRunner (org.springframework.boot.autoconfigure.batch)
+launchJobFromProperties:160, JobLauncherApplicationRunner (org.springframework.boot.autoconfigure.batch)
+run:155, JobLauncherApplicationRunner (org.springframework.boot.autoconfigure.batch)
+run:150, JobLauncherApplicationRunner (org.springframework.boot.autoconfigure.batch)
+callRunner:782, SpringApplication (org.springframework.boot)
+callRunners:772, SpringApplication (org.springframework.boot)
+run:345, SpringApplication (org.springframework.boot)
+run:1343, SpringApplication (org.springframework.boot)
+run:1332, SpringApplication (org.springframework.boot)
+main:10, HelloBootApplication (de.springbatchdeepdive.lesson02.hello)</code></pre>
+<div class="ulist"><ul><li><p>Standardmäßig führt Spring-Boot alle Jobs mit dem <code>JobLauncherApplicationRunner</code> beim
+Start der Anwendung aus.</p></li><li><p>Dies kann man über die <em>application.properties</em> mit <code>spring.batch.job.enabled=false</code> unterbinden
+oder man kann über <code>spring.batch.job.names</code> explizit angeben, welche Jobs ausgeführt werden sollen
+(siehe <a href="https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/autoconfigure/batch/BatchProperties.html">&#8594; <code>BatchProperties</code></a>).</p></li></ul></div></section>
+<section id="_relevante_singleton_beans_aus_dem_applicationcontext"><h2>Relevante Singleton-Beans aus dem ApplicationContext</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">Bean-Name</th><th class="tableblock halign-left valign-top">Bean-Klasse</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jobRepository</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.batch.core.repository.JobRepository</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jobLauncher</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.batch.core.launch.JobLauncher</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jobRegistry</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.batch.core.configuration.JobRegistry</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jobExplorer</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.batch.core.explore.JobExplorer</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jobOperator</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.batch.core.launch.support.SimpleJobOperatorEnhancerBySpringCGLIB8c1a6d16</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">transactionManager</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.transaction.PlatformTransactionManager</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jdbcTemplate</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.jdbc.core.JdbcTemplate</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">dataSource</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">com.zaxxer.hikari.HikariDataSource</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jobBuilders</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.batch.core.configuration.annotation.JobBuilderFactory</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">stepBuilders</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.batch.core.configuration.annotation.StepBuilderFactory</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">helloJob</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.batch.core.job.SimpleJob</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">helloStep</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">org.springframework.batch.core.step.tasklet.TaskletStep</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">helloTasklet</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">de.springbatchdeepdive.lesson02.hello.HelloConfig$1</p></td></tr></table></section>
+<section id="_commandlinejobrunner" data-state="no-title-footer"><h2>CommandLineJobRunner</h2><div class="paragraph center"><p>Batch-Jobs ohne Spring-Boot ausführen</p></div></section>
+<section id="_commandlinejobrunnerüberblick"><h2>CommandLineJobRunner&#8201;&#8212;&#8201;Überblick</h2><div class="ulist"><ul><li><p>Der <code>CommandLineJobRunner</code> ist eine Klasse mit einer <code>main</code> Methode.</p></li><li><p>Man kann damit einen einzelnen Job ausführen oder die Ausführung von Jobs steuern.</p></li><li><p>Alternativ kann man auch eine Spring-Boot Anwendung mit Job-Parameter aufrufen.</p></li></ul></div></section>
+<section id="_commandlinejobrunnerverwendung"><h2>CommandLineJobRunner&#8201;&#8212;&#8201;Verwendung</h2><pre class="CodeRay listingblock"><code>java -cp ..
+    org.springframework.batch.core.launch.support.CommandLineJobRunner
+        jobPath &lt;options&gt; jobIdentifier (jobParameters)*</code></pre>
+<div class="ulist"><ul><li><p>Der <em>jobPath</em> ist entweder eine XML-ApplicationContext-Datei oder der voll qualifizierte
+Klassenname einer Configuration-Klasse.</p></li><li><p>Der <em>jobIdentifier</em> ist der Name, der Job-Bean.<br>
+Alternativ können auch Execution-Id oder Name aus dem <em>JobRepository</em> angegeben werden.</p></li><li><p>Job-Parameter müssen in der Form <code>name=wert</code> angegeben werden.</p></li><li><p>Die Optionen <em>-restart</em>, <em>-stop</em>, <em>-abandon</em> und <em>-next</em> spielen nur im Zusammenhang mit dem <em>JobRepository</em> eine Rolle.</p></li></ul></div>
+<div class="paragraph"><p>Für Details siehe &#8594;
+<a href="https://docs.spring.io/spring-batch/docs/4.3.x/api/org/springframework/batch/core/launch/support/CommandLineJobRunner.html">
+CommandLineJobRunner Javadocs</a></p></div></section>
+<section id="_aufgabe_2_spring_batch_anwendung_ohne_spring_boot_ausführen"><h2>Aufgabe 2: Spring-Batch-Anwendung ohne Spring-Boot ausführen</h2><div class="olist arabic"><ol class="arabic"><li><p>Kopieren Sie Ihre <code>HelloConfig</code> in das vorbereitete <code>exercises-plain</code> Projekt.</p></li><li><p>Passen Sie ggf. das exec-Target in der <em>pom.xml</em> an.</p></li><li><p>Führen Sie die Anwendung über Maven aus.</p></li><li><p>Alternativ: Erstellen Sie sich eine entsprechende Launch-Konfiguration in Ihrer IDE.</p></li><li><p>Erstellen Sie einen 2. Job zum Verabschieden und führen Sie diesen aus.</p></li><li><p>Welche Beans sind jetzt im ApplicationContext?</p></li><li><p>Was hat sich am Stacktrace geändert?</p></li></ol></div></section>
+<section id="_job_parameter"><h2>Job-Parameter</h2><div class="ulist"><ul><li><p>In der Regel benötigen Jobs Parameter</p></li><li><p>Möglichkeit 1: System-Properties</p><div class="ulist"><ul><li><p>Aufruf über -Dname=Egon</p></li><li><p>Verwendung über <code>Environment</code>:</p><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">${name:World}</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">private</span> <span class="predefined-type">String</span> name;</code></pre></li></ul></div></li><li><p>Möglichkeit 2: Job-Parameter</p></li></ul></div></section>
+<section id="_job_parameterklasse_jobparameters"><h2>Job-Parameter&#8201;&#8212;&#8201;Klasse JobParameters</h2><div class="paragraph"><p>Der Zugriff auf Job-Paramter erfolgt über die Klasse <code>JobParameters</code>:</p></div>
+<div class="imageblock" style="text-align: left"><img src="images/JobParameters.svg.svg" alt="JobParameters.svg" width="402" height="234"></div></section>
+<section id="_commandlinejobrunnerparameterübergabe"><h2>CommandLineJobRunner&#8201;&#8212;&#8201;Parameterübergabe</h2><div class="ulist"><ul><li><p>Der <code>CommandLineJobRunner</code> verwendet den <code>DefaultJobParametersConverter</code>.</p></li><li><p>Datums- und Zahlenformat kann über entsprechende Formatter angepasst werden
+(erfordert eigene <code>JobParametersConverter</code> Bean).</p></li><li><p>Parameter werden in der Form <code>key(&lt;type&gt;)=value</code> angegeben</p></li><li><p>Als <code>type</code> sind <em>string</em> (default), <em>date</em> oder <em>long</em> zulässig</p></li><li><p>Ein vorangestelltes <strong>-</strong> kennzeichnet den Parameter als nicht <em>identifizierend</em>.</p></li></ul></div>
+<div class="paragraph"><p>Beispiele:</p></div>
+<div class="literalblock"><div class="content"><pre>-name=Egon
+department.id(long)=2345
+schedule.date(date)=2020/02/27</pre></div></div>
+<div class="paragraph"><p>Für Details siehe &#8594;
+<a href="https://docs.spring.io/spring-batch/docs/4.3.x/api/org/springframework/batch/core/converter/DefaultJobParametersConverter.html">
+DefaultJobParametersConverter Javadocs</a></p></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Eine Job-Ausführung ist eindeutig durch den Jobnamen und die <em>identifizierenden</em>
+Parameter bestimmt.</td></tr></table></div></section>
+<section id="_parameterzugriff_über_listener"><h2>Parameterzugriff über Listener</h2><div class="paragraph"><p>Problem: Wie kommt man an das <strong><code>Parameters</code></strong> Objekt ran?</p></div></section>
+<section id="_lösung_1_jobexecutionlistener"><h2>Lösung 1: JobExecutionListener</h2><div class="imageblock" style="text-align: left"><img src="images/JobExecutionListener.svg.svg" alt="JobExecutionListener.svg" width="1470" height="184"></div>
+<div class="ulist"><ul><li><p>Die <strong><code>JobExecution</code></strong> enthält Metdaten zur Jobausführung, u. a. die Parameter</p></li><li><p>Eine Klasse (z. B. ein <code>Tasklet</code>) kann das <strong><code>JobExecutionListener</code></strong> Interface implementieren,<br>
+um vor oder nach der Jobausführung auf diese Metadaten zuzugreifen.</p></li><li><p><code>JobExecutionListenerSupport</code> bietet <em>default</em>-Methoden für den <code>JobExecutionListener</code></p></li></ul></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Listener sind bei Spring-Batch generell nützlich zum Zugriff auf Metadaten oder
+zur Datenübergabe.</td></tr></table></div></section>
+<section id="_lösung_1_jobexecutionlistener_registrieren"><h2>Lösung 1: JobExecutionListener registrieren</h2><div class="paragraph"><p>Damit ein <code>JobExecutionListener</code> aufgerufen wird, muss er beim Job registriert werden.<br>
+Dafür bietet die <code>JobBuilderFactory</code> die <strong><code>listener</code></strong>-Methode:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="keyword">return</span> jobBuilderFactory.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">helloJob</span><span class="delimiter">&quot;</span></span>)
+        .start(helloStep)
+        .listener(helloTasklet) <span class="comment">// Tasklet als JobExecutionListener registrieren</span>
+        .build();</code></pre></section>
+<section id="_lösung_2_tasklet_parameter"><h2>Lösung 2: Tasklet-Parameter</h2><div class="imageblock" style=""><img src="images/Tasklet.svg.svg" alt="Tasklet.svg" width="2110" height="184"></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">An die <code>JobParameters</code> gelangt man auch über:<br>
+<code>contribution.getStepExecution().getJobParameters()</code> oder über<br>
+<code>chunkContext.getStepContext().getJobParameters()</code></td></tr></table></div></section>
+<section id="_aufgabe_3_job_mit_parameter"><h2>Aufgabe 3: Job mit Parameter</h2><div class="olist arabic"><ol class="arabic"><li><p>Erweiteren Sie den Hello World Job so, dass er die Parameter <code>name</code> und <code>count</code> akzeptiert.</p><div class="ulist"><ul><li><p><code>name</code> ist eine Zeichenkette (default: <em>World</em>)</p></li><li><p><code>count</code> ist eine Ganzzahl (default: <em>1</em>)</p></li></ul></div></li><li><p>Der Job soll <em>count</em> mal <em>Hello &lt;name&gt;!</em> ausgeben.</p></li></ol></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Sie benötigen für das <code>Tasklet</code> eine eigne Klasse <code>HelloTasklet</code>, damit diese
+die beiden Interfaces <code>Tasklet</code> und <code>JobExecutionListener</code> implementieren kann.</td></tr></table></div></section>
+<section id="_lösung_3_job_parameter_über_expression_language"><h2>Lösung 3: Job-Parameter über Expression-Language</h2><div class="paragraph"><p>Man kann auch über Expression-Language Ausdrücke auf die Job-Parameter zugreifen:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobParameters['name']?:'World'}</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">private</span> <span class="predefined-type">String</span> name;
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobParameters['count']?:1}</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">private</span> <span class="type">int</span> count;</code></pre>
+<div class="dlist"><dl><dt class="hdlist1">Problem: </dt><dd><p>Der <em>ApplicationContext</em> (und somit auch die Singleton-Beans) wird initialisiert<br>
+<strong>bevor</strong> die Parameter ausgewertet werden.</p></dd><dt class="hdlist1">Lösung: </dt><dd><div class="ulist"><ul><li><p>Erzeugung der Bean muss verzögert werden</p></li><li><p><strong><code>@JobScope</code></strong> verknüpft den Lebenszyklus einer Bean mit dem Lebenszyklus eines Jobs</p></li></ul></div></dd></dl></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Mittels <strong><code>@JobScope</code></strong> und <strong><code>@StepScope</code></strong> kann man per Expression Language auf Zwischenergebnisse
+zugreifen, die erst während der Jobausführung entstehen.</td></tr></table></div></section>
+<section id="_jobcontext" class="columns"><h2>JobContext</h2><div class="openblock one-col"><div class="content"><div class="paragraph"><p>Der <strong><code>JobContext</code></strong> dient dazu, Ausdrücke von Beans mit <strong><code>@JobScope</code></strong> auszuwerten.</p></div>
+<div class="paragraph"><p><br></p></div></div></div>
+<div class="openblock two-col"><div class="content"><div class="imageblock" style=""><img src="images/JobContext.svg.svg" alt="JobContext.svg" width="448" height="234"></div></div></div>
+<div class="openblock two-col"><div class="content"><div class="paragraph"><p>Das ermöglicht Expression-Language Ausdrücke der Form:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobName}</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobParameters[name]}</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{jobExecutionContext['input.file.name']}</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Value</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">#{systemProperties}['java.home']</span><span class="delimiter">&quot;</span></span>)</code></pre></div></div>
+<div class="admonitionblock note one-col teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Analoges gilt für <strong><code>@StepScope</code></strong> und <strong><code>StepContext</code></strong>.</td></tr></table></div>
+<div class="admonitionblock warning one-col teacherBox"><table><tr><td class="icon"><i class="fa fa-warning" title="Warning"></i></td><td class="content">Wenn der Key ein '.' enthält, muss er in 'Anführungszeichen' gesetzt werden.</td></tr></table></div></section>
+<section id="_aufgabe_4_expression_language"><h2>Aufgabe 4: Expression-Language</h2><div class="ulist"><ul><li><p>Nutzen Sie Expression-Language-Ausdrücke statt einem <code>JobExecutionListener</code>, um auf
+die Parameter <code>name</code> und <code>count</code> zuzugreifen.</p></li></ul></div></section>
+<section id="_testing" data-state="no-title-footer"><h2>Testing</h2><div class="paragraph center"><p>Batch-Jobs als Unit-Test ausführen</p></div></section>
+<section id="_hello_world_job_als_unit_test"><h2>Hello World Job als Unit-Test</h2><div class="title">HelloJobTest.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@SpringJUnitConfig</span>(HelloConfigParamsScope.class)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">HelloJobTest</span> {
+
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> JobLauncher jobLauncher;
+
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> Job helloJob;
+
+    <span class="annotation">@Test</span>
+    <span class="type">void</span> testHello() <span class="directive">throws</span> JobParametersInvalidException, JobExecutionAlreadyRunningException,
+            JobRestartException, JobInstanceAlreadyCompleteException {
+        <span class="comment">// run the job</span>
+        JobParameters params = <span class="keyword">new</span> JobParametersBuilder()
+                .addString(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Germany</span><span class="delimiter">&quot;</span></span>)
+                .addLong(<span class="string"><span class="delimiter">&quot;</span><span class="content">count</span><span class="delimiter">&quot;</span></span>, <span class="integer">2L</span>)
+                .toJobParameters();
+        JobExecution execution = jobLauncher.run(helloJob, params);
+
+        <span class="comment">// make sure job finished successfully</span>
+        assertThat(execution.getAllFailureExceptions()).isEmpty();
+        assertThat(execution.getExitStatus()).isEqualTo(ExitStatus.COMPLETED);
+    }
+}</code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Genau so würde man einen Job innerhalb einer Applikation ausführen.</td></tr></table></div></section>
+<section id="_manuelle_job_konfiguration"><h2>Manuelle Job-Konfiguration</h2><div class="paragraph"><p>Es geht auch ganz ohne <em>ApplicationContext</em>&#8230;&#8203;</p></div>
+<div class="title">HelloJobManualTest.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Test</span>
+<span class="directive">public</span> <span class="type">void</span> testManualJobConfig() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    <span class="comment">// prepare infrastructure</span>
+    MapJobRepositoryFactoryBean jobRepositoryFactoryBean = <span class="keyword">new</span> MapJobRepositoryFactoryBean(); <span class="comment">// deprecated</span>
+    JobRepository jobRepository = jobRepositoryFactoryBean.getObject();
+    PlatformTransactionManager transactionManager = <span class="keyword">new</span> ResourcelessTransactionManager();
+    jobBuilderFactory = <span class="keyword">new</span> JobBuilderFactory(jobRepository);
+    stepBuilderFactory = <span class="keyword">new</span> StepBuilderFactory(jobRepository, transactionManager);
+
+    <span class="comment">// create the job</span>
+    Job job = helloJob();
+
+    <span class="comment">// create a launcher</span>
+    SimpleJobLauncher launcher = <span class="keyword">new</span> SimpleJobLauncher();
+    launcher.setJobRepository(jobRepository);
+    launcher.afterPropertiesSet();
+
+    <span class="comment">// launch the job</span>
+    JobParameters params = <span class="keyword">new</span> JobParameters();
+    JobExecution execution = launcher.run(job, params);
+
+    <span class="comment">// make sure job finished successfully</span>
+    assertThat(execution.getAllFailureExceptions()).isEmpty();
+    assertThat(execution.getExitStatus()).isEqualTo(ExitStatus.COMPLETED);
+}</code></pre></section>
+<section id="_variante_job_und_step_scoped_beans_execution_listener"><h2>Variante: Job und Step-Scoped Beans: Execution Listener</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@ExtendWith</span>(SpringExtension.class)
+<span class="annotation">@EnableBatchProcessing</span>
+<span class="annotation">@SpringBatchTest</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">FlatFileItemReaderTests</span> {
+        <span class="annotation">@Autowired</span>
+        <span class="directive">private</span> FlatFileItemReader&lt;CustomerUpdate&gt; customerUpdateItemReader;
+        <span class="directive">public</span> StepExecution getStepExecution() {
+                JobParameters jobParameters = <span class="keyword">new</span> JobParametersBuilder()
+                                .addString(<span class="string"><span class="delimiter">&quot;</span><span class="content">p1</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">v1</span><span class="delimiter">&quot;</span></span>)
+                                .toJobParameters();
+                <span class="keyword">return</span> MetaDataInstanceFactory.createStepExecution(jobParameters);
+        }
+        <span class="annotation">@Test</span>
+        <span class="directive">public</span> <span class="type">void</span> testSth()  { <span class="comment">/* ..*/</span> }
+}</code></pre>
+<div class="olist arabic"><ol class="arabic"><li><p>Spring batch bietet: <code>StepScopeTestExecutionListener</code>, <code>JobScopeTestExecutionListener</code></p></li><li><p><code>@SpringBatchTest</code> erzeugt Beans: <code>JobLauncherTestUtils</code>, <code>JobRepositoryTestUtils</code>, <code>StepScopeTestExecutionListener</code>, <code>JobScopeTextExecutionListener</code></p></li></ol></div></section>
+<section id="_zusammenfassung_lektion_2"><h2>Zusammenfassung Lektion 2</h2><div class="ulist"><ul><li><p>Batch-Anwendung mit Spring-Initializr</p></li><li><p>Job mit CommandLineRunner verwenden</p></li><li><p>Parameterübergabe</p></li><li><p>JobExecutionListener</p></li><li><p>@JobScope</p></li><li><p>Ausführung als JUnit-Test</p></li></ul></div>
+<div class="paragraph"><p><br>
+&#8594; <a href="index.html">Agenda</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring Workshop', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

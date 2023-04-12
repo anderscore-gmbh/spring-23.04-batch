@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.2</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>de.springbatchdeepdive</groupId>
+    <artifactId>exercises-plain-solution</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>exercises-plain-solution</name>
+    <description>Hello World mit Spring-Batch ohne Spring-Boot</description>
+
+    <properties>
+        <java.version>8</java.version>
+        <glassfish-jaxb.version>2.3.2</glassfish-jaxb.version> <!-- 2.3.3 (as of spring-boot) does not work with xjc -->
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-infrastructure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-core</artifactId>
+        </dependency>
+        <!-- PostConstruct & PreDestroy -->
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <!-- HSQL-DB Server -->
+        <!-- tag::hsqldb[] -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- end::hsqldb[] -->
+        <!-- Hikari Connection Pool -->
+        <!-- tag::hikari[] -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+        <!-- end::hikari[] -->
+
+        <!-- JSR-303 Bean Validation API -->
+        <!-- tag::validator[] -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-el</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <!-- end::validator[] -->
+
+        <!-- OXM+JAXB -->
+        <!-- tag::jaxb[] -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>javax.activation-api</artifactId>
+        </dependency>
+        <!-- end::jaxb[] -->
+
+        <!-- JSR-310 (java.time) support für Jackson  -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+        <!-- JSON-Serialisierung mit GSON -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <!-- Logging mit SLF4J über Log4J2 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <!-- Aufruf: mvn exec:java -->
+                    <execution>
+                        <id>default-cli</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>
+                            <arguments>
+                                <argument>hello.HelloConfig</argument>
+                                <argument>helloJob</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <!-- Aufruf: mvn exec:java@bye -->
+                    <execution>
+                        <id>bye</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>
+                            <arguments>
+                                <argument>hello.HelloConfig</argument>
+                                <argument>byeJob</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <!-- Aufruf: mvn exec:java@hello-params-scope -->
+                    <execution>
+                        <id>hello-params-scope</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>
+                            <arguments>
+                                <argument>hello.HelloConfigParamsScope</argument>
+                                <argument>helloJob</argument>
+                                <argument>name=Egon</argument>
+                                <argument>count(long)=3</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <!-- Aufruf: mvn exec:java@hello-params-listener -->
+                    <execution>
+                        <id>hello-params-listener</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>
+                            <arguments>
+                                <argument>hello.HelloConfigParamsListener</argument>
+                                <argument>helloJob</argument>
+                                <argument>name=Fritz</argument>
+                                <argument>count(long)=4</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <!-- Aufruf: mvn exec:java@hello-return-code -->
+                    <execution>
+                        <id>hello-return-code</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>
+                            <arguments>
+                                <argument>hello.HelloReturnCodeConfig</argument>
+                                <argument>helloJob</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- tag::jaxbplugin[] -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                        <version>${javax-jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-jxc</artifactId>
+                        <version>${glassfish-jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-runtime</artifactId>
+                        <version>${glassfish-jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.activation</groupId>
+                        <artifactId>javax.activation-api</artifactId>
+                        <version>${javax-activation.version}</version>
+                    </dependency>
+                </dependencies>
+                <!-- end::jaxbplugin[] -->
+                <!-- tag::jaxbplugin2[] -->
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- end::jaxbplugin2[] -->
+        </plugins>
+    </build>
+</project>

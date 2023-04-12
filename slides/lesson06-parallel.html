@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 6 - Parallelverarbeitung</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_6_parallelverarbeitung" data-state="no-title-footer"><h2>Lektion 6 - Parallelverarbeitung</h2></section>
+<section id="_überblick_zu_dieser_lektion"><h2>Überblick zu dieser Lektion</h2><div class="olist arabic"><ol class="arabic"><li><p><a href="lesson06-parallel.html#/_step_mit_mehreren_threads_ausf%C3%BChren">Multithreading in Spring-Batch</a></p></li><li><p><a href="lesson06-parallel.html#/_partitionierung">Partitionierung</a>
+(<a href="lesson06-parallel.html#/_aufgabe_1_summe_von_1_bis_100">Aufgabe 1</a>)</p></li><li><p><a href="lesson06-parallel.html#/_workflows_mit_spring_batch">Workflows</a>
+(<a href="lesson06-parallel.html#/_aufgabe_2_producerconsumer">Aufgabe 2</a>)</p></li></ol></div></section>
+<section id="_optimierung"><h2>Optimierung&#8230;&#8203;</h2><div class="quoteblock"><blockquote><div class="ulist"><ul><li><p>Rule 1: Don&#8217;t do it.</p></li><li><p>Rule 2: (for experts only) Don&#8217;t do it yet.</p></li></ul></div></blockquote><div class="attribution"><cite>Principals of Program Design</cite><br>&#8212; Michael A. Jackson (1975)</div></div>
+<div class="quoteblock"><blockquote><div class="paragraph"><p>More computing sins are committed in the name of efficiency
+(without necessarily achieving it) than for any other single
+reason&#8201;&#8212;&#8201;including blind stupidity.</p></div></blockquote><div class="attribution">&#8212; W. A. Wulff</div></div></section>
+<section id="_vorüberlegungen_zur_parallelisierung"><h2>Vorüberlegungen zur Parallelisierung</h2><div class="ulist"><ul><li class="fragment"><p>Muss das sein?</p></li><li class="fragment"><p>&#8658; Lieber erst mal die Chunkgröße justieren</p></li><li class="fragment"><p>&#8658; Erst mal ermitteln, wo der Performance-Engpass überhaupt liegt</p></li><li class="fragment"><p>Sie sind nicht allein!</p></li><li class="fragment"><p>&#8658; Welche (Online-)Anwendungen verwenden die gleichen Backend-Systeme?</p></li><li class="fragment"><p>&#8658; Welche Last ist zu welcher Uhrzeit vertretbar, ohne den Betrieb zu behindern?</p></li><li class="fragment"><p>Welche Art der Parallelisierung ist sinnvoll?</p></li><li class="fragment"><p>&#8658; Bei äußerst rechenintensiven Anwendungen:<br>
+Verteilung auf mehrere Rechner (<em>Remote Chunking/-Partitioning</em>)</p></li><li class="fragment"><p>&#8658; Bei langsamer I/O (Webservice-Aufruf, Archivsystem, Datenbank): Multithreading</p></li></ul></div></section>
+<section id="_möglichkeiten_der_parallelisierung"><h2>Möglichkeiten der Parallelisierung</h2><div class="ulist"><ul><li><p>Einen Step mit mehreren Threads ausführen</p></li><li><p>Mehrere Steps gleichzeitig ausführen (Flows)</p></li><li><p>Partitionierung</p></li><li><p>Remote Chunking</p></li></ul></div></section>
+<section id="_step_mit_mehreren_threads_ausführen"><h2>Step mit mehreren Threads ausführen</h2><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+ThreadPoolTaskExecutor taskExecutor() {
+    ThreadPoolTaskExecutor taskExecutor = <span class="keyword">new</span> ThreadPoolTaskExecutor();
+    taskExecutor.setCorePoolSize(<span class="integer">8</span>);
+    <span class="keyword">return</span> taskExecutor;
+}</code></pre>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+TaskletStep parallelStep() {
+    TaskletStep step = stepBuilderFactory
+            .get(<span class="string"><span class="delimiter">&quot;</span><span class="content">parallelStep</span><span class="delimiter">&quot;</span></span>)
+            .&lt;<span class="predefined-type">Integer</span>, <span class="predefined-type">String</span>&gt;chunk(<span class="integer">5</span>)
+            .reader(reader()).processor(processor()).writer(writer())
+            .taskExecutor(taskExecutor()) <span class="comment">// Ausführung mit mehreren Threads</span>
+            .throttleLimit(<span class="integer">4</span>) <span class="comment">// begrenzt Anzahl der Threads (default: 4)</span>
+            .build();
+    <span class="keyword">return</span> step;
+}</code></pre>
+<div class="ulist"><ul><li><p><code>TaskExecutorRepeatTemplate</code> führt <code>Tasklet</code> mit mehreren Threads aus</p></li><li><p>Reader, Processor und Writer müssen <strong>thread-save</strong> sein</p></li><li><p>Chunk-size bestimmt Synchronisationsaufwand</p></li></ul></div></section>
+<section id="_taskexecutor_varianten_und_deren_verwendung"><h2>TaskExecutor Varianten und deren Verwendung</h2><div class="imageblock" style=""><img src="images/TaskExecutorVarianten.svg" alt="TaskExecutorVarianten" width="2472" height="638"></div></section>
+<section id="_wo_kann_man_überall_einen_taskexecutor_angeben"><h2>Wo kann man überall einen TaskExecutor angeben?</h2><div class="imageblock" style=""><img src="images/TaskExecutorBuilder.svg" alt="TaskExecutorBuilder" width="2086" height="694"></div></section>
+<section id="_partitionierung"><h2>Partitionierung</h2><div class="ulist"><ul><li><p>Erzeugt mehrere Kopien eines Steps.</p></li><li><p>Jeder Step hat einen eigenen Namen (z. B. <em>simpleStep:partition1</em>), einen eigenen ExecutionContext
+und wird als separater Step im Repository gespeichert.</p></li><li><p>Jeder Step wird nur von einem Thread ausgeführt.</p></li><li><p>Für jede mit @StepScope annotierte Bean (z. B. Reader, Processor oder Writer) wird
+für jeden Step ein eigenes Exemplar erzeugt &#8658; <strong>Bean braucht nicht thread-safe sein</strong><br>
+(D. h. man kann nach belieben Instanzvariablen verwenden)</p></li><li><p>Ermöglicht Aufteilung der Datenmenge (Partitioniertung) und Verteilung auf die einzelnen Steps</p></li><li><p>Sinnvolle Kriterien zur Aufteilung notwendig</p></li><li><p>Auch ohne Partitionierung der Daten in Kombination mit @StepScope sinnvoll</p></li><li><p>In Kombination mit Remote-Verarbeitung möglich</p></li></ul></div></section>
+<section id="_partitionstep_ausführung"><h2>PartitionStep Ausführung</h2><div class="imageblock" style=""><img src="images/PartitionStepExec.svg" alt="PartitionStepExec" width="1628" height="714"></div></section>
+<section id="_bestandteile_eines_partitionstep"><h2>Bestandteile eines PartitionStep</h2><div class="imageblock" style=""><img src="images/PartitionStepClasses.svg" alt="PartitionStepClasses" width="2705" height="738"></div></section>
+<section id="_partitionstep_implementieren"><h2>PartitionStep implementieren</h2><div class="dlist"><dl><dt class="hdlist1">Partitioner: </dt><dd><div class="ulist"><ul><li><p>Interface selbst implementieren</p></li><li><p>Konvention für Key: <em>partition1</em>, <em>partition2</em>, &#8230;&#8203;</p></li><li><p>Information aus dem PartionStep-ExecutionContext auf die einzelnen ExecutionContexte verteilen</p></li></ul></div></dd><dt class="hdlist1">StepExecutionAggregator: </dt><dd><div class="ulist"><ul><li><p><code>DefaultStepExecutionAggregator</code> erweitern</p></li><li><p>Ergebnisse aus den einzelnen Step-ExecutionContexten zusammenfassen und in den
+PartionStep-ExecutionContext übertragen.</p></li></ul></div></dd></dl></div></section>
+<section id="_einfacher_partition_step_zur_parallelen_ausführung_eines_steps"><h2>Einfacher Partition-Step zur parallelen Ausführung eines Steps</h2><div class="title">Dieser Step wird repliziert und parallel ausgeführt:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="keyword">return</span> stepBuilderFactory
+        .get(<span class="string"><span class="delimiter">&quot;</span><span class="content">simpleStep</span><span class="delimiter">&quot;</span></span>)
+        .&lt;<span class="predefined-type">Integer</span>, <span class="predefined-type">String</span>&gt;chunk(<span class="integer">4</span>)
+        .reader(reader()).processor(processor()).writer(writer())
+        .build();</code></pre>
+<div class="title">Der PartitionStep:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="keyword">return</span> stepBuilderFactory.get(<span class="string"><span class="delimiter">&quot;</span><span class="content">partitionStep</span><span class="delimiter">&quot;</span></span>)
+        .partitioner(<span class="string"><span class="delimiter">&quot;</span><span class="content">stepx</span><span class="delimiter">&quot;</span></span>, <span class="keyword">new</span> SimplePartitioner()) <span class="comment">// Präfix für partitionierte Steps</span>
+        .step(step()) <span class="comment">// Der Step, der von meheren Threads ausgeführt wird</span>
+        .gridSize(<span class="integer">5</span>) <span class="comment">// Anzahl Threads</span>
+        .taskExecutor(taskExecutor())
+        .build();</code></pre>
+<div class="title">Der Job für den PartitionStep:</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="keyword">return</span> jobBuilderFactory
+        .get(<span class="string"><span class="delimiter">&quot;</span><span class="content">partitionJob</span><span class="delimiter">&quot;</span></span>)
+        .start(partitionStep())
+        .build();</code></pre>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content"><code>@StepScope</code> bei (Reader), Processor und Writer erspart <code>synchronized</code>.<br>
+&#8658; Möglichst immer PartitionStep zur parallelen Ausführung eines Steps verwenden.</td></tr></table></div></section>
+<section id="_aufgabe_1_summe_von_1_bis_100"><h2>Aufgabe 1: Summe von 1 bis 100</h2><div class="ulist"><ul><li><p>Implementieren Sie einen Job, der alle Zahlen von 1 bis 100 zusammenzählt. Partitionieren Sie
+dafür die Zahlenmenge in 5 gleich große Teile um diese parallel aufzusummieren.</p></li><li><p>Geben Sie danach das Ergebnis über einen weiteren Tasklet-Step auf System.out aus.</p></li><li><p>Sie können für diese Aufgabe die vorhandenen Klassen <code>NumberRangePartitioner</code>,
+<code>NumberRangeReader</code>, <code>ShowResultTasklet</code>, <code>SumAggregator</code> und <code>SumItemWriter</code> verwenden.</p></li><li><p>Prüfen Sie den Job mit dem <code>PartitionGaussTest</code>.</p></li></ul></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Versuchen Sie den Job erst mal ohne Partitionierung zum Laufen zu bekommen.</td></tr></table></div>
+<div class="admonitionblock tip teacherBox"><table><tr><td class="icon"><i class="fa fa-lightbulb-o" title="Tip"></i></td><td class="content">Die Klassen <code>JobParameterExecutionContextCopyListener</code> und <code>ExecutionContextPromotionListener</code>
+könnten hilfreich sein.</td></tr></table></div></section>
+<section id="_workflows_mit_spring_batch"><h2>Workflows mit Spring-Batch</h2><div class="paragraph"><p>Spring-Batch kann mehr als Steps der Reihe nach ausführen:</p></div>
+<div class="ulist"><ul><li><p>Mehrere Steps können gleichzeitig ausgeführt werden</p></li><li><p>Man kann abhängig von einer Bedingung zu einem von mehreren
+möglichen Folgesteps verzweigen</p></li><li><p>Damit lassen sich komplexe Workflows realsieren</p></li></ul></div></section>
+<section id="_beispiel_für_job_mit_flow" class="columns"><h2>Beispiel für Job mit Flow</h2><div class="openblock"><div class="content"><div class="title">FlowJobConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java">Step step3 = createTaskletStep(<span class="string"><span class="delimiter">&quot;</span><span class="content">step 3</span><span class="delimiter">&quot;</span></span>, ExitStatus.FAILED);
+Step step3x = createTaskletStep(<span class="string"><span class="delimiter">&quot;</span><span class="content">step 3x</span><span class="delimiter">&quot;</span></span>);
+Step step4 = createTaskletStep(<span class="string"><span class="delimiter">&quot;</span><span class="content">step 4</span><span class="delimiter">&quot;</span></span>);
+Flow flow1 = <span class="keyword">new</span> FlowBuilder&lt;Flow&gt;(<span class="string"><span class="delimiter">&quot;</span><span class="content">flow1</span><span class="delimiter">&quot;</span></span>)
+        .from(createTaskletStep(<span class="string"><span class="delimiter">&quot;</span><span class="content">step 2a 1</span><span class="delimiter">&quot;</span></span>))
+        .next(createTaskletStep(<span class="string"><span class="delimiter">&quot;</span><span class="content">step 2a 2</span><span class="delimiter">&quot;</span></span>))
+        .build();
+Flow flow2 = <span class="keyword">new</span> FlowBuilder&lt;Flow&gt;(<span class="string"><span class="delimiter">&quot;</span><span class="content">flow2</span><span class="delimiter">&quot;</span></span>)
+        .from(createTaskletStep(<span class="string"><span class="delimiter">&quot;</span><span class="content">step 2b</span><span class="delimiter">&quot;</span></span>))
+        .build();
+Job job = jobBuilderFactory
+        .get(<span class="string"><span class="delimiter">&quot;</span><span class="content">flowJob</span><span class="delimiter">&quot;</span></span>)
+        .start(createTaskletStep(<span class="string"><span class="delimiter">&quot;</span><span class="content">step 1</span><span class="delimiter">&quot;</span></span>))
+        .split(taskExecutor()).add(flow1, flow2)
+        .next(step3)
+        .on(ExitStatus.COMPLETED.getExitCode()).to(step4)
+        .from(step3).on(ExitStatus.FAILED.getExitCode())
+        .to(step3x).next(step4)
+        .end()
+        .build();</code></pre></div></div>
+<div class="openblock"><div class="content"><div class="imageblock" style=""><img src="images/FlowBuilderSample.svg" alt="FlowBuilderSample" width="331" height="849"></div></div></div></section>
+<section id="_flowsstate_pattern"><h2>Flows&#8201;&#8212;&#8201;State-Pattern</h2><div class="imageblock" style=""><img src="images/Flows.svg" alt="Flows" width="2478" height="778"></div></section>
+<section id="_builder_api_für_flows"><h2>Builder-API für Flows</h2><div class="imageblock" style=""><img src="images/FlowBuilderApi.svg" alt="FlowBuilderApi" width="3051" height="810"></div></section>
+<section id="_die_wichtigsten_methoden_für_flows"><h2>Die wichtigsten Methoden für Flows</h2><div class="ulist"><ul><li><p>flow(Step).next(Flow/Step).next(Flow/Step).end()</p></li><li><p>start(Flow).next(Flow/Step).next(Flow/Step).end()</p></li><li><p>split(TaskExecutor).add(Flow, Flow,&#8230;&#8203;).build()</p></li><li><p>on(String exitCode).to(Flow/Step)</p></li><li><p>from(Flow/Step).to(Flow/Step)</p></li><li><p>from(Flow/Step).on(String).to(Flow/Step)</p></li><li><p>from(JobExecutionDecider).on(String).to(Flow/Step)</p></li></ul></div></section>
+<section id="_praktische_anwendung_von_flows_producerconsumer"><h2>Praktische Anwendung von Flows: Producer/Consumer</h2><div class="imageblock" style=""><img src="images/parallel/ProducerConsumer.svg" alt="ProducerConsumer" width="1200"></div>
+<div class="ulist"><ul><li><p>Erster Step liest Daten sequentiell z. B. von einer CSV-Datei</p></li><li><p>Zweiter Step speichert Daten und nutzt dafür mehrere Threads</p></li><li><p>Sinnvoll wenn paralleles Schreiben den Durchsatz erhöht (Webservice, Datenbank)</p></li><li><p>Statt über einen Writer kann man die Queue auch über einen Listener
+(z. B. <code>ChunkListener</code>) befüllen.</p></li></ul></div>
+<div class="admonitionblock warning teacherBox"><table><tr><td class="icon"><i class="fa fa-warning" title="Warning"></i></td><td class="content">Mit einer In-Memory-Queue gehen, die Daten bei einem Abbruch verloren,
+obwohl sie in Step 1 bereits als verarbeitet markiert wurden. Standardmäßig werden
+diese Daten also nicht erneut gelesen.</td></tr></table></div></section>
+<section id="_interaktion_der_steps_bei_producerconsumer"><h2>Interaktion der Steps bei Producer/Consumer</h2><div class="imageblock" style=""><img src="images/ProducerConsumerFlow.svg" alt="ProducerConsumerFlow" width="1545" height="920"></div></section>
+<section id="_zusammenfassung_lektion_6"><h2>Zusammenfassung Lektion 6</h2><div class="ulist"><ul><li><p>Vor Einsatz von Parallelverarbeitung erst mal Notwendigkeit, Nutzen und Auswirkungen prüfen!</p></li><li><p>Parallelverarbeitung geht immer über einen <code>TaskExecutor</code>, davon gibt es mehrere Varianten.</p></li><li><p>Einfachste Parallelverarbeitung ist das Ausführen eines Steps mit mehreren Threads.</p></li><li><p>Mittels Partitionierung arbeitet jeder Thread auf eigenen Daten.</p></li><li><p>Flows ermöglichen die gleichzeitige Ausführung verschiedener Steps.</p></li></ul></div></section>
+<section id="_aufgabe_2_producerconsumer"><h2>Aufgabe 2: Producer/Consumer</h2><div class="olist arabic"><ol class="arabic"><li><p>Verwenden Sie als Ausgangspunkt den Job in <code>ProducerConsumerJobConfig</code> und
+<code>ProducerConsumerJobTest</code> um diesen Job auszuführen.</p></li><li><p>Teilen Sie den <code>simpleStep</code> in einen Producer-Step und einem Consumer-Step auf.</p></li><li><p>Nutzen Sie die <code>ProducerConsumerQueue</code> als Queue.</p></li><li><p>Verwenden Sie <code>-1</code> als Endemarkierung.</p></li><li><p>Sie benötigen 3 Flows für den Job: Producer-, Consumer-, und Split-Flow.</p></li><li><p>Führen Sie den Consumer mit mehreren Threads und einem <code>throttleLimit</code> von 8 aus.</p></li></ol></div>
+<div class="admonitionblock caution teacherBox"><table><tr><td class="icon"><i class="fa fa-fire" title="Caution"></i></td><td class="content">Mit zu vielen Threads, gehen die Datenbankconnections aus!</td></tr></table></div></section>
+<section id=""><h2>&#8230;&#8203;</h2><div class="paragraph"><p>&#8594; <a href="index.html">Agenda</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring Workshop', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

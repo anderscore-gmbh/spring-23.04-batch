@@ -1,0 +1,202 @@
+= Informationen für den Dozenten
+
+== Folien
+
+Die Folien für die Schulung befinden sich in dem `slides` Projekt. Ein Aufruf von
+
+    mvn clean process-resources
+
+Erzeugt die entsprechenen _reveal.js_ HTML-Seiten im Verzeichnis `slides/target/generated-slides`.
+Ein
+
+    mvn clean process-resources -Dpdf
+
+erzeugt zusätzlich ein PDF-Dokument im Verzeichnis `slides/target/generated-slides`.
+
+Zum Bearbeiten der Folien startet man den *revealjs-server* mit 
+
+    mvn revealjs-server:serve
+
+Das _spring-batch-deep-dive-handout.html_ fasst alle Folien zusammen. Um daraus ein Folien-PDF zu erzeugen muss man beim
+Aufruf mit _Chrome_ den Parameter `?print-pdf` anhängen.
+
+=== Konvention
+
+* Ein *(-> Source)* gibt an, dass man die entsprechenden Quelltext öffnen und erklären sollte.
+
+== Grober Zeitplan für die Schulung
+
+. 1. Tag vormittags: Begrüßung bis einschließlich Lektion 3 (Repository)
+. 1. Tag nachmittags: Lektionen 4 und 5
+. 2. Tag vormittags: Lektionen 6 und 7
+. 2. Tag nachmittags: Lektion 8
+
+== Quellcode
+
+=== HSQL-Server
+
+Zum Ausführen der Tests und Beispiele muss ein HSQL-Server laufen. Diesen startet man mit:
+
+    cd hsqldb-server
+    mvn
+    
+Mit einem `mvn clean` kann man vorher die Datenbank zurücksetzen. Danach muss man aber das Schema erneut anlegen:
+
+    cd exercises-plain
+    mvn test -Dtest=repository.SpringBatchSchemaSetup
+
+=== Musterlösugen bauen
+
+Ob alle Lösungen funktionieren prüft man mit (HSQLDB-Server muss dazu laufen und Schema muss angelegt sein):
+
+    cd solutions
+    mvn clean verify
+
+=== Übungsaufgaben prüfen
+
+Ob allen Übungsaufgaben sich noch bauen lassen prüft man mit:
+
+    mvn clean verify -DskipTests
+
+== Vorbereitung
+
+. Vor der Schulung alle Versionen auf den aktuellsten Stand bringen (auch in den Folien) und prüfen, ob noch alles läuft.
+. Die `greeting.adoc`Anpassen (Datum, Vorstellung, Zeiten, ...)
+. Ggf. die Schulungsunterlagen überarbeiten
+. Frühzeitig Mails wg. Technik, Handout und Büchern verschicken, insbesondere bei einer Firmenschulung
+. Prüfen, ob die Skip-Simulation (Lektion 4) funktioniert und ggf. in den Ausgangszustand
+  (`skipsim.model.BallContainer.skipMode = SkipMode.NONE`) zurückversetzen.
+. Prüfen, ob der Datenbankzugriff auf die HSQLDB-Server funktioniert, um DB-Inhalte zeigen zu können.
+  (Empfohlenes Tool: http://squirrel-sql.sourceforge.net/[SQuirreL SQL Client]).
+. Prüfen, ob die Remote-Beispiele (Lektion 7) funktionieren.
+. Prüfen, ob die Cloud-Themen (Lektion 8)(`CloudTaskGaussApplication`, _Spring Cloud Data Flow_) funktionieren.
+. Prüfen, ob die Monitoring-Beispiele (Lektion 8) funktionieren.
+. Kopie des Repositories ohne Speaker-Info und Lösungen erstellen (-> update-github-copy.bat) und
+  mitsamt Folien und Handout auf GitHub ablegen.
+
+=== Repository für GitHub erstellen
+
+    cd slides
+    mvn clean process-resources -Dpdf
+    mvn process-resources
+    cd ..
+    cd speaker
+    update-github-copy.bat
+
+Als nächsten auf Github ein leeres `spring-batch-deep-dive` Repository anlegen.
+
+Dann im github-Verzeichnis:
+
+    git init
+    git add *
+    git rm -r --cached solutions
+    git status
+    git commit -m "Training ohne Musterloesungen"
+    git remote add origin git@github.com:anderscore-hjhessmann/spring-batch-deep-dive.git
+    git push --set-upstream origin master
+
+Siehe auch: https://revealjs.com/pdf-export/
+
+Evtl. für das Repository auch noch Username und SSH-Key konfigurieren:
+
+    git config core.sshCommand "ssh -i C:/Users/hjhessmann/.ssh/id_rsa_anderscore-hjhessmann"
+    git config user.name anderscore-hjhessmann
+    git config --list --show-origin
+
+Optional Präsentation zusätzlich als PDF bereitstellen (sieht nicht gut aus):
+
+    cd ../slides
+    mvn revealjs-server:serv
+
+In Chrome (geht nur mit Chrome) folgen URL aufrufen:
+http://localhost:8071/spring-batch-deep-dive-slides.html?print-pdf
+Danach als PDF (ohne Rand) drucken.
+
+== Nachbereitung
+
+. Alle Musterlösungen und ggf. die aktuellste Handout-Version auf GitHub ablegen.
+. Diese README-Datei und die todo.adoc ergänzen.
+. Den für die Schulung verwendeten Stand taggen
+. Ggf. die Schulungsunterlagen überarbeiten
+. Ca. 2 Wochen nach der Schulung das GitHub-Repository wieder löschen.
+
+.Stand taggen
+----
+git tag --list -n
+git tag -a training_201119 -m "Remote-Training fuer einen Teilnehmer ueber GFU"
+git push origin training_201119
+----
+
+== Hinweise zur Durchführung einer Präsenzschulung
+
+Unbedingt auch den *GFU-Dozentenleitfaden* beachten!
+
+=== Mail an Technik
+
+Ca. ein Woche vorher:
+
+An: technik@gfu.net
+Betreff: Technische Konfiguration für das Training "Spring-Batch-Deep-Dive"
+
+Hallo Technik-Team,
+
+für die Schulung Spring-Batch-Deep-Dive am 25./26. Oktober
+wird folgende Software auf den Rechnern der Teilnehmer benötigt:
+ 
+- OpenJDK 17 (inkl. JAVA_HOME Aufnahme in PATH)
+- Apache Maven (inkl. Aufnahme in PATH)
+- Git (inkl. Aufnahme in PATH)
+- Spring Tools 4 for Eclipse (https://spring.io/tools)
+- IntelliJ IDEA Community Edition
+
+=== Mail wg. Schulungsunterlagen
+
+An: villinger@gfu.net
+Betreff: Handout für Spring-Batch-Deep-Dive
+
+Hallo Frau Villinger,
+
+könnten Sie bitte für die Spring-Batch-Deep-Dive Teilnehmer am 17./18. Februar ein ausgedrucktes Exemplar des beiliegenden Handouts bereitstellen?
+
+Als Buch zum Thema empfehle ich:
+
+„The Definitive Guide to Spring Batch“ (https://www.springer.com/de/book/9781484237236).
+
+Besten Dank und viele Grüße,
+
+== Hinweise zur Durchführung einer Remote-/Firmen-Schulung
+
+== Literatur
+
+* „The Definitive Guide to Spring Batch“ (https://www.springer.com/de/book/9781484237236) und
+* „Enterprise Integration Patterns” (https://www.amazon.com/o/asin/0321200683/ref=nosim/enterpriseint-20 )
+
+== Links zu den verwendeten Tools
+
+* https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
+* https://github.com/asciidoctor/asciidoctor-gradle-plugin
+* https://asciidoctor.org/docs/asciidoctor-revealjs/
+
+== Weitere Infos:
+
+* https://wiki.ads.anderscore.com/anderScore/Technology/_Trainings/GFU/GFU_Trainings_Orga.docx[GFU Trainings Orga]
+
+== Tipps zur Durchführung
+
+* Bei den UML-Folien zum ChunkorientetTasklet den Zusammenhang im Stacktrace zeigen
+oder eine kurze Übung, bei der die Leute Reader, Processor und Writer im
+SimpleJobConfig debuggen.
+* Bei jedem Codefragment aus den Folien dazusagen, wo die zugehörigen Sourcen sind
+und wie man diese ausführt.
+* Aufgaben im Pair-Programming lösen (geht auch Online), wobei der Tutor auch den
+Driver manche kann.
+
+== Tipps für Remote-Schulungen
+
+* Besser Zoom als BBB verwenden und bei größeren Gruppen auf Breakout-Räume
+ausweichen.
+* Beim Screensharing der IDE in BBB alle Kameras ausschalten (auch die eigene),
+damit mehr Platz für den Screen bleibt.
+* Bester Browser für BBB: Edge
+* Bei BBB die Präsentationen als PDF hochladen, damit auch 'schmalbandige'
+Teilnehmer was sehen.

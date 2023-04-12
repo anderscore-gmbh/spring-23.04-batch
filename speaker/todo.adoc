@@ -1,0 +1,12 @@
+== Verbesserungen nach dem 11./12 Aug. 2022:
+
+- Alles von javax auf jakarta umstellen
+- Event-Handler von Annotationen durch Listener ersetzen
+- Chunk-Aufgabe: 2. Schritt nur mit Tasklet, evtl. FractionError-Objekt definieren
+- Klären, wie man MultiResourceProvider mit FileItemReader kombiniert
+- Hinweise auf RepositoryReader und RepositoryWriter
+
+== Optionale Verbesserungen
+
+- Beispiel: MultiResourceProvider + FileItemReader
+- Beispiel: Verzeichnis pollen mit Workflow

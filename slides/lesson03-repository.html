@@ -1,0 +1,371 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 3 - Das Spring-Batch Repository</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_3_das_spring_batch_repository" data-state="no-title-footer"><h2>Lektion 3 - Das Spring-Batch Repository</h2></section>
+<section id="_überblick_zu_dieser_lektion"><h2>Überblick zu dieser Lektion</h2><div class="olist arabic"><ol class="arabic"><li><p>Wozu ein Repository?</p></li><li><p><a href="lesson03-repository.html#/_aufbau_eines_batch_jobs_konzeptmodell">Konzeptmodell</a>,
+<a href="lesson03-repository.html#/_laufzeit_datenmodell">Laufzeitmodell</a>,
+<a href="lesson03-repository.html#/_datenbank_schema">Datenbankmodell</a></p></li><li><p><a href="lesson03-repository.html#/_hsqldbverwendung_in_process">Verwendung von HSQL-DB</a>
+(<a href="lesson03-repository.html#/_aufgabe_1_hello_world_mit_repository">Aufgabe 1</a>)</p></li><li><p><a href="lesson03-repository.html#/_batchstatus_vs_exitstatus">Job-Status, Exist-Status und Return-Code</a></p></li><li><p><a href="lesson03-repository.html#/_zugriff_auf_jobrepository">Zugriff auf JobRepository</a>
+(<a href="lesson03-repository.html#/_aufgabe_2_jobexplorer_verwenden">Aufgabe 2</a>)</p></li><li><p><a href="lesson03-repository.html#/_jobparametersincrementerrunidincrementer">Mehr Details zu Job-Parametern</a></p></li><li><p><a href="lesson03-repository.html#/_zust%C3%A4nde_eines_jobs">Job-Steuerung (Wiederanlauf)</a>
+(<a href="lesson03-repository.html#/_aufgabe_3_job_verwalten">Aufgabe 3</a>)</p></li><li><p><a href="lesson03-repository.html#/_joboperatorapi">JobOperator-API</a>
+(<a href="http://localhost:8071/lesson03-repository.html#/_aufgabe_4_optional_joboperator_verwenden">Aufgabe 4</a>)</p></li></ol></div></section>
+<section id="_wozu_ein_jobrepository"><h2>Wozu ein JobRepository?</h2><div class="ulist"><ul><li class="fragment"><p>Protokollierung</p></li><li class="fragment"><p>Wiederanlauf</p></li><li class="fragment"><p>Überwachung</p></li><li class="fragment"><p>Steuerung</p></li><li class="fragment"><p>Falls diese Punkte keine Rolle spielen&#8230;&#8203;<br></p><div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content"><code>MapJobRepository</code> (<strong>deprecated!</strong>) kann als Platzhalter verwendet werden</td></tr></table></div></li></ul></div></section>
+<section id="_aufbau_eines_batch_jobs_konzeptmodell"><h2>Aufbau eines Batch-Jobs (Konzeptmodell)</h2><div class="imageblock" style=""><img src="images/BatchJobKonzeptmodell.svg" alt="BatchJobKonzeptmodell" width="890" height="566"></div></section>
+<section id="_laufzeit_datenmodell"><h2>Laufzeit-Datenmodell</h2><div class="imageblock" style=""><img src="images/JobLaufzeitmodell.svg" alt="JobLaufzeitmodell" width="1698" height="566"></div></section>
+<section id="_datenbank_schema"><h2>Datenbank-Schema</h2><div class="imageblock" style=""><img src="images/repository/Repository.png" alt="Repository" width="100%"></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Alle Tabellennamen haben standardmäßig den Präfix <em>BATCH_</em>. Dieser ist konfigurierbar.</td></tr></table></div></section>
+<section id="_hsqldb"><h2>HSQLDB</h2><div class="paragraph heading"><p>HSQLDB in Stichworten</p></div>
+<div class="ulist"><ul><li><p>Freie, vollständig in Java programmierte relationale SQL-Datenbank</p></li><li><p>Bestandteil von OpenOffice und LibreOffice</p></li><li><p>Sehr schlank (nur ein JAR)</p></li><li><p>Als In-Memory-Datenbank verwendbar (nützlich für Tests)</p></li></ul></div></section>
+<section id="_hsqldbverwendung_in_process"><h2>HSQLDB&#8201;&#8212;&#8201;Verwendung <em>In-Process</em></h2><div class="paragraph"><p>Notwendige Abhängigkeit:</p></div>
+<pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.hsqldb<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>hsqldb<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>runtime<span class="tag">&lt;/scope&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+<table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr><th class="tableblock halign-left valign-top">JDBC-URL (Beispiel)</th><th class="tableblock halign-left valign-top">Verwendungszweck</th></tr><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jdbc:hsqldb:mem:mymemdb</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">In-Memory Datenbank</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jdbc:hsqldb:file:mydir/standalonedb</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Standanlone Datenbank</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">jdbc:hsqldb:hsql://localhost/xdb</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Datenbank-Server</p></td></tr></table></section>
+<section id="_hsqldbverwendung_als_server"><h2>HSQLDB&#8201;&#8212;&#8201;Verwendung als Server</h2><div class="dlist"><dl><dt class="hdlist1">Aufruf: </dt><dd><pre class="CodeRay listingblock"><code>java -cp hsqldb-2.5.0.jar org.hsqldb.server.Server --database.0 file:mydb --dbname.0 xdb --silent false</code></pre></dd><dt class="hdlist1">Aufruf über das Maven-Projekt <em>hsqldb-server</em>: </dt><dd><pre class="CodeRay listingblock"><code>mvn</code></pre>
+<div class="paragraph"><p>bzw. in einem neuen Konsolen-Fenster:</p></div>
+<pre class="CodeRay listingblock"><code>start mvn</code></pre></dd><dt class="hdlist1">JDBC-URL: </dt><dd><pre class="CodeRay listingblock"><code>jdbc:hsqldb:hsql://localhost/xdb</code></pre></dd></dl></div>
+<div class="paragraph"><p><a href="http://hsqldb.org/doc/guide/running-chapt.html">&#8594; HSQLDB Guide:Running and Using HyperSQL</a></p></div></section>
+<section id="_hsqldbdatenbank_management_tool"><h2>HSQLDB&#8201;&#8212;&#8201;Datenbank Management Tool</h2><div class="dlist"><dl><dt class="hdlist1">Aufruf: </dt><dd><pre class="CodeRay listingblock"><code>java -cp hsqldb-2.5.0.jar org.hsqldb.util.DatabaseManagerSwing</code></pre></dd><dt class="hdlist1">Aufruf über das Maven-Projekt <em>hsqldb-server</em>: </dt><dd><pre class="CodeRay listingblock"><code>mvn exec:java@ui</code></pre></dd><dt class="hdlist1">Initialer Login: </dt><dd><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Username</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">"<strong>SA</strong>"</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Passwort</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">""</p></td></tr></table></dd></dl></div>
+<div class="paragraph"><p><br></p></div>
+<div class="dlist"><dl><dt class="hdlist1">Mögliche Alternativen: </dt><dd><div class="ulist"><ul><li><p>Datenbank Management Tool der jeweiligen IDE</p></li><li><p><a href="http://squirrel-sql.sourceforge.net/">&#8594; SQuirreL SQL Client</a></p></li></ul></div></dd></dl></div></section>
+<section id="_hsqldbkonfiguration_einer_spring_datasource" class="columns"><h2>HSQLDB&#8201;&#8212;&#8201;Konfiguration einer Spring-Datasource</h2><div class="openblock top"><div class="content"><div class="paragraph"><p>Abhängigkeit für Connection-Pool:</p></div>
+<pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>com.zaxxer<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>HikariCP<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+<div class="paragraph"><p>Altenativ der <em>DBCP2 Connection Pool</em>:</p></div>
+<pre class="CodeRay listingblock"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.commons<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>commons-dbcp2<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre></div></div>
+<div class="openblock top"><div class="content"><div class="paragraph"><p>Deklaration der DataSource:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Configuration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">DataSourceConfig</span> {
+
+    <span class="annotation">@Bean</span>
+    HikariDataSource dataSource() {
+        HikariConfig config = <span class="keyword">new</span> HikariConfig();
+        config.setJdbcUrl(<span class="string"><span class="delimiter">&quot;</span><span class="content">jdbc:hsqldb:hsql://localhost/xdb</span><span class="delimiter">&quot;</span></span>);
+        config.setUsername(<span class="string"><span class="delimiter">&quot;</span><span class="content">SA</span><span class="delimiter">&quot;</span></span>);
+        config.setPassword(<span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>);
+
+        HikariDataSource ds = <span class="keyword">new</span> HikariDataSource(config);
+        <span class="keyword">return</span> ds;
+    }
+}</code></pre></div></div>
+<div class="paragraph one-col"><p>Für <strong>Spring-Boot</strong> genügen folgende Einträge in der <em>application.properties</em>:</p></div>
+<pre class="CodeRay listingblock"><code>spring.datasource.url=jdbc:hsqldb:hsql://localhost/xdb
+spring.datasource.username=SA
+spring.datasource.password=
+
+spring.batch.jdbc.initialize-schema=always</code></pre></section>
+<section id="_hsqldbschema_für_spring_batch_respository_anlegen"><h2>HSQLDB&#8201;&#8212;&#8201;Schema für Spring-Batch Respository anlegen</h2><div class="paragraph"><p>In <code>spring-batch-core-x.y.z.RELEASE.jar</code> findet man im Verzeichnis<br>
+<em>/org/springframework/batch/core</em> für diverse Datenbanksysteme<br>
+Skripte zum Anlegen des Schemas.</p></div>
+<div class="paragraph"><p>Für Testzwecke legt man das Schema am einfachsten über einen Unittest an:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@SpringJUnitConfig</span>(DataSourceConfig.class)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SpringBatchSchemaSetup</span> {
+
+    <span class="annotation">@Test</span>
+    <span class="annotation">@Sql</span>(scripts = <span class="string"><span class="delimiter">&quot;</span><span class="content">/org/springframework/batch/core/schema-hsqldb.sql</span><span class="delimiter">&quot;</span></span>,
+         statements = { <span class="string"><span class="delimiter">&quot;</span><span class="content">SET DATABASE TRANSACTION CONTROL MVCC</span><span class="delimiter">&quot;</span></span>,
+                        <span class="string"><span class="delimiter">&quot;</span><span class="content">SET PROPERTY </span><span class="char">\&quot;</span><span class="content">sql.enforce_strict_size</span><span class="char">\&quot;</span><span class="content"> TRUE</span><span class="delimiter">&quot;</span></span> })
+    <span class="type">void</span> initSchema() {
+    }
+}</code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Standardmäßig haben alle Spring-Batch Tabellen den Präfix <strong><code>BATCH_</code></strong>.
+Diesen Wert kann man ändern, siehe
+<a href="https://docs.spring.io/spring-batch/docs/4.3.x/api/org/springframework/batch/core/repository/support/JobRepositoryFactoryBean.html#setTablePrefix-java.lang.String-">
+&#8594; JobRepositoryFactoryBean</a>. Dafür muss man das JobRepository selbst erzeugen, siehe
+<a href="https://docs.spring.io/spring-batch/docs/4.3.x/api/org/springframework/batch/core/configuration/annotation/DefaultBatchConfigurer.html#createJobRepository--">
+&#8594; DefaultBatchConfigurer.createJobRepository()</a>.</td></tr></table></div></section>
+<section id="_aufgabe_1_hello_world_mit_repository"><h2>Aufgabe 1: Hello World mit Repository</h2><div class="olist arabic"><ol class="arabic"><li><p>Starten Sie den HSQLDB-Server, legen Sie das Schema an und prüfen Sie, ob die Tabellen vorhanden sind.</p></li><li><p>Importieren Sie die <code>DataSourceConfig</code> in die HelloWorld-Configuration und führen Sie den Job aus.</p></li><li><p>Welche Einträge finden Sie nach der Ausführung in den Tabellen?</p></li><li><p>Was passiert wenn Sie den Job erneut (mit gleichen oder unterschiedlichen Parametern) ausführen?</p></li></ol></div></section>
+<section id="_batchstatus_vs_exitstatus"><h2>BatchStatus vs. ExitStatus</h2><div class="paragraph"><p>Beide Tabellen <code>BATCH_JOB_EXECUTION</code> und <code>BATCH_STEP_EXECUTION</code> haben<br>
+die Spalten <code>STATUS</code> und <code>EXIT_CODE</code>:</p></div>
+<div class="imageblock" style=""><img src="images/StatusClasses.svg" alt="StatusClasses" width="1850" height="508"></div></section>
+<section id="_return_code"><h2>Return-Code</h2><div class="ulist"><ul><li><p>Um Batch-Jobs auf Befehlszeile zu starten, werden oft <em>Enterprise Scheduler</em> verwendet.</p></li><li><p>Diese können meistens nur den Return-Code eines Shell-Skripts auswerten.</p></li><li><p>Der <code>CommandLineJobRunner</code> wandelt den <code>ExitStatus</code> eines Jobs mit einem <code>ExitCodeMapper</code> um.</p></li><li><p>Standardmäßig wird dafür der <code>SimpleJvmExitCodeMapper</code> verwendet.</p></li><li><p>Um einen eigenen <code>ExitCodeMapper</code> zu verwenden, genügt es eine entsprechende Bean zu definieren:</p><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+ExitCodeMapper exitCodeMapper() {
+    <span class="keyword">return</span> exitCode -&gt; <span class="string"><span class="delimiter">&quot;</span><span class="content">COMPLETED</span><span class="delimiter">&quot;</span></span>.equals(exitCode) ? <span class="integer">42</span> : -<span class="integer">13</span>;
+}</code></pre></li><li><p>Spring-Boot wertet den <code>ExitCodeMapper</code> standardmäßig nicht aus.</p></li></ul></div>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Der <code>CommandLineJobRunner</code> wird aus dem angegeben <em>ApplicationContext</em> per Autowiring initialsiert.</td></tr></table></div></section>
+<section id="_return_code_bei_spring_boot"><h2>Return-Code bei Spring-Boot</h2><div class="ulist"><ul><li><p>Mit dem <code>ExitCodeExceptionMapper</code> kann man Exceptions einen Return-Code zuordnen.</p></li><li><p>Folgender Listener wertet den <code>ExitCodeMapper</code> aus:</p></li></ul></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Component</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ExitCodeJobExecutionEventListener</span>
+        <span class="directive">implements</span> ApplicationListener&lt;JobExecutionEvent&gt;, ExitCodeGenerator, InitializingBean {
+
+    <span class="annotation">@Autowired</span>(required = <span class="predefined-constant">false</span>)
+    <span class="directive">private</span> ExitCodeMapper exitCodeMapper;
+    <span class="directive">private</span> <span class="type">int</span> exitCode;
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> afterPropertiesSet() {
+        <span class="keyword">if</span> (exitCodeMapper == <span class="predefined-constant">null</span>) {
+            exitCodeMapper = <span class="keyword">new</span> SimpleJvmExitCodeMapper();
+        }
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> onApplicationEvent(JobExecutionEvent event) { <span class="comment">// alternativ: @EventListener</span>
+        ExitStatus exitStatus = event.getJobExecution().getExitStatus();
+        exitCode = exitCodeMapper.intValue(exitStatus.getExitCode());
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">int</span> getExitCode() {
+        <span class="keyword">return</span> exitCode;
+    }
+}</code></pre></section>
+<section id="_return_code_bei_spring_boot_system_exit"><h2>Return-Code bei Spring-Boot (System.exit)</h2><div class="paragraph"><p>Damit der zuvor gezeigte <code>ExitCodeJobExecutionEventListener</code> funktioniert muss die <code>main</code> Methode der
+Spring-Boot Angepasst werden:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+        <span class="predefined-type">System</span>.exit(
+                        SpringApplication.exit(
+                                        SpringApplication.run(HelloBootApplication.class, args)));
+}</code></pre></section>
+<section id="_zugriff_auf_jobrepository" class="columns"><h2>Zugriff auf JobRepository</h2><div class="imageblock two-col" style=""><img src="images/repository/job-repository-advanced.png" alt="job repository advanced" width="1000px"></div>
+<div class="openblock two-col top"><div class="content"><div class="ulist"><ul><li><p>Zu jedem dieser Interfaces existiert eine <strong><code>SimpleJob&#8230;&#8203;</code></strong> Implementierung, die in der Regel verwendet wird.</p></li><li><p>Die <code>SimpleBatchConfiguration</code>, welche via <code>@EnableBatchProcessing</code> eingebunden wird,
+legt keinen <code>JobOperator</code> an.</p></li></ul></div></div></div></section>
+<section id="_jobexplorer"><h2>JobExplorer</h2><div class="paragraph"><p>Der <code>JobExplorer</code> bietet eine komfortable API zum Zugriff auf das Repository.</p></div>
+<div class="imageblock" style=""><img src="images/JobExplorer.svg.svg" alt="JobExplorer.svg" width="1020" height="412"></div></section>
+<section id="_aufgabe_2_jobexplorer_verwenden"><h2>Aufgabe 2: JobExplorer verwenden</h2><div class="paragraph"><p>Schreiben Sie einen Unit-Test, der über System.out alle JobExecutions und die zugehörigen Steps
+aus dem Repository ausgibt.
+Geben Sie dafür jeweils den Namen, den Startzeitpunkt, den Status und den Exit-Code aus.</p></div>
+<div class="paragraph"><p>Verwenden Sie folgendes Grundgerüst:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@SpringJUnitConfig</span>(HelloRepositoryConfig.class)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">JobExplorerSample</span> {
+
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> JobExplorer jobExplorer;
+
+}</code></pre></section>
+<section id="_jobparametersincrementerrunidincrementer"><h2>JobParametersIncrementer&#8201;&#8212;&#8201;RunIdIncrementer</h2><div class="ulist"><ul><li><p>Der <code>RunIdIncrementer</code> ergänzt jeden Aufruf um einen <strong><code>run.id</code></strong> Parameter</p></li><li><p>Als Wert wird eine fortlaufend hochgezählte Zahl übergeben</p></li><li><p>Dadurch kann man einen Job mit sonst gleichen <strong>identifizierenden</strong> Parametern erneut ausführen</p></li></ul></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+RunIdIncrementer incrementer() {
+    <span class="keyword">return</span> <span class="keyword">new</span> RunIdIncrementer();
+}
+
+<span class="annotation">@Bean</span>
+Job helloJob() {
+    Job job = jobBuilderFactory
+            .get(<span class="string"><span class="delimiter">&quot;</span><span class="content">helloIncrementerJob</span><span class="delimiter">&quot;</span></span>)
+            .start(helloStep())
+            .incrementer(incrementer()) <span class="comment">// Bei jedem Start run.id hochzählen</span>
+            .preventRestart() <span class="comment">// Erneuten Start von fehlgeschlagenen Jobs verhindern</span>
+            .build();
+    <span class="keyword">return</span> job;
+}</code></pre>
+<div class="paragraph"><p>Verwendung mit einem <strong><code>JobLauncher</code></strong>:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">JobParameters jobParameters = <span class="keyword">new</span> JobParametersBuilder(jobExplorer)
+        .getNextJobParameters(helloJob) <span class="comment">// Nächste run.id beschaffen</span>
+        .toJobParameters();
+JobExecution jobExecution = jobLauncher.run(helloJob, jobParameters);</code></pre></section>
+<section id="_zustände_eines_jobs" class="columns"><h2>Zustände eines Jobs</h2><div class="openblock two-col top"><div class="content"><div class="paragraph"><p>Ein Job kann folgende Zustände (<code>BatchStatus</code>) annehmen:</p></div>
+<div class="imageblock" style=""><img src="images/StatusTransitions.svg" alt="StatusTransitions" width="751" height="481"></div></div></div>
+<div class="openblock two-col top"><div class="content"><div class="paragraph"><p>Die <strong><code>CommandLineJobRunner</code></strong> Optionen:</p></div>
+<table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:25%"><col style="width:75%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">-restart</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Die letzte fehlgeschlagene Ausführung erneut starten (mit den gleichen Parametern) oder
+          einen gestoppten Job fortsetzen</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">-stop</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Den laufenden Job anhalten</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">-abandon</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Den Job stilllegen</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">-next</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Den nächsten Job entsprechend dem <code>JobParametersIncrementer</code> ausführen</p></td></tr></table></div></div>
+<div class="admonitionblock warning teacherBox"><table><tr><td class="icon"><i class="fa fa-warning" title="Warning"></i></td><td class="content">Wenn der Prozess mit <strong><code>kill -9</strong></code> abgebrochen wurde hat er den Status <strong><code>STARTED</strong></code>.</td></tr></table></div></section>
+<section id="_aufgabe_3_job_verwalten"><h2>Aufgabe 3: Job verwalten</h2><div class="olist arabic"><ol class="arabic"><li><p>Führen Sie <code>LongRunningJobConfig</code> mit dem <code>CommandLineJobRunner</code> aus.</p></li><li><p>Lernen Sie die Jobsteuerung kennen:</p><div class="ulist"><ul><li><p>Starten Sie den Job mit unterschiedlichen Parametern für <strong><code>stop.at</code></strong> und <strong><code>fail.at</code></strong></p></li><li><p>Verwenden Sie die Optionen <em>-restart</em>, <em>-stop</em>, <em>-abandon</em> (mit einem 2. Prozess)</p></li><li><p>Nutzen Sie die Lösung aus der Vorherigen Aufgabe (oder ein Datenbanktool) um sich
+die Auswirkungen auf das Repository anzusehen.</p></li><li><p>Was passiert mit Parametern bei <em>-restart</em>?</p></li><li><p>Welche Auswirkung hat ein <code>preventRestart()</code> bei der Job-Konfiguration?</p></li></ul></div></li><li><p>Sammeln Sie Erfahrung mit dem <code>RunIdIncrementer</code></p><div class="ulist"><ul><li><p>Ergänzen Sie <code>LongRunningJobConfig</code> um einen <code>RunIdIncrementer</code></p></li><li><p>Führen Sie den Job mit <em>-next</em> aus.</p></li><li><p>Optional: Bauen Sie einen Unittest, der den Job mit einem <code>JobLauncher</code> ausführt</p></li></ul></div></li></ol></div></section>
+<section id="_joboperatorapi" class="center"><h2>JobOperator&#8201;&#8212;&#8201;API</h2><div class="paragraph"><p>Der <strong><code>JobOperator</code></strong> bietet eine API zur Verwaltung von Jobs:</p></div>
+<div class="imageblock" style=""><img src="images/JobOperator.svg.svg" alt="JobOperator.svg" width="1932" height="638"></div></section>
+<section id="_joboperator_konfigurieren"><h2>JobOperator konfigurieren</h2><div class="paragraph"><p>Da mit <strong><code>@EnableBatchProcessing</code></strong> kein JobOperator angelegt wird,<br>
+muss dieser explizit konfiguriert werden:</p></div>
+<div class="title">OperatorConfig.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Bean</span>
+SimpleJobOperator jobOperator() {
+    SimpleJobOperator operator = <span class="keyword">new</span> SimpleJobOperator();
+    operator.setJobLauncher(jobLauncher);
+    operator.setJobExplorer(jobExplorer);
+    operator.setJobRegistry(jobRegistry);
+    operator.setJobRepository(jobRepository);
+    <span class="keyword">return</span> operator;
+}
+
+<span class="annotation">@Bean</span>
+JobRegistryBeanPostProcessor jobRegistryBeanPostProcessor() {
+    JobRegistryBeanPostProcessor postProcessor = <span class="keyword">new</span> JobRegistryBeanPostProcessor();
+    postProcessor.setJobRegistry(jobRegistry);
+    <span class="keyword">return</span> postProcessor;
+}</code></pre>
+<div class="admonitionblock note teacherBox"><table><tr><td class="icon"><i class="fa fa-info-circle" title="Note"></i></td><td class="content">Mit <code>@EnableBatchProcessing</code> wird zwar eine <code>JobRegistry</code> angelegt, aber nicht befüllt.
+Der <code>JobRegistryBeanPostProcessor</code> registiert jeden Job in der <code>JobRegistry</code>.
+Das ist notwendig, um mit dem <code>JobOperator</code> einen Job über den Namen anzusprechen.</td></tr></table></div></section>
+<section id="_joboperator_verwenden"><h2>JobOperator verwenden</h2><div class="paragraph"><p>Einen so konfigurierten JobOperator kann man für die Verwaltung von Jobs nutzen:</p></div>
+<div class="title">OperatorTest.java</div><pre class="CodeRay listingblock"><code class="java language-java"><span class="annotation">@Autowired</span>
+<span class="directive">private</span> JobOperator jobOperator;
+
+<span class="annotation">@Test</span>
+<span class="type">void</span> testJobOperator() <span class="directive">throws</span> <span class="exception">Exception</span> {
+    <span class="predefined-type">Long</span> executionId = jobOperator.startNextInstance(<span class="string"><span class="delimiter">&quot;</span><span class="content">helloIncrementerJob</span><span class="delimiter">&quot;</span></span>);
+    <span class="predefined-type">System</span>.out.println(jobOperator.getSummary(executionId));
+    <span class="predefined-type">System</span>.out.println(jobOperator.getStepExecutionSummaries(executionId));
+}</code></pre></section>
+<section id="_zusammenfassung_lektion_3"><h2>Zusammenfassung Lektion 3</h2><div class="ulist"><ul><li><p>JobRepository für Protokollierung, Wiederanlauf, Überwachung und Steuerung von Jobs</p></li><li><p>Konzeptmodell, Laufzeitmodell, Datenbankmodell</p></li><li><p>Verwendung von HSQL-DB</p></li><li><p><code>BatchStatus</code>, <code>ExitStatus</code> und Return-Code</p></li><li><p>Explorer, Launcher und Operations</p></li><li><p>(Identifizierende) Parameter und <code>RunIdIncrementer</code></p></li><li><p>Job-Steuerung mit <code>CommandLineJobRunner</code> und <code>JobOperations</code></p></li></ul></div></section>
+<section id="_aufgabe_4_optional_joboperator_verwenden"><h2>Aufgabe 4 (optional): JobOperator verwenden</h2><div class="paragraph"><p>Erstellen Sie eine Konfiguration für den <code>JobOperator</code> und nutzen Sie diese, um den HelloJob
+mit einem Unittest auszuführen.</p></div>
+<div class="paragraph"><p><br>
+&#8594; <a href="index.html">Agenda</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Spring Workshop', 'Jan Lühr', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

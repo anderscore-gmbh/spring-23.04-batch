@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="620px" preserveAspectRatio="none" style="width:632px;height:620px;" version="1.1" viewBox="0 0 632 620" width="632px" zoomAndPan="magnify"><defs><filter height="300%" id="f1hnahm05jlgid" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="4.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="8.0" dy="8.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[4706a4da5a6bb5475fa9bf8b01d9975b]
+cluster org.springframework.batch.item--><polygon fill="#FFFFFF" filter="url(#f1hnahm05jlgid)" points="44,48,568,48,582,92.5938,588,92.5938,588,596,44,596,44,48" style="stroke: #000000; stroke-width: 3.0;"/><line style="stroke: #000000; stroke-width: 3.0;" x1="44" x2="582" y1="92.5938" y2="92.5938"/><text fill="#000000" font-family="sans-serif" font-size="28" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="512" x="52" y="77.9902">org.springframework.batch.item</text><!--MD5=[f90aa14bed8e8e84a5ee92e7126a3c84]
+class ItemReader--><rect fill="#DDEEE8" filter="url(#f1hnahm05jlgid)" height="121.6094" id="ItemReader" style="stroke: #225C4D; stroke-width: 3.0;" width="400" x="116" y="118"/><ellipse cx="227.5" cy="150" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M219.3438,141.5313 L219.3438,137.2188 L234.125,137.2188 L234.125,141.5313 L229.1875,141.5313 L229.1875,157.6875 L234.125,157.6875 L234.125,162 L219.3438,162 L219.3438,157.6875 L224.2813,157.6875 L224.2813,141.5313 L219.3438,141.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="138" x="268.5" y="158.3086">ItemReader</text><rect fill="#FFFFFF" height="31.9375" style="stroke: #000000; stroke-width: 2.0; stroke-dasharray: 2.0,2.0;" width="18" x="504" y="112"/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="14" x="506" y="136.2773">T</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="118" x2="514" y1="182" y2="182"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="118" x2="514" y1="198" y2="198"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="96" x="128" y="226.4209">read(): T</text><!--MD5=[e873b9cf33adbd0fdfdcf803530782e0]
+class ItemProcessor--><rect fill="#DDEEE8" filter="url(#f1hnahm05jlgid)" height="121.6094" id="ItemProcessor" style="stroke: #225C4D; stroke-width: 3.0;" width="400" x="116" y="280"/><ellipse cx="200" cy="312" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M191.8438,303.5313 L191.8438,299.2188 L206.625,299.2188 L206.625,303.5313 L201.6875,303.5313 L201.6875,319.6875 L206.625,319.6875 L206.625,324 L191.8438,324 L191.8438,319.6875 L196.7813,319.6875 L196.7813,303.5313 L191.8438,303.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="168" x="240" y="320.3086">ItemProcessor</text><rect fill="#FFFFFF" height="31.9375" style="stroke: #000000; stroke-width: 2.0; stroke-dasharray: 2.0,2.0;" width="44" x="478" y="274"/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="40" x="480" y="298.2773">I, O</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="118" x2="514" y1="344" y2="344"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="118" x2="514" y1="360" y2="360"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="210" x="128" y="388.4209">process(item: I): O</text><!--MD5=[2fbb5e2e3f57d0c06a725c10dc462a50]
+class ItemWriter--><rect fill="#DDEEE8" filter="url(#f1hnahm05jlgid)" height="121.6094" id="ItemWriter" style="stroke: #225C4D; stroke-width: 3.0;" width="400" x="116" y="442"/><ellipse cx="232.5" cy="474" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M224.3438,465.5313 L224.3438,461.2188 L239.125,461.2188 L239.125,465.5313 L234.1875,465.5313 L234.1875,481.6875 L239.125,481.6875 L239.125,486 L224.3438,486 L224.3438,481.6875 L229.2813,481.6875 L229.2813,465.5313 L224.3438,465.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="128" x="273.5" y="482.3086">ItemWriter</text><rect fill="#FFFFFF" height="31.9375" style="stroke: #000000; stroke-width: 2.0; stroke-dasharray: 2.0,2.0;" width="18" x="504" y="436"/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="14" x="506" y="460.2773">T</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="118" x2="514" y1="506" y2="506"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="118" x2="514" y1="522" y2="522"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="360" x="128" y="550.4209">write( items: List&lt;? extends T&gt;)</text><!--MD5=[95c74d419e759e783f5c593fdbe88dd6]
+link ItemReader to ItemProcessor--><!--MD5=[427a2aa27724aa82aa28f1f7de0e8d4b]
+link ItemProcessor to ItemWriter--><!--MD5=[b7fd8206877fd794354d98f99baf4f26]
+@startuml
+skinparam class {
+ BackgroundColor #DDEEE8
+ BorderColor #225C4D
+ ArrowColor #225C4D
+ }
+scale 2
+skinparam nodesep 100
+skinparam ranksep 20
+skinparam minclasswidth 200
+
+package org.springframework.batch.item {
+interface ItemReader<T> {
+    read(): T
+}
+interface ItemProcessor<I, O> {
+    process(item: I): O
+}
+interface ItemWriter<T> {
+    write( items: List<? extends T>)
+}
+
+ItemReader -[hidden]-> ItemProcessor
+ItemProcessor -[hidden]-> ItemWriter
+}
+@enduml
+
+PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.6+10-Debian-1deb11u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: DK
+--></g></svg>

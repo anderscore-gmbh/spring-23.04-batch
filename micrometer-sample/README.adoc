@@ -1,0 +1,30 @@
+= Micrometer Sample
+
+== Verwendung
+
+- http://localhost:8080/hello?name=World
+- http://localhost:8080/actuator
+- http://localhost:9090 (Prometheus)
+- http://localhost:3000 admin/admin (Grafana)
+
+== Micrometer
+
+- Monitoring -> kontinuierliche Überwachung
+- Observability -> nachschauen, wenn was nicht tut
+- Quellen: Status (z. B. Actuator Health Check), Log, Metriken (Zähler), Tracing
+- Micrometer ist SLF4J fürs Monitoring
+- Abhängigkeiten zu API und Core/Registry notwendig
+- Bietet: Counter, Gauge (Messwert) oder Timer
+- Integration in Spring-Boot
+
+=== Tools
+- https://prometheus.io/[Prometheus - Monitoring system & time series database] -> Spring Boot Starter
+- https://grafana.com/[Grafana - The open platform for analytics and monitoring]
+- https://prometheus.io/docs/alerting/alertmanager/[Prometheus Alertmanager]
+- https://grafana.com/dashboards/4701[JVM (Micrometer)] Dashboard für Grafana
+- Prometheus Chrome Plugin
+
+=== Links
+- https://dzone.com/articles/monitoring-using-spring-boot-2-prometheus-and-graf
+- https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
+- https://programm.javaland.eu/2019/#/scheduledEvent/569767[JavaLand 2019: Anwendungsmetriken sammeln und auswerten mit Micrometer]

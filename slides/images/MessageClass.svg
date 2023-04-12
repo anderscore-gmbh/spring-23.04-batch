@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="184px" preserveAspectRatio="none" style="width:856px;height:184px;" version="1.1" viewBox="0 0 856 184" width="856px" zoomAndPan="magnify"><defs><filter height="300%" id="f106rapej54zm1" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="4.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="8.0" dy="8.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[bea5b0d46523efab5ea1c1d339f396f0]
+class Message--><rect fill="#DDEEE8" filter="url(#f106rapej54zm1)" height="147.2188" id="Message" style="stroke: #225C4D; stroke-width: 3.0;" width="384" x="12" y="16"/><ellipse cx="133.5" cy="48" fill="#B4A7E5" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M125.3438,39.5313 L125.3438,35.2188 L140.125,35.2188 L140.125,39.5313 L135.1875,39.5313 L135.1875,55.6875 L140.125,55.6875 L140.125,60 L125.3438,60 L125.3438,55.6875 L130.2813,55.6875 L130.2813,39.5313 L125.3438,39.5313 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="102" x="174.5" y="56.3086">Message</text><rect fill="#FFFFFF" height="31.9375" style="stroke: #000000; stroke-width: 2.0; stroke-dasharray: 2.0,2.0;" width="18" x="384" y="10"/><text fill="#000000" font-family="sans-serif" font-size="24" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="14" x="386" y="34.2773">T</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="14" x2="394" y1="80" y2="80"/><line style="stroke: #225C4D; stroke-width: 3.0;" x1="14" x2="394" y1="96" y2="96"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="168" x="24" y="124.4209">getPayload(): T</text><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="360" x="24" y="150.0303">getHeaders(): MessageHeaders</text><!--MD5=[95748c36701a304610cc26d26978ea5c]
+class MessageHeaders--><rect fill="#DDEEE8" filter="url(#f106rapej54zm1)" height="121.6094" id="MessageHeaders" style="stroke: #225C4D; stroke-width: 3.0;" width="368" x="466" y="29"/><ellipse cx="534.7" cy="61" fill="#ADD1B2" rx="22" ry="22" style="stroke: #225C4D; stroke-width: 2.0;"/><path d="M540.6375,72.2813 Q539.4813,72.875 538.2,73.1563 Q536.9188,73.4688 535.5125,73.4688 Q530.5125,73.4688 527.8563,70.1875 Q525.2313,66.875 525.2313,60.625 Q525.2313,54.375 527.8563,51.0625 Q530.5125,47.75 535.5125,47.75 Q536.9188,47.75 538.2,48.0625 Q539.5125,48.375 540.6375,48.9688 L540.6375,54.4063 Q539.3875,53.25 538.2,52.7188 Q537.0125,52.1563 535.7625,52.1563 Q533.075,52.1563 531.7,54.3125 Q530.325,56.4375 530.325,60.625 Q530.325,64.8125 531.7,66.9688 Q533.075,69.0938 535.7625,69.0938 Q537.0125,69.0938 538.2,68.5625 Q539.3875,68 540.6375,66.8438 L540.6375,72.2813 Z "/><text fill="#000000" font-family="sans-serif" font-size="24" lengthAdjust="spacingAndGlyphs" textLength="218" x="571.3" y="69.3086">MessageHeaders</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="468" x2="832" y1="93" y2="93"/><text fill="#000000" font-family="sans-serif" font-size="22" lengthAdjust="spacingAndGlyphs" textLength="344" x="478" y="121.4209">headers: Map&lt;String, Object&gt;</text><line style="stroke: #225C4D; stroke-width: 3.0;" x1="468" x2="832" y1="134.6094" y2="134.6094"/><!--MD5=[385cd92e332e917c4d62fee94bd02b5b]
+link Message to MessageHeaders--><path d="M396.52,90 C416.18,90 435.86,90 455.54,90 " fill="none" id="Message-&gt;MessageHeaders" style="stroke: #225C4D; stroke-width: 2.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#225C4D" points="465.82,90,447.82,82,455.82,90,447.82,98,465.82,90" style="stroke: #225C4D; stroke-width: 2.0;"/><!--MD5=[b8d71db3ce81915a69d58b709b2d8d80]
+@startuml
+skinparam class {
+ BackgroundColor #DDEEE8
+ BorderColor #225C4D
+ ArrowColor #225C4D
+ }
+scale 2
+
+interface Message<T> {
+    getPayload(): T
+    getHeaders(): MessageHeaders
+}
+
+class MessageHeaders {
+    headers: Map<String, Object>
+}
+
+Message .> MessageHeaders
+@enduml
+
+PlantUML version 1.2019.12(Sun Nov 03 11:24:54 CET 2019)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 17.0.6+10-Debian-1deb11u1
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: DK
+--></g></svg>

@@ -1,0 +1,7 @@
+\target\
+\slides\
+\speaker\
+\.git\
+\.settings\
+\.idea\
+.factorypath
